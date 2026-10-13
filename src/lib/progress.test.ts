@@ -10,6 +10,7 @@ import {
   longestStreak,
   maybeEarnFreeze,
   mergeProgress,
+  normalizeFreezes,
   sameProgress,
   settleFreezes,
   weekStart,
@@ -248,5 +249,47 @@ describe("dailyGoalFraction / dateKey", () => {
   });
   it("formats local dates", () => {
     expect(dateKey(new Date(2026, 0, 5))).toBe("2026-01-05");
+  });
+});
+
+describe("normalizeFreezes (after merging copies from two devices)", () => {
+  it("a day with XP is never frozen: XP wins", () => {
+    const merged = mergeProgress(
+      {
+        totalXp: 0,
+        days: {
+          "2026-03-10": { xp: 0, lessonsDone: 0, frozen: true },
+          "2026-03-07": { xp: 5, lessonsDone: 1, freezeEarned: true },
+        },
+        nodes: {},
+      },
+      { totalXp: 30, days: { "2026-03-10": { xp: 30, lessonsDone: 2 } }, nodes: {} },
+    );
+    expect(merged.days["2026-03-10"]).toEqual({ xp: 30, lessonsDone: 2 });
+    expect(merged.totalXp).toBe(35);
+  });
+  it("never leaves more frozen days than freezes earned (the latest are released first)", () => {
+    const merged = mergeProgress(
+      {
+        totalXp: 5,
+        days: {
+          "2026-03-07": { xp: 5, lessonsDone: 1, freezeEarned: true },
+          "2026-03-08": { xp: 0, lessonsDone: 0, frozen: true },
+        },
+        nodes: {},
+      },
+      { totalXp: 0, days: { "2026-03-09": { xp: 0, lessonsDone: 0, frozen: true } }, nodes: {} },
+    );
+    expect(freezesHeld(merged.days)).toBe(0);
+    expect(Object.values(merged.days).filter((d) => d.frozen)).toHaveLength(1);
+    expect(merged.days["2026-03-08"]?.frozen).toBe(true);
+    expect(merged.days["2026-03-09"]).toBeUndefined(); // released, and empty, so not recorded
+  });
+  it("leaves consistent data untouched", () => {
+    const days = {
+      "2026-03-07": day(5, { freezeEarned: true }),
+      "2026-03-08": day(0, { frozen: true }),
+    };
+    expect(normalizeFreezes(days)).toEqual(days);
   });
 });

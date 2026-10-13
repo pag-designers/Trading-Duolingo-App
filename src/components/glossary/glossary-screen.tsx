@@ -226,7 +226,10 @@ export function GlossaryScreen({
                   <p className="text-lg">{a.meaning}</p>
                   <p className="text-base text-muted">Example: {a.example}</p>
                   <p className="flex flex-wrap items-center gap-x-1 text-base">
-                    Taught in <TaughtIn nodeId={a.taughtIn} lessons={lessonRefs} />.
+                    Taught in{" "}
+                    <span className="inline-flex items-center">
+                      <TaughtIn nodeId={a.taughtIn} lessons={lessonRefs} />.
+                    </span>
                   </p>
                 </Card>
               </li>

@@ -177,6 +177,30 @@ export function maybeEarnFreeze(days: DayMap, today: string): DayMap {
   return { ...days, [today]: { ...day, freezeEarned: true } };
 }
 
+/**
+ * Make freeze flags consistent after combining copies: a day with XP is never "frozen" (XP wins), and no more
+ * days are frozen than freezes were earned (the latest frozen days are released first).
+ */
+export function normalizeFreezes(days: DayMap): DayMap {
+  const out: DayMap = {};
+  for (const [k, d] of Object.entries(days)) {
+    const { frozen, ...rest } = d;
+    out[k] = frozen && d.xp === 0 ? d : rest;
+  }
+  const earned = Object.values(out).filter((d) => d.freezeEarned).length;
+  const frozenKeys = Object.keys(out)
+    .filter((k) => out[k]!.frozen)
+    .sort();
+  for (let extra = frozenKeys.length - earned; extra > 0; extra--) {
+    const k = frozenKeys.pop()!;
+    const { frozen: _released, ...rest } = out[k]!;
+    // A released day with nothing on it is just not recorded.
+    if (rest.xp === 0 && rest.lessonsDone === 0 && !rest.freezeEarned) delete out[k];
+    else out[k] = rest;
+  }
+  return out;
+}
+
 // ── Daily goal and weeks ────────────────────────────────────────────────────
 
 export function dailyGoalFraction(xpToday: number, goal: number): number {
@@ -293,8 +317,9 @@ export function mergeProgress(a: ProgressState, b: ProgressState): ProgressState
     };
   }
 
-  const totalXp = Object.values(days).reduce((sum, d) => sum + d.xp, 0);
-  return { totalXp, days, nodes };
+  const consistent = normalizeFreezes(days);
+  const totalXp = Object.values(consistent).reduce((sum, d) => sum + d.xp, 0);
+  return { totalXp, days: consistent, nodes };
 }
 
 /** Do two copies hold the same progress? (Used to skip pointless sync writes.) */

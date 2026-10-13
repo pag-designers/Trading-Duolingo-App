@@ -37,7 +37,7 @@ export function scoreOf(questionCount: number, firstTryCorrect: number): number 
   return questionCount === 0 ? 100 : Math.round((100 * firstTryCorrect) / questionCount);
 }
 
-/** XP for finishing a step. Repeats are a flat small amount, so reviewing is worth doing but not farmable. */
+/** XP for finishing a step. Repeats are a flat small amount, so reviewing is worth doing (and keeps a streak alive). There is no daily cap yet: XP is the learner's own motivation, not a score (see DECISIONS D-017). */
 export function calcXp(i: XpInput): XpBreakdown {
   if (i.repeat) return { base: REPEAT_XP, accuracy: 0, perfect: 0, focus: 0, total: REPEAT_XP };
   const r = RULES[i.nodeType];

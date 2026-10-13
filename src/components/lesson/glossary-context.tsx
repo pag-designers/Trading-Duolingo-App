@@ -37,18 +37,20 @@ export function TermCard({ term, lessons }: { term: GlossaryTerm; lessons: Lesso
       </div>
       {where && (
         <p className="flex flex-wrap items-center gap-x-1 text-base text-muted">
-          Taught in{" "}
-          {where.ready ? (
-            <Link
-              href={`/lesson/${term.taughtIn}`}
-              className="inline-flex min-h-12 items-center font-bold text-brand underline underline-offset-4"
-            >
-              {where.title}
-            </Link>
-          ) : (
-            <strong>{where.title}</strong>
-          )}
-          .
+          Taught in
+          <span className="inline-flex items-center">
+            {where.ready ? (
+              <Link
+                href={`/lesson/${term.taughtIn}`}
+                className="inline-flex min-h-12 items-center font-bold text-brand underline underline-offset-4"
+              >
+                {where.title}
+              </Link>
+            ) : (
+              <strong>{where.title}</strong>
+            )}
+            .
+          </span>
         </p>
       )}
     </div>

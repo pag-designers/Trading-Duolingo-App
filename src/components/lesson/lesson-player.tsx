@@ -219,7 +219,7 @@ export function LessonPlayer(props: LessonPlayerProps) {
                 data-qid={step.question.id}
               >
                 <div>
-                  <p className="mb-2 text-sm font-black tracking-widest text-brand uppercase">
+                  <p className="mb-2 text-base font-black tracking-wide text-brand uppercase">
                     {TYPE_LABEL[step.question.type]}
                     {step.retry && " · second try"}
                   </p>

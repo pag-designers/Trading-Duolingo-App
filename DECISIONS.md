@@ -130,3 +130,14 @@ Append-only log of decisions that shape the project. Newest at the bottom of eac
 
 - Every sentence of lesson copy (slides, questions, explanations, glossary text) is scored with the Flesch-Kincaid grade formula per sentence. **Glossary terms and their aliases count as one-syllable words** (they are "defined terms"), and must be defined before first use. Limit: **grade ≤ 2.0**; the Curriculum Auditor turns anything higher red.
 - Slides: one idea, **at most 3 sentences**. Lessons that touch trading carry the risk reminder (rendered by one shared `<RiskReminder />`).
+
+## D-020 — Decisions made while building CP1
+
+- **"AH/PH" in the brief:** the brief lists "AH/PH" in Unit 1. Candlo teaches **AH** (after-hours) and **PM** (pre-market), the terms traders actually use; "PH" is not a standard abbreviation. The abbreviations table lists both.
+- **Short labels are graded differently:** Flesch-Kincaid is unstable on 1–4 word texts (the word "Apple" would score grade 8), so for fragments under 5 words (titles, answer options, labels) the rule is "no word longer than 3 syllables". Real sentences still use the full grade ≤ 2.0 formula. Both treat glossary terms as defined (one syllable).
+- **Tap-chart questions have at most 6 candles** (enforced by the content audit): each candle must be a 52px tap target and every candle must fit a phone screen without sideways scrolling.
+- **Review XP has no daily cap (yet).** Replays give a flat 5 XP so reviewing keeps a streak alive. XP is the learner's own motivation, not a trading result, and the league rivals are labelled as made up. If XP inflation ever matters, add a per-day review cap (needs a `reviewXp` column).
+- **Progress merges are normalised:** after combining two copies, a day with XP is never "frozen" and no more days are frozen than freezes earned (`normalizeFreezes`). Server merges run one at a time so two tabs can't lose each other's update.
+- **A bad content file fails loudly, on purpose.** Pages are prerendered at build time, the Curriculum Auditor canary runs in the pre-commit hook, and `pnpm content:check` explains what to fix, so broken content cannot reach a release.
+- **Drag-and-drop is a mouse extra.** Match always works by tapping. The "you can also drag" hint only shows for devices with a precise pointer; on phones the meanings sit below the words, often off-screen.
+- **Not built in CP1 (see D-016):** Ask-the-Coach chat and the AI "Why?" explanation arrive in CP6.

@@ -184,6 +184,26 @@ describe("session reducer — unlimited hearts, one retry, Focus meter", () => {
     expect(sessionReducer(s, { type: "submit", answer: { type: "tf", value: true } })).toBe(s); // on a slide
   });
 
+  it("the progress bar never goes backwards, even when a wrong answer adds a retry", () => {
+    let s = startSession(buildSteps([], [mc, tf, match]));
+    const seen: number[] = [progressFraction(s)];
+    s = sessionReducer(s, { type: "submit", answer: { type: "mc", optionId: "b" } });
+    s = sessionReducer(s, { type: "continue" });
+    seen.push(progressFraction(s));
+    // a wrong answer queues a retry, which makes the lesson longer
+    s = sessionReducer(s, { type: "submit", answer: { type: "tf", value: false } });
+    s = sessionReducer(s, { type: "continue" });
+    seen.push(progressFraction(s));
+    s = sessionReducer(s, {
+      type: "submit",
+      answer: { type: "match", links: { p1: "p1", p2: "p2", p3: "p3" } },
+    });
+    s = sessionReducer(s, { type: "continue" });
+    seen.push(progressFraction(s));
+    expect(seen).toEqual([...seen].sort((a, b) => a - b));
+    expect(seen.at(-1)).toBeLessThan(1);
+  });
+
   it("an empty lesson is immediately done; progress runs 0 → 1", () => {
     expect(startSession([]).phase).toBe("done");
     let s = run();

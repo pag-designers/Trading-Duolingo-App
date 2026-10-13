@@ -87,3 +87,23 @@ Money is stored as integer **cents** (or integer micro-dollars for prices if nee
 | Sandbox/network limits (blocked native binary downloads) | Prefer pure-npm prebuilt packages (libSQL, not better-sqlite3). Document any exception in `DECISIONS.md`.                          |
 | Animation performance on phones                          | Animate transform/opacity only; one shared motion token set; reduced-motion honoured; Performance agent measures frames (CP8).     |
 | Dual store drift (Zustand vs SQLite)                     | Single write path, `updatedAt` reconciliation, integrity agent.                                                                    |
+
+## 8. Lesson engine (added in CP1)
+
+```
+content/lessons/<node>.json ─┐                        ┌─ pure, unit-tested (src/lib/lesson) ─┐
+content/glossary.json        ├─ loadContent() ─ Zod ─►│ grade.ts   gradeAnswer / isAnswerComplete │
+content/abbreviations.json   │   (src/lib/content)     │ session.ts reducer: slides → questions →   │
+content/outline.json ────────┘                         │            feedback, one retry, Focus meter │
+                                                       │ xp.ts      XP rules, score               │
+ server (src/server/content.ts) resolves practice pools │ pool.ts    seeded mixing of earlier lessons │
+ and sets each step's `ready` from the files that exist └──────────────────────────────────────────┘
+                     │
+   /lesson/[nodeId] (server, prerendered) ─► LessonRoute (client: waits for saved progress)
+        └─ LessonPlayer ─ QuestionView (mc · tf · match · chart · build) · FeedbackPanel · FocusMeter · Confetti
+        └─ CompleteScreen / ChestScreen ─ useProgress.finishNode() ─► SyncBridge ─► PUT /api/progress (merge)
+```
+
+- **Content audit** (`src/lib/content/audit.ts`, `pedagogy.ts`) is pure and shared by `pnpm content:check`, the Curriculum Auditor and the Pedagogy agent: reading level, terms defined before use, answer keys, risk reminder flag, links, one idea per slide, objective coverage.
+- **Glossary**: `buildMatcher()` finds terms (longest first, plurals, ALL-CAPS exact) for the lesson highlights, the readability exemption and the audit.
+- **Progress** is a growing record (days, steps). Streaks, freezes, weeks and levels are derived; browser and database merge with `mergeProgress` (D-018).

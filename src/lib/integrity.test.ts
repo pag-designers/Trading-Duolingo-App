@@ -85,3 +85,20 @@ describe("checkProgress: streak freezes", () => {
     expect(checkProgress(p).map((x) => x.code)).toContain("frozen_with_xp");
   });
 });
+
+describe("repairProgress: freezes", () => {
+  it("repairs a frozen day that has XP and a freeze that was never earned", () => {
+    const broken: ProgressSnapshot = {
+      totalXp: 35,
+      days: {
+        "2026-03-07": { xp: 5, lessonsDone: 1, freezeEarned: true },
+        "2026-03-08": { xp: 30, lessonsDone: 2, frozen: true },
+        "2026-03-09": { xp: 0, lessonsDone: 0, frozen: true },
+        "2026-03-10": { xp: 0, lessonsDone: 0, frozen: true },
+      },
+      nodes: {},
+    };
+    expect(checkProgress(broken).length).toBeGreaterThan(0);
+    expect(checkProgress(repairProgress(broken))).toEqual([]);
+  });
+});

@@ -26,6 +26,8 @@ export interface SessionState {
   focusFills: number;
   /** True for one step after the meter filled (drives the confetti). */
   justFilled: boolean;
+  /** Furthest the progress bar has been. A retry makes the lesson longer, but the bar never goes backwards. */
+  progressMax: number;
 }
 
 export type SessionAction =
@@ -51,14 +53,17 @@ export function startSession(steps: Step[]): SessionState {
     focus: 0,
     focusFills: 0,
     justFilled: false,
+    progressMax: 0,
   };
 }
 
 function advance(s: SessionState): SessionState {
   const index = s.index + 1;
+  const progressMax = Math.max(s.progressMax, s.steps.length === 0 ? 1 : index / s.steps.length);
   return {
     ...s,
     index,
+    progressMax,
     phase: index >= s.steps.length ? "done" : "step",
     last: null,
     justFilled: false,
@@ -139,9 +144,7 @@ export function summarize(s: SessionState): {
   };
 }
 
-/** Progress bar fraction: how far through the steps (retries count as extra steps). */
+/** Progress bar fraction: how far through the steps. It only ever moves forward, even when a retry is added. */
 export function progressFraction(s: SessionState): number {
-  if (s.phase === "done") return 1;
-  const total = s.steps.length;
-  return total === 0 ? 1 : Math.min(1, s.index / total);
+  return s.phase === "done" ? 1 : Math.min(1, s.progressMax);
 }

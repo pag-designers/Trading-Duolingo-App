@@ -41,10 +41,26 @@ export async function readProgress(): Promise<ProgressState> {
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
 
 /**
+ * One merge at a time. A merge reads the stored rows, combines them in memory and writes them back, so two
+ * overlapping ones (two tabs) could each miss the other's change. Candlo is one local server process, so a
+ * simple queue is enough to keep "progress only grows" true.
+ */
+let queue: Promise<unknown> = Promise.resolve();
+function inOrder<T>(job: () => Promise<T>): Promise<T> {
+  const run = queue.then(job, job);
+  queue = run.catch(() => undefined);
+  return run;
+}
+
+/**
  * Merge incoming progress into what is stored (progress only grows, so this is lossless and
  * order-independent), save only the rows that changed, and return the merged result.
  */
-export async function mergeAndWriteProgress(incoming: ProgressState): Promise<ProgressState> {
+export function mergeAndWriteProgress(incoming: ProgressState): Promise<ProgressState> {
+  return inOrder(() => mergeAndWrite(incoming));
+}
+
+async function mergeAndWrite(incoming: ProgressState): Promise<ProgressState> {
   await ensureUser();
   const stored = await readProgress();
   const merged = mergeProgress(stored, incoming);

@@ -1,6 +1,7 @@
 import {
   clampScore,
   NODE_STATUSES,
+  normalizeFreezes,
   type DayMap,
   type NodeRecord,
   type ProgressState,
@@ -109,6 +110,7 @@ export function repairProgress(p: ProgressSnapshot): ProgressSnapshot {
       completedAt: status === "done" ? (n.completedAt ?? new Date(0).toISOString()) : n.completedAt,
     };
   }
-  const totalXp = Object.values(days).reduce((sum, d) => sum + d.xp, 0);
-  return { totalXp, days, nodes };
+  const consistent = normalizeFreezes(days);
+  const totalXp = Object.values(consistent).reduce((sum, d) => sum + d.xp, 0);
+  return { totalXp, days: consistent, nodes };
 }

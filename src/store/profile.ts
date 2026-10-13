@@ -2,19 +2,11 @@
 
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { PROFILE_KEYS, type ProfileData } from "@/lib/me-schema";
+import { pickKeys } from "@/lib/utils";
 import { safeLocalStorage } from "./persist";
 
-export const ACCESSORIES = ["none", "beanie", "glasses", "headband"] as const;
-export type Accessory = (typeof ACCESSORIES)[number];
-
-export interface ProfileData {
-  displayName: string;
-  /** What the learner calls the mascot (default "Wick"). */
-  mascotName: string;
-  accessory: Accessory;
-  onboardedAt: string | null;
-  updatedAt: string;
-}
+export { ACCESSORIES, type Accessory, type ProfileData } from "@/lib/me-schema";
 
 export const DEFAULT_PROFILE: ProfileData = {
   displayName: "",
@@ -46,13 +38,7 @@ export const useProfile = create<ProfileStore>()(
       version: 1,
       storage: createJSONStorage(() => safeLocalStorage),
       skipHydration: true,
-      partialize: (s): ProfileData => ({
-        displayName: s.displayName,
-        mascotName: s.mascotName,
-        accessory: s.accessory,
-        onboardedAt: s.onboardedAt,
-        updatedAt: s.updatedAt,
-      }),
+      partialize: (s): ProfileData => pickKeys(s, PROFILE_KEYS),
     },
   ),
 );

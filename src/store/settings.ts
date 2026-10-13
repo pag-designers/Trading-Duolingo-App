@@ -2,25 +2,11 @@
 
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { SETTINGS_KEYS, type SettingsData } from "@/lib/me-schema";
+import { pickKeys } from "@/lib/utils";
 import { safeLocalStorage } from "./persist";
 
-export type ThemeChoice = "light" | "dark" | "system";
-export type CoachModelChoice = "auto" | "sonnet" | "haiku";
-
-export interface SettingsData {
-  theme: ThemeChoice;
-  soundOn: boolean;
-  volume: number; // 0..100
-  reducedMotion: boolean;
-  readingMode: boolean;
-  dailyXpGoal: number;
-  startingBalanceCents: number;
-  pdtEnabled: boolean;
-  slippageBps: number;
-  commissionCents: number;
-  coachModel: CoachModelChoice;
-  updatedAt: string;
-}
+export type { CoachModelChoice, SettingsData, ThemeChoice } from "@/lib/me-schema";
 
 export const DEFAULT_SETTINGS: SettingsData = {
   theme: "system",
@@ -55,20 +41,7 @@ export const useSettings = create<SettingsStore>()(
       version: 1,
       storage: createJSONStorage(() => safeLocalStorage),
       skipHydration: true,
-      partialize: (s): SettingsData => ({
-        theme: s.theme,
-        soundOn: s.soundOn,
-        volume: s.volume,
-        reducedMotion: s.reducedMotion,
-        readingMode: s.readingMode,
-        dailyXpGoal: s.dailyXpGoal,
-        startingBalanceCents: s.startingBalanceCents,
-        pdtEnabled: s.pdtEnabled,
-        slippageBps: s.slippageBps,
-        commissionCents: s.commissionCents,
-        coachModel: s.coachModel,
-        updatedAt: s.updatedAt,
-      }),
+      partialize: (s): SettingsData => pickKeys(s, SETTINGS_KEYS),
     },
   ),
 );

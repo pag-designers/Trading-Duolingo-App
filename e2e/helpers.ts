@@ -1,11 +1,15 @@
 import { createClient } from "@libsql/client";
 import { expect, type Page } from "@playwright/test";
+import { E2E_DB } from "../playwright.config";
 
-/** Wipe the learner's server-side rows so each test starts as a true first run. */
+/** Wipe every table so each test starts as a true first run (survives new tables in later checkpoints). */
 export async function resetServer(): Promise<void> {
-  const client = createClient({ url: "file:./prisma/e2e.db" });
-  for (const table of ["Settings", "Profile", "User"])
-    await client.execute(`DELETE FROM "${table}"`);
+  const client = createClient({ url: E2E_DB });
+  const tables = await client.execute(
+    "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '_prisma%'",
+  );
+  await client.execute("PRAGMA foreign_keys = OFF");
+  for (const row of tables.rows) await client.execute(`DELETE FROM "${String(row[0])}"`);
   client.close();
 }
 

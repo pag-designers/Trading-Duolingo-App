@@ -1,14 +1,15 @@
-import type { DayMap } from "./progress";
+import {
+  clampScore,
+  NODE_STATUSES,
+  type DayMap,
+  type NodeRecord,
+  type ProgressState,
+} from "./progress";
 
-export interface ProgressSnapshot {
-  totalXp: number;
-  days: DayMap;
-  nodes: Record<
-    string,
-    { status: string; bestScore: number; attempts: number; completedAt: string | null }
-  >;
-  freezes: number;
-}
+/** Untrusted input (a backup file): same shape as the store, but `status` may be any string. */
+export type ProgressSnapshot = Omit<ProgressState, "nodes"> & {
+  nodes: Record<string, Omit<NodeRecord, "status"> & { status: string }>;
+};
 
 export interface IntegrityProblem {
   code:
@@ -22,7 +23,7 @@ export interface IntegrityProblem {
   message: string;
 }
 
-const STATUSES = new Set(["not_started", "in_progress", "done"]);
+const STATUSES: ReadonlySet<string> = new Set(NODE_STATUSES);
 
 /** Cross-check progress numbers against each other. Pure, so the agent and the app can share it. */
 export function checkProgress(p: ProgressSnapshot): IntegrityProblem[] {
@@ -88,7 +89,7 @@ export function repairProgress(p: ProgressSnapshot): ProgressSnapshot {
     const status = STATUSES.has(n.status) ? n.status : "not_started";
     nodes[id] = {
       status,
-      bestScore: Math.min(100, Math.max(0, Math.round(n.bestScore))),
+      bestScore: clampScore(n.bestScore),
       attempts: Math.max(status === "done" ? 1 : 0, n.attempts),
       completedAt: status === "done" ? (n.completedAt ?? new Date(0).toISOString()) : n.completedAt,
     };

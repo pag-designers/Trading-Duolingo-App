@@ -12,6 +12,5 @@ export default defineConfig({
     environment: "node",
     setupFiles: ["./vitest.setup.ts"],
     include: ["src/**/*.test.{ts,tsx}", "agents/**/*.test.ts", "scripts/**/*.test.ts"],
-    coverage: { provider: "v8", include: ["src/lib/**", "src/store/**", "agents/**"] },
   },
 });

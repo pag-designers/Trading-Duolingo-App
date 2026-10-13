@@ -1,3 +1,4 @@
+import { dateKey } from "@/lib/progress";
 import { useProfile } from "@/store/profile";
 import { useProgress } from "@/store/progress";
 import { useSettings } from "@/store/settings";
@@ -33,7 +34,7 @@ export function downloadBackup(): void {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `candlo-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = `candlo-backup-${dateKey(new Date())}.json`;
   document.body.appendChild(a);
   a.click();
   a.remove();

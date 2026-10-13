@@ -18,10 +18,6 @@ export function getOutline(): Outline {
   return cached;
 }
 
-export function flatNodes(outline: Outline = getOutline()): OutlineNode[] {
-  return outline.units.flatMap((u) => u.nodes);
-}
-
 /** The first node that is not done, in course order (or null when the course is finished). */
 export function findCurrentNode(
   outline: Outline,

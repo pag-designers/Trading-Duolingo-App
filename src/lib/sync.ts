@@ -1,4 +1,4 @@
-import type { Me } from "@/lib/me-schema";
+import { meSchema, type Me } from "@/lib/me-schema";
 
 /**
  * Decide what to do with local vs server copies of one section.
@@ -21,7 +21,7 @@ export const FIRST_SYNC_TIMEOUT_MS = 2500;
 export async function fetchMe(timeoutMs = FIRST_SYNC_TIMEOUT_MS): Promise<Me> {
   const res = await fetch("/api/me", { cache: "no-store", signal: AbortSignal.timeout(timeoutMs) });
   if (!res.ok) throw new Error(`GET /api/me failed (${res.status})`);
-  return (await res.json()) as Me;
+  return meSchema.parse(await res.json());
 }
 
 export async function putMe(me: Me): Promise<Me> {
@@ -31,5 +31,5 @@ export async function putMe(me: Me): Promise<Me> {
     body: JSON.stringify(me),
   });
   if (!res.ok) throw new Error(`PUT /api/me failed (${res.status})`);
-  return (await res.json()) as Me;
+  return meSchema.parse(await res.json());
 }

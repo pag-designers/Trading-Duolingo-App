@@ -1,5 +1,6 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { dateKey } from "../../src/lib/progress";
 import { worst } from "../lib";
 import { AGENTS } from "../registry";
 import type { Agent, AgentContext, AgentResult, Check, Status, Summary } from "../types";
@@ -64,13 +65,16 @@ function reportMarkdown(r: AgentResult): string {
   ].join("\n");
 }
 
-export function writeReports(root: string, date: string, summary: Summary): void {
-  for (const r of summary.results) {
+function writeAgentReports(root: string, date: string, results: AgentResult[]): void {
+  for (const r of results) {
     const dir = join(root, "reports", r.agent);
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, `${date}.md`), reportMarkdown(r));
     writeFileSync(join(dir, "latest.json"), JSON.stringify(r, null, 2));
   }
+}
+
+function writeSummary(root: string, date: string, summary: Summary): void {
   mkdirSync(join(root, "reports"), { recursive: true });
   writeFileSync(join(root, "reports", "summary.json"), JSON.stringify(summary, null, 2));
   const lines = [
@@ -94,20 +98,15 @@ export function writeReports(root: string, date: string, summary: Summary): void
   writeFileSync(join(root, "reports", "summary.md"), lines.join("\n"));
 }
 
-export const localDate = (d = new Date()): string =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+export const localDate = (d = new Date()): string => dateKey(d);
 
-/** Run every agent (or just `only`), write reports, and return the aggregate. */
+/** Run every agent (or just `only`) in parallel, write reports once, and return the aggregate. */
 export async function runAll(ctx: AgentContext, only?: string[], write = true): Promise<Summary> {
   const selected = only?.length ? AGENTS.filter((a) => only.includes(a.id)) : AGENTS;
-  const results: AgentResult[] = [];
-  for (const agent of selected) results.push(await runAgent(agent, ctx));
+  const results = await Promise.all(selected.map((agent) => runAgent(agent, ctx)));
+  if (write) writeAgentReports(ctx.root, ctx.date, results);
+  // Evaluated after the agent reports exist, so the "agents run" criterion can see them.
   const summary = summarize(results, checkpointProgress(ctx.root));
-  if (write) {
-    writeReports(ctx.root, ctx.date, summary);
-    // Re-evaluate checkpoint criteria now that reports/summary.json exists ("agents run").
-    summary.checkpoint = checkpointProgress(ctx.root);
-    writeReports(ctx.root, ctx.date, summary);
-  }
+  if (write) writeSummary(ctx.root, ctx.date, summary);
   return summary;
 }

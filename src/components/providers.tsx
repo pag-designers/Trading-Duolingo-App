@@ -5,7 +5,8 @@ import { MotionConfig } from "framer-motion";
 import { ThemeProvider, useTheme } from "next-themes";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { reconcile, fetchMe, putMe } from "@/lib/sync";
-import type { Me } from "@/lib/me-schema";
+import { PROFILE_KEYS, SETTINGS_KEYS, type Me } from "@/lib/me-schema";
+import { pickKeys } from "@/lib/utils";
 import { hydrateStores, useHydrated } from "@/store/hydration";
 import { useProfile } from "@/store/profile";
 import { useSettings } from "@/store/settings";
@@ -35,30 +36,9 @@ function SettingsEffects() {
 }
 
 function snapshot(): Me {
-  const p = useProfile.getState();
-  const s = useSettings.getState();
   return {
-    profile: {
-      displayName: p.displayName,
-      mascotName: p.mascotName,
-      accessory: p.accessory,
-      onboardedAt: p.onboardedAt,
-      updatedAt: p.updatedAt,
-    },
-    settings: {
-      theme: s.theme,
-      soundOn: s.soundOn,
-      volume: s.volume,
-      reducedMotion: s.reducedMotion,
-      readingMode: s.readingMode,
-      dailyXpGoal: s.dailyXpGoal,
-      startingBalanceCents: s.startingBalanceCents,
-      pdtEnabled: s.pdtEnabled,
-      slippageBps: s.slippageBps,
-      commissionCents: s.commissionCents,
-      coachModel: s.coachModel,
-      updatedAt: s.updatedAt,
-    },
+    profile: pickKeys(useProfile.getState(), PROFILE_KEYS),
+    settings: pickKeys(useSettings.getState(), SETTINGS_KEYS),
   };
 }
 

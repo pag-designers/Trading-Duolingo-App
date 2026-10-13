@@ -95,3 +95,11 @@ Append-only log of decisions that shape the project. Newest at the bottom of eac
 
 - No accounts (single learner, own machine), so API routes protect against **cross-site and rebinding** attacks instead: state-changing endpoints require `Content-Type: application/json` and a matching `Origin` (`src/server/guard.ts`, pure checks in `src/lib/request-guard.ts`); the endpoint that runs agents additionally requires a loopback `Host`.
 - If Candlo is ever hosted for other people (a LATER item: multi-user), real authentication and per-user authorization must be added before exposing these routes.
+
+## D-015 — Follow-ups from the CP0 cleanup review (deliberately not done in CP0)
+
+- **Sync registry / server revisions (CP1):** today sync is per-section with client timestamps and a conditional server write. When progress joins sync, replace this with a registry of sections and, if needed, server-assigned revisions (compare-and-set, 409 + current copy).
+- **Risk reminder as one component (CP1):** a shared `<RiskReminder />` used by every trade-related screen, asserted by the e2e route list, instead of per-file copy checked by the Safety agent.
+- **Token-based a11y checks (CP8):** define colors as TypeScript tokens and compute contrast from them, plus the axe + bounding-box checks from Playwright, so the Accessibility agent stops parsing CSS with regexes.
+- **Checkpoint criteria as data (CP1):** move acceptance criteria out of `agents/orchestrator/checkpoints.ts` into a data file with a `current` pointer.
+- **Whole-store selectors** on Settings/Profile/Onboarding screens: select only used fields when these screens grow.

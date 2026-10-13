@@ -1,4 +1,29 @@
+import { clamp } from "./utils";
+
 /** Pure progress math: levels, daily goal, streaks. Streaks are DERIVED from daily activity. */
+
+export const NODE_STATUSES = ["not_started", "in_progress", "done"] as const;
+export type NodeStatus = (typeof NODE_STATUSES)[number];
+
+export interface NodeRecord {
+  status: NodeStatus;
+  bestScore: number; // 0..100 — informational only, never blocks progress
+  attempts: number;
+  completedAt: string | null;
+}
+
+/** What the progress store persists (and what backups and the integrity checks read). */
+export interface ProgressState {
+  totalXp: number;
+  days: DayMap;
+  nodes: Record<string, NodeRecord>;
+  /** Streak freezes the learner owns (earned from streaks, wired up in CP1). */
+  freezes: number;
+}
+
+/** A score is a whole number from 0 to 100; anything else (NaN, huge, negative) is clamped. */
+export const clampScore = (score: number): number =>
+  Number.isFinite(score) ? clamp(Math.round(score), 0, 100) : 0;
 
 export interface DayActivity {
   xp: number;
@@ -91,5 +116,5 @@ export function longestStreak(days: DayMap, frozenDays: ReadonlySet<string> = ne
 
 export function dailyGoalFraction(xpToday: number, goal: number): number {
   if (goal <= 0) return 1;
-  return Math.min(1, Math.max(0, xpToday / goal));
+  return clamp(xpToday / goal, 0, 1);
 }

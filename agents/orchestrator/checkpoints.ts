@@ -47,7 +47,7 @@ const CP0 = {
     { text: "Onboarding works", tag: "@cp0-onboarding" },
     { text: "The path map renders", tag: "@cp0-path-map" },
     { text: "Dark mode works", tag: "@cp0-dark-mode" },
-    { text: "Agents run", file: "reports/summary.json" },
+    { text: "Agents run", file: "reports/data-integrity/latest.json" },
   ],
 };
 

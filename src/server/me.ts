@@ -31,28 +31,14 @@ export async function readMe(): Promise<Me> {
     [p, s] = await findRows();
   }
   if (!p || !s) throw new Error("Could not create the local user's profile and settings.");
+  // Zod strips the row's extra column (userId); only Dates need converting to ISO strings.
   return meSchema.parse({
     profile: {
-      displayName: p.displayName,
-      mascotName: p.mascotName,
-      accessory: p.accessory,
+      ...p,
       onboardedAt: p.onboardedAt?.toISOString() ?? null,
       updatedAt: p.updatedAt.toISOString(),
     },
-    settings: {
-      theme: s.theme,
-      soundOn: s.soundOn,
-      volume: s.volume,
-      reducedMotion: s.reducedMotion,
-      readingMode: s.readingMode,
-      dailyXpGoal: s.dailyXpGoal,
-      startingBalanceCents: s.startingBalanceCents,
-      pdtEnabled: s.pdtEnabled,
-      slippageBps: s.slippageBps,
-      commissionCents: s.commissionCents,
-      coachModel: s.coachModel,
-      updatedAt: s.updatedAt.toISOString(),
-    },
+    settings: { ...s, updatedAt: s.updatedAt.toISOString() },
   });
 }
 

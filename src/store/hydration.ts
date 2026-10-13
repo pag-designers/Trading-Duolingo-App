@@ -10,8 +10,14 @@ export const HYDRATION_TIMEOUT_MS = 3000;
 
 let hydrationPromise: Promise<void> | null = null;
 
-const withTimeout = <T>(p: Promise<T>, ms: number): Promise<T | void> =>
-  Promise.race([p, new Promise<void>((resolve) => setTimeout(resolve, ms))]);
+/** Resolve when `p` settles or after `ms`, whichever is first, and never leave the timer running. */
+function withTimeout(p: Promise<unknown>, ms: number): Promise<unknown> {
+  let timer: ReturnType<typeof setTimeout>;
+  const timeout = new Promise<void>((resolve) => {
+    timer = setTimeout(resolve, ms);
+  });
+  return Promise.race([p, timeout]).finally(() => clearTimeout(timer));
+}
 
 /**
  * Rehydrate every persisted store once (stores use skipHydration to avoid SSR mismatches).

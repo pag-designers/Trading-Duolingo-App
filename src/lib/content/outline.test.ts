@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findCurrentNode, flatNodes, getOutline } from "./outline";
+import { findCurrentNode, getOutline } from "./outline";
 import { outlineSchema, validateOutline, type Outline } from "./schema";
 
 describe("content/outline.json", () => {
@@ -14,7 +14,7 @@ describe("content/outline.json", () => {
   });
 
   it("keeps goals short enough for a first-grade reader", () => {
-    for (const n of flatNodes(outline))
+    for (const n of outline.units.flatMap((u) => u.nodes))
       expect(n.goal.split(/\s+/).length, n.id).toBeLessThanOrEqual(22);
   });
 

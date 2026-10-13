@@ -1,6 +1,7 @@
 "use client";
 
 import { Flame, Zap } from "lucide-react";
+import { useMemo } from "react";
 import { computeStreak, dateKey, levelFromXp } from "@/lib/progress";
 import { useProgress } from "@/store/progress";
 import { cn } from "@/lib/utils";
@@ -8,15 +9,17 @@ import { cn } from "@/lib/utils";
 export function useStats() {
   const totalXp = useProgress((s) => s.totalXp);
   const days = useProgress((s) => s.days);
-  const today = dateKey(new Date());
-  const streak = computeStreak(days, today);
-  return {
-    totalXp,
-    xpToday: days[today]?.xp ?? 0,
-    streak: streak.current,
-    streakTodayDone: streak.todayDone,
-    ...levelFromXp(totalXp),
-  };
+  return useMemo(() => {
+    const today = dateKey(new Date());
+    const streak = computeStreak(days, today);
+    return {
+      totalXp,
+      xpToday: days[today]?.xp ?? 0,
+      streak: streak.current,
+      streakTodayDone: streak.todayDone,
+      ...levelFromXp(totalXp),
+    };
+  }, [days, totalXp]);
 }
 
 export function StreakChip({ className }: { className?: string }) {
@@ -41,7 +44,7 @@ export function StreakChip({ className }: { className?: string }) {
 }
 
 export function XpChip({ className }: { className?: string }) {
-  const { totalXp } = useStats();
+  const totalXp = useProgress((s) => s.totalXp); // only needs the total, not the streak math
   return (
     <div
       className={cn(

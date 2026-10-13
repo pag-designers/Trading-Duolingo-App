@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-/** Shapes shared by the client store and the /api/me route. */
+/** The single definition of profile and settings: stores, snapshots and the API all derive from it. */
 export const profileSchema = z.object({
   displayName: z.string().trim().max(30),
   mascotName: z.string().trim().min(1).max(20),
@@ -25,4 +25,16 @@ export const settingsSchema = z.object({
 });
 
 export const meSchema = z.object({ profile: profileSchema, settings: settingsSchema });
+
+export type ProfileData = z.infer<typeof profileSchema>;
+export type SettingsData = z.infer<typeof settingsSchema>;
 export type Me = z.infer<typeof meSchema>;
+
+export const ACCESSORIES = profileSchema.shape.accessory.options;
+export type Accessory = ProfileData["accessory"];
+export type ThemeChoice = SettingsData["theme"];
+export type CoachModelChoice = SettingsData["coachModel"];
+
+/** The persisted/synced field names of each section, derived from the schemas (never hand-listed). */
+export const PROFILE_KEYS = Object.keys(profileSchema.shape) as (keyof ProfileData)[];
+export const SETTINGS_KEYS = Object.keys(settingsSchema.shape) as (keyof SettingsData)[];

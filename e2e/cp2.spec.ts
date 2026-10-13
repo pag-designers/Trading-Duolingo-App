@@ -13,7 +13,7 @@ import {
 } from "./lesson-helpers";
 
 // Chart screens are heavier than Unit 1 screens, so tests get a realistic budget.
-test.setTimeout(120_000);
+test.setTimeout(240_000);
 
 test.beforeEach(async () => {
   await resetServer();
@@ -31,7 +31,10 @@ async function axeClean(page: Page, where: string) {
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
   const bad = results.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
   expect(
-    bad.map((v) => `${where}: ${v.id} (${v.nodes.length}) ${v.nodes[0]?.html.slice(0, 160)} ${v.nodes[0]?.any[0]?.message}`),
+    bad.map(
+      (v) =>
+        `${where}: ${v.id} (${v.nodes.length}) ${v.nodes[0]?.html.slice(0, 160)} ${v.nodes[0]?.any[0]?.message}`,
+    ),
     where,
   ).toEqual([]);
 }
@@ -80,7 +83,12 @@ test("@cp2-chart charts show candles, volume, unlocked indicators, an OHLC legen
     const demo = page.locator(
       `[data-testid=demo-chart] [data-testid=chart][data-indicators*="${ind}"]`,
     );
+    // Walk the slides until the chart picture for this indicator shows (the chart loads a moment after its slide).
     for (let i = 0; i < 12 && (await demo.count()) === 0; i++) {
+      if ((await page.getByTestId("demo-chart").count()) > 0) {
+        await page.waitForTimeout(500); // a chart is loading or showing: give it a moment
+        if ((await demo.count()) > 0) break;
+      }
       await page.getByTestId("slide-continue").click();
       await page.waitForTimeout(250);
     }

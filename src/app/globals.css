@@ -1,0 +1,245 @@
+@import "tailwindcss";
+@import "@fontsource-variable/nunito";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* Candlo design tokens. Components use these names only — no hard-coded hex.
+   Roles (DECISIONS D-003): brand = indigo, reward = yellow, streak = orange,
+   gain/loss are reserved for market meaning and the mascot's mood. */
+
+:root {
+  color-scheme: light;
+  --background: #fbfaff;
+  --surface: #ffffff;
+  --surface-2: #f1effb;
+  --border: #e0dcf3;
+  --border-strong: #cbc5e8;
+  --foreground: #1f1b3a;
+  --muted: #5b5780;
+  --brand: #5b3df5;
+  --brand-press: #4126cf;
+  --brand-fg: #ffffff;
+  --brand-soft: #ece8ff;
+  --reward: #ffc800;
+  --reward-press: #d9a800;
+  --reward-fg: #3a2e00;
+  --flame: #ff7a1a;
+  --flame-text: #b84a00;
+  --info: #1cb0f6;
+  --info-text: #0b6a99;
+  --gain: #2bbf6a;
+  --gain-press: #1a9a50;
+  --gain-text: #0a7a3a;
+  --gain-soft: #e3f8ec;
+  --loss: #ff6b5e;
+  --loss-press: #db4a3d;
+  --loss-text: #b02f24;
+  --loss-soft: #ffe9e6;
+  --focus-ring: #5b3df5;
+
+  /* Unit colors for the path map (fill, shadow edge). */
+  --unit-fg: #ffffff;
+  --unit-1: #5b3df5;
+  --unit-1-press: #4126cf;
+  --unit-2: #187bb8;
+  --unit-2-press: #136090;
+  --unit-3: #be5327;
+  --unit-3-press: #94411e;
+  --unit-4: #108467;
+  --unit-4-press: #0c6750;
+  --unit-5: #c43e8f;
+  --unit-5-press: #9c2d70;
+  --unit-6: #9a6d00;
+  --unit-6-press: #785500;
+  --unit-7: #596cd6;
+  --unit-7-press: #4554a7;
+  --unit-8: #7a4bc9;
+  --unit-8-press: #5d36a0;
+
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+
+  /* Motion tokens. */
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #12102a;
+  --surface: #1c1938;
+  --surface-2: #26224a;
+  --border: #38336a;
+  --border-strong: #4a4486;
+  --foreground: #f2f0ff;
+  --muted: #b3aedb;
+  --brand: #9c88ff;
+  --brand-press: #6f58e0;
+  --brand-fg: #12102a;
+  --brand-soft: #2d2766;
+  --reward: #ffd43b;
+  --reward-press: #c9a100;
+  --reward-fg: #2e2400;
+  --flame: #ff9a4d;
+  --flame-text: #ffb27a;
+  --info: #49c1ff;
+  --info-text: #7fd3ff;
+  --gain: #3fd47f;
+  --gain-press: #26a65f;
+  --gain-text: #5ee39a;
+  --gain-soft: #12332a;
+  --loss: #ff857a;
+  --loss-press: #d9584c;
+  --loss-text: #ff9f96;
+  --loss-soft: #3a1f2b;
+  --focus-ring: #c4b8ff;
+
+  --unit-fg: #12102a;
+  --unit-1: #8b74ff;
+  --unit-1-press: #6a52de;
+  --unit-2: #3fb0f0;
+  --unit-2-press: #2a88bf;
+  --unit-3: #ff8250;
+  --unit-3-press: #cc5f33;
+  --unit-4: #2cc9a1;
+  --unit-4-press: #1f9d7c;
+  --unit-5: #e062ae;
+  --unit-5-press: #b44a89;
+  --unit-6: #f2b81f;
+  --unit-6-press: #c08f0c;
+  --unit-7: #7f90f0;
+  --unit-7-press: #5f6fcb;
+  --unit-8: #a37be8;
+  --unit-8-press: #7f5bc0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-press: var(--brand-press);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-soft: var(--brand-soft);
+  --color-reward: var(--reward);
+  --color-reward-press: var(--reward-press);
+  --color-reward-fg: var(--reward-fg);
+  --color-flame: var(--flame);
+  --color-flame-text: var(--flame-text);
+  --color-info: var(--info);
+  --color-info-text: var(--info-text);
+  --color-gain: var(--gain);
+  --color-gain-press: var(--gain-press);
+  --color-gain-text: var(--gain-text);
+  --color-gain-soft: var(--gain-soft);
+  --color-loss: var(--loss);
+  --color-loss-press: var(--loss-press);
+  --color-loss-text: var(--loss-text);
+  --color-loss-soft: var(--loss-soft);
+  --font-sans: "Nunito Variable", ui-rounded, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --radius-card: var(--radius-card);
+  --ease-pop: var(--ease-pop);
+  --ease-out: var(--ease-out);
+}
+
+/* 1rem = 18px (brief: body text >= 18px). Reading mode bumps it to 21px. */
+html {
+  font-size: 112.5%;
+  -webkit-text-size-adjust: 100%;
+}
+html[data-reading="large"] {
+  font-size: 131.25%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+/* Gentle path-node pulse. Transform/opacity only. */
+@keyframes node-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+.node-pulse {
+  animation: node-pulse 2s var(--ease-out) infinite;
+}
+
+@keyframes skeleton {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.skeleton {
+  animation: skeleton 1.4s ease-in-out infinite;
+}
+
+/* Reduced motion: honoured from the OS and from the in-app setting. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+html[data-motion="reduced"] *,
+html[data-motion="reduced"] *::before,
+html[data-motion="reduced"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

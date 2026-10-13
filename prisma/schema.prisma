@@ -1,0 +1,156 @@
+// Candlo — schema v1 (SQLite). Single local learner today; every table hangs off User
+// so multiple users can be added later without a rewrite.
+// Money is stored as integer cents (prices as integer micro-dollars: 1 USD = 1_000_000).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String          @id @default("local")
+  createdAt     DateTime        @default(now())
+  profile       Profile?
+  settings      Settings?
+  nodeProgress  NodeProgress[]
+  xpEvents      XpEvent[]
+  dailyActivity DailyActivity[]
+  trades        Trade[]
+  journal       JournalEntry[]
+  aiUsage       AiUsage[]
+  refusals      CoachRefusal[]
+}
+
+model Profile {
+  userId      String    @id
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  displayName String    @default("")
+  mascotName  String    @default("Wick")
+  accessory   String    @default("none") // none | beanie | glasses | headband
+  onboardedAt DateTime?
+  // Set by the client (last-write-wins sync), so no @updatedAt.
+  updatedAt   DateTime  @default(now())
+}
+
+model Settings {
+  userId               String   @id
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  theme                String   @default("system") // light | dark | system
+  soundOn              Boolean  @default(true)
+  volume               Int      @default(70) // 0..100
+  reducedMotion        Boolean  @default(false)
+  readingMode          Boolean  @default(false) // larger text
+  dailyXpGoal          Int      @default(30)
+  startingBalanceCents Int      @default(1000000) // $10,000.00
+  pdtEnabled           Boolean  @default(true)
+  slippageBps          Int      @default(5)
+  commissionCents      Int      @default(0)
+  coachModel           String   @default("auto") // auto | sonnet | haiku
+  updatedAt            DateTime @default(now()) // set by the client (last-write-wins sync)
+}
+
+// Keyed by content IDs (from /content), not DB IDs, so content edits never orphan progress.
+model NodeProgress {
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nodeId      String
+  status      String    @default("not_started") // not_started | in_progress | done
+  bestScore   Int       @default(0) // 0..100, informational only (never blocks progress)
+  attempts    Int       @default(0)
+  completedAt DateTime?
+  updatedAt   DateTime  @updatedAt
+
+  @@id([userId, nodeId])
+}
+
+// Streaks, XP totals and the daily goal are DERIVED from these two tables so the
+// Data Integrity agent can recompute and compare.
+model XpEvent {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount    Int
+  reason    String
+  nodeId    String?
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model DailyActivity {
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date        String // YYYY-MM-DD in the learner's local time
+  xp          Int     @default(0)
+  lessonsDone Int     @default(0)
+  freezeUsed  Boolean @default(false)
+
+  @@id([userId, date])
+}
+
+model Trade {
+  id               String        @id @default(cuid())
+  userId           String
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionId        String // replay session id (content ID of the scenario + run number)
+  scenarioId       String
+  dataSource       String // e.g. "synthetic:seed-1042" or "historical:SPY:2020-03-16 (source)"
+  symbol           String
+  side             String // long | short
+  quantity         Int
+  entryMicros      BigInt
+  exitMicros       BigInt?
+  entryAt          DateTime
+  exitAt           DateTime?
+  feesCents        Int           @default(0)
+  slippageCents    Int           @default(0)
+  realizedPnlCents Int?
+  stopMicros       BigInt?
+  targetMicros     BigInt?
+  followedPlan     Boolean?
+  createdAt        DateTime      @default(now())
+  journal          JournalEntry?
+
+  @@index([userId, createdAt])
+}
+
+model JournalEntry {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tradeId   String   @unique
+  trade     Trade    @relation(fields: [tradeId], references: [id], onDelete: Cascade)
+  reason    String   @default("")
+  outcome   String   @default("")
+  snapshot  String? // chart snapshot reference
+  updatedAt DateTime @updatedAt
+}
+
+model AiUsage {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date         String // YYYY-MM-DD
+  model        String
+  mode         String
+  inputTokens  Int
+  outputTokens Int
+  cachedTokens Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  @@index([userId, date])
+}
+
+// Every Coach refusal is logged (BRIEF §6).
+model CoachRefusal {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category  String // personalized_advice | price_target | pdt_evasion | manipulation | other
+  excerpt   String
+  createdAt DateTime @default(now())
+}

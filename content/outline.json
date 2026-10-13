@@ -1,0 +1,663 @@
+{
+  "version": 1,
+  "units": [
+    {
+      "id": "u1",
+      "number": 1,
+      "title": "Money and markets",
+      "tagline": "Start here. Learn what stocks are and how people talk about them.",
+      "nodes": [
+        {
+          "id": "u1-money",
+          "type": "lesson",
+          "title": "What is money?",
+          "goal": "Learn that money is a tool we swap for things we need."
+        },
+        {
+          "id": "u1-company",
+          "type": "lesson",
+          "title": "What is a company?",
+          "goal": "See how a company makes things and sells them to people."
+        },
+        {
+          "id": "u1-stock",
+          "type": "lesson",
+          "title": "What is a stock?",
+          "goal": "A stock is a tiny piece of a company that you can own."
+        },
+        {
+          "id": "u1-practice-1",
+          "type": "practice",
+          "title": "Warm-up round",
+          "goal": "Play a quick round about money, companies and stocks."
+        },
+        {
+          "id": "u1-market",
+          "type": "lesson",
+          "title": "What is a market?",
+          "goal": "A market is a place where buyers and sellers meet."
+        },
+        {
+          "id": "u1-profit",
+          "type": "lesson",
+          "title": "Buy low, sell high",
+          "goal": "Learn what profit and loss mean with a simple story."
+        },
+        {
+          "id": "u1-chest-1",
+          "type": "chest",
+          "title": "Treasure chest",
+          "goal": "Open a bonus chest of XP for your hard work."
+        },
+        {
+          "id": "u1-tickers",
+          "type": "lesson",
+          "title": "Ticker symbols",
+          "goal": "Read short stock names like AAPL, TSLA and SPY."
+        },
+        {
+          "id": "u1-shorttalk",
+          "type": "lesson",
+          "title": "Trader short-talk",
+          "goal": "Decode short words like IPO, EPS, ATH and FOMO."
+        },
+        {
+          "id": "u1-bullbear",
+          "type": "lesson",
+          "title": "Bulls, bears and indexes",
+          "goal": "Learn what it means when people say the market is up or down."
+        },
+        {
+          "id": "u1-practice-2",
+          "type": "practice",
+          "title": "Mixed practice",
+          "goal": "Practice tickers, short-talk and bulls and bears."
+        },
+        {
+          "id": "u1-boss",
+          "type": "boss",
+          "title": "Unit 1 boss",
+          "goal": "Show what you know about money, stocks and markets."
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "number": 2,
+      "title": "Reading a chart",
+      "tagline": "Learn the TradingView screen, one button at a time.",
+      "nodes": [
+        {
+          "id": "u2-account",
+          "type": "lesson",
+          "title": "Meet TradingView",
+          "goal": "See what TradingView is and how to make a free account."
+        },
+        {
+          "id": "u2-tour",
+          "type": "lesson",
+          "title": "A tour of the screen",
+          "goal": "Find the symbol search, the watchlist and the layout."
+        },
+        {
+          "id": "u2-timeframes",
+          "type": "lesson",
+          "title": "Timeframes and chart types",
+          "goal": "Switch between 1 minute, 1 hour and 1 day charts."
+        },
+        {
+          "id": "u2-axes",
+          "type": "chart",
+          "title": "Axes and the legend",
+          "goal": "Read the price scale, the time scale and the OHLC numbers."
+        },
+        {
+          "id": "u2-crosshair",
+          "type": "lesson",
+          "title": "Zoom, scroll, crosshair",
+          "goal": "Move around a chart and read any candle with the crosshair."
+        },
+        {
+          "id": "u2-practice-1",
+          "type": "practice",
+          "title": "Chart tour practice",
+          "goal": "Practice the parts of the chart screen."
+        },
+        {
+          "id": "u2-draw-lines",
+          "type": "chart",
+          "title": "Trendlines and levels",
+          "goal": "Draw a trendline and a flat price line on a real chart."
+        },
+        {
+          "id": "u2-draw-more",
+          "type": "chart",
+          "title": "Boxes, Fibonacci, notes",
+          "goal": "Use rectangles, Fibonacci and text notes, and learn the measure tool."
+        },
+        {
+          "id": "u2-ma",
+          "type": "lesson",
+          "title": "Moving averages",
+          "goal": "See how SMA and EMA smooth out a wiggly price line."
+        },
+        {
+          "id": "u2-vwap",
+          "type": "lesson",
+          "title": "VWAP",
+          "goal": "Learn the average price of the day, weighted by volume."
+        },
+        {
+          "id": "u2-rsi",
+          "type": "lesson",
+          "title": "RSI",
+          "goal": "Learn a 0 to 100 gauge of how fast a price has moved."
+        },
+        {
+          "id": "u2-macd",
+          "type": "lesson",
+          "title": "MACD",
+          "goal": "See how two moving averages can show a change in momentum."
+        },
+        {
+          "id": "u2-bands",
+          "type": "lesson",
+          "title": "Bollinger Bands",
+          "goal": "Learn how the bands grow and shrink with price swings."
+        },
+        {
+          "id": "u2-volume",
+          "type": "lesson",
+          "title": "Volume",
+          "goal": "Learn why the number of shares traded matters."
+        },
+        {
+          "id": "u2-indicator-lab",
+          "type": "chart",
+          "title": "Indicator lab",
+          "goal": "Turn indicators on and off and say what each one shows."
+        },
+        {
+          "id": "u2-boss",
+          "type": "boss",
+          "title": "Unit 2 boss",
+          "goal": "Prove you can read a chart and use the tools."
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "number": 3,
+      "title": "Candlesticks",
+      "tagline": "Each candle tells a tiny story about a fight between buyers and sellers.",
+      "nodes": [
+        {
+          "id": "u3-anatomy",
+          "type": "lesson",
+          "title": "Inside one candle",
+          "goal": "Learn open, high, low and close, and why candles are green or red."
+        },
+        {
+          "id": "u3-body-wicks",
+          "type": "lesson",
+          "title": "Bodies and wicks",
+          "goal": "Read long and short bodies and wicks."
+        },
+        {
+          "id": "u3-chart-1",
+          "type": "chart",
+          "title": "Spot the candle parts",
+          "goal": "Tap the open, high, low and close on real candles."
+        },
+        {
+          "id": "u3-singles-1",
+          "type": "lesson",
+          "title": "Doji, top and marubozu",
+          "goal": "Meet the Doji, the Spinning Top and the Marubozu."
+        },
+        {
+          "id": "u3-singles-2",
+          "type": "lesson",
+          "title": "Hammer and shooting star",
+          "goal": "Meet the Hammer and the Shooting Star."
+        },
+        {
+          "id": "u3-chart-2",
+          "type": "chart",
+          "title": "Spot single candles",
+          "goal": "Find single candle patterns on a chart."
+        },
+        {
+          "id": "u3-engulf-harami",
+          "type": "lesson",
+          "title": "Engulfing and harami",
+          "goal": "Learn two-candle patterns where one candle holds or covers another."
+        },
+        {
+          "id": "u3-piercing-cloud",
+          "type": "lesson",
+          "title": "Piercing and dark cloud",
+          "goal": "Learn two-candle patterns that cut halfway into the last candle."
+        },
+        {
+          "id": "u3-chart-3",
+          "type": "chart",
+          "title": "Spot two-candle patterns",
+          "goal": "Find two-candle patterns on a chart."
+        },
+        {
+          "id": "u3-stars",
+          "type": "lesson",
+          "title": "Morning and evening stars",
+          "goal": "Learn the three-candle star patterns."
+        },
+        {
+          "id": "u3-soldiers-crows",
+          "type": "lesson",
+          "title": "Soldiers and crows",
+          "goal": "Learn Three White Soldiers and Three Black Crows."
+        },
+        {
+          "id": "u3-chart-4",
+          "type": "chart",
+          "title": "Spot three-candle patterns",
+          "goal": "Find three-candle patterns on a chart."
+        },
+        {
+          "id": "u3-chest",
+          "type": "chest",
+          "title": "Treasure chest",
+          "goal": "Open a bonus chest of XP."
+        },
+        {
+          "id": "u3-boss",
+          "type": "boss",
+          "title": "Unit 3 boss",
+          "goal": "Name the candle patterns as fast as you can."
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "number": 4,
+      "title": "Patterns and structure",
+      "tagline": "Zoom out and see the shapes that prices draw over time.",
+      "nodes": [
+        {
+          "id": "u4-trends",
+          "type": "lesson",
+          "title": "Up, down and sideways",
+          "goal": "Tell an uptrend from a downtrend from a range."
+        },
+        {
+          "id": "u4-trendlines",
+          "type": "chart",
+          "title": "Draw a trendline",
+          "goal": "Draw trendlines on real charts."
+        },
+        {
+          "id": "u4-sr",
+          "type": "lesson",
+          "title": "Support and resistance",
+          "goal": "Find floors and ceilings where price often turns."
+        },
+        {
+          "id": "u4-breakouts",
+          "type": "lesson",
+          "title": "Breakouts and fakeouts",
+          "goal": "Learn what a breakout is and why some fail."
+        },
+        {
+          "id": "u4-chart-1",
+          "type": "chart",
+          "title": "Find the levels",
+          "goal": "Mark support, resistance and breakouts on a chart."
+        },
+        {
+          "id": "u4-double",
+          "type": "lesson",
+          "title": "Double top and bottom",
+          "goal": "Learn the M and W shapes."
+        },
+        {
+          "id": "u4-hs",
+          "type": "lesson",
+          "title": "Head and shoulders",
+          "goal": "Learn the head and shoulders and its upside-down twin."
+        },
+        {
+          "id": "u4-triangles",
+          "type": "lesson",
+          "title": "Triangles",
+          "goal": "Learn ascending, descending and symmetrical triangles."
+        },
+        {
+          "id": "u4-chart-2",
+          "type": "chart",
+          "title": "Spot the shapes",
+          "goal": "Find double tops, triangles and head and shoulders."
+        },
+        {
+          "id": "u4-flags-wedges",
+          "type": "lesson",
+          "title": "Flags, pennants, wedges",
+          "goal": "Learn small pauses inside a bigger move."
+        },
+        {
+          "id": "u4-channels-cup",
+          "type": "lesson",
+          "title": "Channels and cup and handle",
+          "goal": "Learn channels and the cup and handle."
+        },
+        {
+          "id": "u4-volume",
+          "type": "lesson",
+          "title": "Volume confirms",
+          "goal": "See how volume can back up a pattern."
+        },
+        {
+          "id": "u4-gaps",
+          "type": "lesson",
+          "title": "Gaps",
+          "goal": "Learn the four kinds of gaps and what a gap fill is."
+        },
+        {
+          "id": "u4-chart-3",
+          "type": "chart",
+          "title": "Pattern hunt",
+          "goal": "Find patterns, targets and failures on a mixed chart."
+        },
+        {
+          "id": "u4-boss",
+          "type": "boss",
+          "title": "Unit 4 boss",
+          "goal": "Read a full chart and name what you see."
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "number": 5,
+      "title": "How day trading works",
+      "tagline": "Learn the day, the orders and the rules of the game.",
+      "nodes": [
+        {
+          "id": "u5-what",
+          "type": "lesson",
+          "title": "What is day trading?",
+          "goal": "Learn what it means to open and close a trade on the same day."
+        },
+        {
+          "id": "u5-session",
+          "type": "lesson",
+          "title": "A day on the market",
+          "goal": "Walk through pre-market, the open, midday and the close."
+        },
+        {
+          "id": "u5-spread",
+          "type": "lesson",
+          "title": "Liquidity and the spread",
+          "goal": "Learn why buying costs a little more than selling."
+        },
+        {
+          "id": "u5-market-limit",
+          "type": "lesson",
+          "title": "Market and limit orders",
+          "goal": "Learn the two most basic ways to buy and sell."
+        },
+        {
+          "id": "u5-trade-1",
+          "type": "trade",
+          "title": "Place your first orders",
+          "goal": "Use market and limit orders in the simulator."
+        },
+        {
+          "id": "u5-stops",
+          "type": "lesson",
+          "title": "Stop orders",
+          "goal": "Learn stop and stop-limit orders that protect you."
+        },
+        {
+          "id": "u5-bracket",
+          "type": "lesson",
+          "title": "Trailing, bracket, OCO",
+          "goal": "Learn orders that manage a trade for you."
+        },
+        {
+          "id": "u5-trade-2",
+          "type": "trade",
+          "title": "Protect a trade",
+          "goal": "Place a bracket order with a stop and a target."
+        },
+        {
+          "id": "u5-short",
+          "type": "lesson",
+          "title": "Selling short",
+          "goal": "Learn how to bet on a price falling, and why it is risky."
+        },
+        {
+          "id": "u5-pdt",
+          "type": "lesson",
+          "title": "PDT rule and margin",
+          "goal": "Learn the 3-in-5 day rule and what margin means."
+        },
+        {
+          "id": "u5-strategies-1",
+          "type": "lesson",
+          "title": "Opening range and VWAP",
+          "goal": "Study the opening range breakout and the VWAP reclaim."
+        },
+        {
+          "id": "u5-strategies-2",
+          "type": "lesson",
+          "title": "Pullback, news, gap and go",
+          "goal": "Study three more ideas, and how each one can fail."
+        },
+        {
+          "id": "u5-trade-3",
+          "type": "trade",
+          "title": "Strategy lab",
+          "goal": "Try a study idea in the simulator and see how it can fail."
+        },
+        {
+          "id": "u5-boss",
+          "type": "boss",
+          "title": "Unit 5 boss",
+          "goal": "Trade a short session in the simulator using what you learned."
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "number": 6,
+      "title": "Risk management",
+      "tagline": "The most important unit. Learn how to lose small.",
+      "nodes": [
+        {
+          "id": "u6-risk",
+          "type": "lesson",
+          "title": "Risk per trade",
+          "goal": "Learn the 1 percent rule and why small bets keep you in the game."
+        },
+        {
+          "id": "u6-sizing",
+          "type": "lesson",
+          "title": "How many shares?",
+          "goal": "Work out the number of shares from your stop distance."
+        },
+        {
+          "id": "u6-trade-1",
+          "type": "trade",
+          "title": "Size it right",
+          "goal": "Use the position size helper in the simulator."
+        },
+        {
+          "id": "u6-rr",
+          "type": "lesson",
+          "title": "Risk to reward",
+          "goal": "Compare what you could lose with what you could win."
+        },
+        {
+          "id": "u6-streaks",
+          "type": "lesson",
+          "title": "Why losing streaks happen",
+          "goal": "See why even a good plan has bad runs."
+        },
+        {
+          "id": "u6-stops",
+          "type": "lesson",
+          "title": "Stops, gaps and slippage",
+          "goal": "Learn why a stop can fill at a worse price."
+        },
+        {
+          "id": "u6-trade-2",
+          "type": "trade",
+          "title": "Gap through the stop",
+          "goal": "Feel a stop fill at a gap price in the simulator."
+        },
+        {
+          "id": "u6-journal",
+          "type": "lesson",
+          "title": "Keep a journal",
+          "goal": "Learn what to write after every trade."
+        },
+        {
+          "id": "u6-psych-1",
+          "type": "lesson",
+          "title": "FOMO and revenge",
+          "goal": "Spot the urge to chase and the urge to win it back."
+        },
+        {
+          "id": "u6-psych-2",
+          "type": "lesson",
+          "title": "Overtrading",
+          "goal": "Spot the one-more-trade trap."
+        },
+        {
+          "id": "u6-trade-3",
+          "type": "trade",
+          "title": "Feel the pull",
+          "goal": "Face tempting moments in the simulator and choose calmly."
+        },
+        {
+          "id": "u6-fees-taxes",
+          "type": "lesson",
+          "title": "Fees and taxes",
+          "goal": "Learn the costs of trading. This is not tax advice."
+        },
+        {
+          "id": "u6-boss",
+          "type": "boss",
+          "title": "Unit 6 boss",
+          "goal": "Trade a session and keep every risk rule."
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "number": 7,
+      "title": "News and the economy",
+      "tagline": "See why prices jump when news lands. Learn to read it, not to predict it.",
+      "nodes": [
+        {
+          "id": "u7-earnings",
+          "type": "lesson",
+          "title": "Earnings reports",
+          "goal": "Learn what EPS, revenue and guidance are."
+        },
+        {
+          "id": "u7-beats",
+          "type": "lesson",
+          "title": "Beats and misses",
+          "goal": "See why good news can still make a price fall."
+        },
+        {
+          "id": "u7-trade-1",
+          "type": "trade",
+          "title": "Earnings day",
+          "goal": "React to a simulated earnings report."
+        },
+        {
+          "id": "u7-calendar",
+          "type": "lesson",
+          "title": "The economic calendar",
+          "goal": "Find the big dates that can move the whole market."
+        },
+        {
+          "id": "u7-fed",
+          "type": "lesson",
+          "title": "The Fed and interest rates",
+          "goal": "Learn what the Fed and the FOMC do."
+        },
+        {
+          "id": "u7-cpi-jobs",
+          "type": "lesson",
+          "title": "CPI and jobs reports",
+          "goal": "Learn two reports that people watch closely."
+        },
+        {
+          "id": "u7-trade-2",
+          "type": "trade",
+          "title": "Fed day",
+          "goal": "React to a simulated Fed decision."
+        },
+        {
+          "id": "u7-rumor",
+          "type": "lesson",
+          "title": "Buy the rumor, sell the news",
+          "goal": "See why prices often move before news arrives."
+        },
+        {
+          "id": "u7-trade-3",
+          "type": "trade",
+          "title": "Headline rush",
+          "goal": "Decide how to react to a surprise headline."
+        },
+        {
+          "id": "u7-boss",
+          "type": "boss",
+          "title": "Unit 7 boss",
+          "goal": "Trade through a busy news day with your risk rules."
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "number": 8,
+      "title": "Graduation",
+      "tagline": "Put it all together. One last session, then your certificate.",
+      "nodes": [
+        {
+          "id": "u8-review",
+          "type": "lesson",
+          "title": "Your trading plan",
+          "goal": "Write down your rules before the final session."
+        },
+        {
+          "id": "u8-practice",
+          "type": "practice",
+          "title": "Final warm-up",
+          "goal": "Review the big ideas from every unit."
+        },
+        {
+          "id": "u8-loss-limit",
+          "type": "lesson",
+          "title": "The daily loss limit",
+          "goal": "Learn why stopping for the day can be the best trade."
+        },
+        {
+          "id": "u8-chest",
+          "type": "chest",
+          "title": "Treasure chest",
+          "goal": "Open a bonus chest before the big test."
+        },
+        {
+          "id": "u8-boss",
+          "type": "boss",
+          "title": "Final boss",
+          "goal": "Trade three historical days with a daily loss limit."
+        }
+      ]
+    }
+  ]
+}

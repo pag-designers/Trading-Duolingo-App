@@ -31,7 +31,7 @@ async function axeClean(page: Page, where: string) {
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
   const bad = results.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
   expect(
-    bad.map((v) => `${where}: ${v.id} (${v.nodes.length}) ${v.nodes[0]?.target}`),
+    bad.map((v) => `${where}: ${v.id} (${v.nodes.length}) ${v.nodes[0]?.html.slice(0, 160)} ${v.nodes[0]?.any[0]?.message}`),
     where,
   ).toEqual([]);
 }
@@ -77,9 +77,9 @@ test("@cp2-chart charts show candles, volume, unlocked indicators, an OHLC legen
     ["u2-volume", "volume", /Vol /],
   ] as const) {
     await page.goto(`/lesson/${lesson}`);
-    const demo = page
-      .locator("[data-testid=demo-chart] [data-testid=chart]")
-      .filter({ has: page.locator(`xpath=self::*[contains(@data-indicators, "${ind}")]`) });
+    const demo = page.locator(
+      `[data-testid=demo-chart] [data-testid=chart][data-indicators*="${ind}"]`,
+    );
     for (let i = 0; i < 12 && (await demo.count()) === 0; i++) {
       await page.getByTestId("slide-continue").click();
       await page.waitForTimeout(250);

@@ -101,6 +101,9 @@ export function ChartView(props: ChartViewProps) {
     className,
   } = props;
   const lead = props.lead ?? EMPTY;
+  // Newest handlers, read inside chart callbacks so the chart is not rebuilt when they change.
+  const handlers = useRef({ onPick: props.onPick, onMove: props.onMove, magnet: props.magnet });
+  handlers.current = { onPick: props.onPick, onMove: props.onMove, magnet: props.magnet };
   const colors = useChartColors();
   const hostRef = useRef<HTMLDivElement>(null);
   const [handles, setHandles] = useState<Handles | null>(null);
@@ -245,13 +248,42 @@ export function ChartView(props: ChartViewProps) {
     const redraw = () => setTick((n) => n + 1);
     chart.timeScale().subscribeVisibleLogicalRangeChange(redraw);
     chart.timeScale().subscribeSizeChange(redraw);
+    /** Turn a pixel position into a (bar, price) point, snapping to the nearest candle value when the magnet is on. */
+    const toPoint = (point: { x: number; y: number }, logical: number): ChartPoint | null => {
+      const raw = candles.coordinateToPrice(point.y);
+      if (raw == null) return null;
+      let i = Math.max(0, Math.min(bars.length - 1, logical));
+      let value: number = raw;
+      if (handlers.current.magnet) {
+        i = Math.round(i);
+        const b = bars[i]!;
+        let best = 28; // snap only when within 28 px
+        for (const v of [b.open, b.high, b.low, b.close]) {
+          const y = candles.priceToCoordinate(v);
+          if (y != null && Math.abs(y - point.y) < best) {
+            best = Math.abs(y - point.y);
+            value = v;
+          }
+        }
+      }
+      return { i, price: value };
+    };
     chart.subscribeCrosshairMove((p) => {
       setHover(
         p.point && p.logical != null
           ? Math.max(0, Math.min(bars.length - 1, Math.round(p.logical)))
           : null,
       );
+      const main = (p.paneIndex ?? 0) === 0;
+      handlers.current.onMove?.(
+        p.point && p.logical != null && main ? toPoint(p.point, p.logical) : null,
+      );
       redraw();
+    });
+    chart.subscribeClick((p) => {
+      if (!p.point || p.logical == null || (p.paneIndex ?? 0) !== 0) return;
+      const pt = toPoint(p.point, p.logical);
+      if (pt) handlers.current.onPick?.(pt);
     });
     setHandles({ chart, candles });
     redraw();

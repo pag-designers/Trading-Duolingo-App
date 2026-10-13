@@ -240,6 +240,7 @@ test("@cp2-a11y no serious axe violations on chart screens, light and dark", asy
       await answer(page, lab.q, true);
       await page.getByTestId("check-btn").click();
       await expect(page.getByTestId("feedback")).toBeVisible();
+      await page.waitForTimeout(800); // let the feedback panel finish sliding in (axe reads mid-animation colors)
       await axeClean(page, `${theme} lab ${lab.q.task.kind} feedback`);
     }
     // a chart picture inside a slide

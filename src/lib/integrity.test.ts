@@ -51,3 +51,13 @@ describe("repairProgress", () => {
     expect(fixed.totalXp).toBe(10);
   });
 });
+
+describe("checkProgress with non-finite numbers", () => {
+  it("flags NaN, which every comparison would otherwise silently accept", () => {
+    const p = { ...good(), totalXp: Number.NaN };
+    expect(checkProgress(p).map((x) => x.code)).toContain("not_a_number");
+    const q = good();
+    q.nodes["u1-money"]!.bestScore = Number.NaN;
+    expect(checkProgress(q).map((x) => x.code)).toContain("not_a_number");
+  });
+});

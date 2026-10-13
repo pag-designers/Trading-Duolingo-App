@@ -62,6 +62,16 @@ function snapshot(): Me {
   };
 }
 
+/** Replace each local section whose server copy is newer. */
+function applyServer(server: Me, local: Me): void {
+  if (reconcile(local.profile.updatedAt, server.profile.updatedAt) === "pull") {
+    useProfile.getState().replaceFromServer(server.profile);
+  }
+  if (reconcile(local.settings.updatedAt, server.settings.updatedAt) === "pull") {
+    useSettings.getState().replaceFromServer(server.settings);
+  }
+}
+
 /**
  * Syncs profile + settings between the browser stores and SQLite (via /api/me).
  * The app works fully offline: if the server is unreachable we just keep the local copy and retry
@@ -85,6 +95,8 @@ function SyncBridge() {
       }
       try {
         const stored = await putMe(local);
+        // The server keeps whichever copy is newer, so pull back anything it kept.
+        applyServer(stored, snapshot());
         synced.current = { profile: stored.profile.updatedAt, settings: stored.settings.updatedAt };
       } catch {
         /* offline or server down — retry on the next change */
@@ -105,13 +117,7 @@ function SyncBridge() {
       try {
         const server = await fetchMe();
         if (cancelled) return;
-        const local = snapshot();
-        if (reconcile(local.profile.updatedAt, server.profile.updatedAt) === "pull") {
-          useProfile.getState().replaceFromServer(server.profile);
-        }
-        if (reconcile(local.settings.updatedAt, server.settings.updatedAt) === "pull") {
-          useSettings.getState().replaceFromServer(server.settings);
-        }
+        applyServer(server, snapshot());
         synced.current = { profile: server.profile.updatedAt, settings: server.settings.updatedAt };
       } catch {
         /* offline — carry on with local state */

@@ -11,16 +11,26 @@ export function readSummary(): Summary | null {
   const file = join(root(), "reports", "summary.json");
   if (!existsSync(file)) return null;
   try {
-    return JSON.parse(readFileSync(file, "utf8")) as Summary;
+    const data = JSON.parse(readFileSync(file, "utf8")) as Partial<Summary>;
+    // An old-format or half-written file reads as "never run" instead of crashing the dashboard.
+    return Array.isArray(data.results) && typeof data.overall === "string"
+      ? (data as Summary)
+      : null;
   } catch {
     return null;
   }
 }
 
+let inFlight: Promise<Summary> | null = null;
+
+/** Run every agent. Overlapping calls (double click, two tabs) share one run so reports never race. */
 export function runAgentsNow(): Promise<Summary> {
-  return runAll({
+  inFlight ??= runAll({
     root: root(),
     dbUrl: process.env.DATABASE_URL ?? "file:./prisma/dev.db",
     date: localDate(),
+  }).finally(() => {
+    inFlight = null;
   });
+  return inFlight;
 }

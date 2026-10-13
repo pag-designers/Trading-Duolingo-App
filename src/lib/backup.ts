@@ -34,6 +34,9 @@ export function downloadBackup(): void {
   const a = document.createElement("a");
   a.href = url;
   a.download = `candlo-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
   a.click();
-  URL.revokeObjectURL(url);
+  a.remove();
+  // Revoke later: some browsers start reading the blob after click() returns.
+  setTimeout(() => URL.revokeObjectURL(url), 10_000);
 }

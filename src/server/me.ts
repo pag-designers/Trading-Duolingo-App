@@ -17,13 +17,20 @@ async function ensureUser(): Promise<void> {
   });
 }
 
-/** Read the learner's profile + settings (creating the local user on first run). */
-export async function readMe(): Promise<Me> {
-  await ensureUser();
-  const [p, s] = await Promise.all([
-    db.profile.findUniqueOrThrow({ where: { userId: LOCAL_USER_ID } }),
-    db.settings.findUniqueOrThrow({ where: { userId: LOCAL_USER_ID } }),
+const findRows = () =>
+  Promise.all([
+    db.profile.findUnique({ where: { userId: LOCAL_USER_ID } }),
+    db.settings.findUnique({ where: { userId: LOCAL_USER_ID } }),
   ]);
+
+/** Read the learner's profile + settings, creating the local user's rows only when they are missing. */
+export async function readMe(): Promise<Me> {
+  let [p, s] = await findRows();
+  if (!p || !s) {
+    await ensureUser();
+    [p, s] = await findRows();
+  }
+  if (!p || !s) throw new Error("Could not create the local user's profile and settings.");
   return meSchema.parse({
     profile: {
       displayName: p.displayName,
@@ -50,30 +57,26 @@ export async function readMe(): Promise<Me> {
 }
 
 /**
- * Last-write-wins per section: an incoming section replaces the stored one only if its
- * `updatedAt` is not older. Returns the state that is stored afterwards.
+ * Last-write-wins per section. Each update is one conditional statement (`updatedAt <= incoming`), so
+ * two overlapping writes can never let the older one overwrite the newer. Returns what is stored.
  */
 export async function writeMe(incoming: Me): Promise<Me> {
-  const current = await readMe();
+  await readMe(); // makes sure the rows exist before the conditional updates
   const { profile, settings } = incoming;
 
-  if (profile.updatedAt >= current.profile.updatedAt) {
-    await db.profile.update({
-      where: { userId: LOCAL_USER_ID },
-      data: {
-        displayName: profile.displayName,
-        mascotName: profile.mascotName,
-        accessory: profile.accessory,
-        onboardedAt: profile.onboardedAt ? new Date(profile.onboardedAt) : null,
-        updatedAt: new Date(profile.updatedAt),
-      },
-    });
-  }
-  if (settings.updatedAt >= current.settings.updatedAt) {
-    await db.settings.update({
-      where: { userId: LOCAL_USER_ID },
-      data: { ...settings, updatedAt: new Date(settings.updatedAt) },
-    });
-  }
+  await db.profile.updateMany({
+    where: { userId: LOCAL_USER_ID, updatedAt: { lte: new Date(profile.updatedAt) } },
+    data: {
+      displayName: profile.displayName,
+      mascotName: profile.mascotName,
+      accessory: profile.accessory,
+      onboardedAt: profile.onboardedAt ? new Date(profile.onboardedAt) : null,
+      updatedAt: new Date(profile.updatedAt),
+    },
+  });
+  await db.settings.updateMany({
+    where: { userId: LOCAL_USER_ID, updatedAt: { lte: new Date(settings.updatedAt) } },
+    data: { ...settings, updatedAt: new Date(settings.updatedAt) },
+  });
   return readMe();
 }

@@ -28,6 +28,10 @@ interface ProgressStore extends ProgressState {
   reset: () => void;
 }
 
+/** A score is a whole number from 0 to 100; anything else (NaN, huge, negative) is clamped. */
+const clampScore = (score: number): number =>
+  Number.isFinite(score) ? Math.min(100, Math.max(0, Math.round(score))) : 0;
+
 const EMPTY: ProgressState = { totalXp: 0, days: {}, nodes: {}, freezes: 0 };
 
 export const useProgress = create<ProgressStore>()(
@@ -36,11 +40,12 @@ export const useProgress = create<ProgressStore>()(
       ...EMPTY,
       awardXp: (amount, today = dateKey(new Date())) =>
         set((s) => {
-          if (amount <= 0) return s;
+          const xp = Math.floor(amount);
+          if (!Number.isFinite(xp) || xp <= 0) return s; // ignore NaN, fractions below 1, negatives
           const prev = s.days[today] ?? { xp: 0, lessonsDone: 0 };
           return {
-            totalXp: s.totalXp + amount,
-            days: { ...s.days, [today]: { ...prev, xp: prev.xp + amount } },
+            totalXp: s.totalXp + xp,
+            days: { ...s.days, [today]: { ...prev, xp: prev.xp + xp } },
           };
         }),
       recordNode: (nodeId, score, today = dateKey(new Date())) =>
@@ -53,7 +58,7 @@ export const useProgress = create<ProgressStore>()(
               ...s.nodes,
               [nodeId]: {
                 status: "done",
-                bestScore: Math.max(prev?.bestScore ?? 0, Math.round(score)),
+                bestScore: Math.max(prev?.bestScore ?? 0, clampScore(score)),
                 attempts: (prev?.attempts ?? 0) + 1,
                 completedAt: prev?.completedAt ?? new Date().toISOString(),
               },

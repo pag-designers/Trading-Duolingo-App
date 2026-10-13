@@ -48,7 +48,7 @@ Acceptance: app runs · onboarding works · path map renders · dark mode works 
 
 Evidence (run on 2026-10-13):
 
-- `pnpm check`: typecheck clean, ESLint clean, **89 unit tests pass** (18 files: progress math, contrast math, integrity checks, sound generator, outline schema, storage fallback, sync reconcile, request guards, backup, all agent canaries).
+- `pnpm check`: typecheck clean, ESLint clean, **96 unit tests pass** (20 files: progress math, contrast math, integrity checks, sound generator, outline schema, storage fallback, sync reconcile, request guards, backup, all agent canaries).
 - `pnpm build`: production build succeeds (12 routes; first-load JS 102 kB shared, 213 kB on Learn).
 - `pnpm e2e`: **21 passed, 1 skipped** (the phone-only test on the desktop project), on desktop Chrome and Pixel 7: first-run redirect, full onboarding, server persistence in SQLite, returning learner on a fresh browser, all 8 units on the map, sheets and risk reminder, dark mode (persists across reload), reading mode / reduced motion / sound toggles, Health page running all agents, every route renders, cross-site/non-JSON writes and non-loopback admin runs refused, axe smoke in light + dark, phone layout (bottom tabs, no horizontal scroll, every tap target ≥ 48px).
 - `pnpm agents:run`: 0 red, 7 amber (stubs only), CP0 criteria met.
@@ -56,6 +56,7 @@ Evidence (run on 2026-10-13):
 
 Bugs found and fixed by the checks along the way: unit colors failing WCAG contrast with white text (Accessibility agent); disclaimer regex tripping on a line break (Safety agent); IndexedDB-unavailable crash in progress saving (unit test); volume slider thumb unnamed (axe); logo link 43px tall (tap-target e2e); first-run redirect racing the server sync.
 
+- Code review (`/code-review`, medium): 10 findings; fixed the real ones: hydration can no longer hang or reject (3 s IndexedDB timeout), pushes pull back newer server data, profile/settings writes are single conditional statements (no overwrite race), NaN/fractional XP and scores are rejected, backup download revokes its URL late, the health summary is validated on read and runs are de-duplicated. Skipped (logged as known issues): theme kept in two places (next-themes + settings store) and falling back to defaults when a DB row fails validation.
 - Security review (`/security-review`): no high-confidence vulnerabilities. Two low-severity hardening notes were fixed anyway: `PUT /api/me` now requires `application/json` + same Origin (a cross-site `text/plain` request needs no CORS preflight), and the agent-runner endpoint only answers on loopback hosts (DNS rebinding) with safe Origin parsing.
 
 Known issues / deferred: see the CP0 report. No lessons exist yet (Unit 1 content is CP1); sounds are synthesized placeholders-in-quality (but real and working); PWA install, backup _restore_, and full a11y/perf budgets are CP8.

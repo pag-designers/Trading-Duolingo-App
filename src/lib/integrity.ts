@@ -12,7 +12,13 @@ export interface ProgressSnapshot {
 
 export interface IntegrityProblem {
   code:
-    "xp_mismatch" | "negative" | "done_without_date" | "bad_score" | "bad_status" | "bad_attempts";
+    | "xp_mismatch"
+    | "not_a_number"
+    | "negative"
+    | "done_without_date"
+    | "bad_score"
+    | "bad_status"
+    | "bad_attempts";
   message: string;
 }
 
@@ -21,6 +27,19 @@ const STATUSES = new Set(["not_started", "in_progress", "done"]);
 /** Cross-check progress numbers against each other. Pure, so the agent and the app can share it. */
 export function checkProgress(p: ProgressSnapshot): IntegrityProblem[] {
   const problems: IntegrityProblem[] = [];
+  const numbers = [
+    p.totalXp,
+    p.freezes,
+    ...Object.values(p.days).flatMap((d) => [d.xp, d.lessonsDone]),
+    ...Object.values(p.nodes).flatMap((n) => [n.bestScore, n.attempts]),
+  ];
+  if (numbers.some((n) => !Number.isFinite(n))) {
+    // Comparisons with NaN are always false, so catch it explicitly before the other rules.
+    problems.push({
+      code: "not_a_number",
+      message: "A number in the progress data is NaN or infinite",
+    });
+  }
   const daySum = Object.values(p.days).reduce((sum, d) => sum + d.xp, 0);
   if (p.totalXp !== daySum) {
     problems.push({

@@ -17,7 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import { vwapAllowed } from "./indicator-data";
 import { barSentence, price } from "./format";
-import { CursorMark, Shape, measureText } from "./shapes";
+import { CandleNumbers, CursorMark, Shape, measureText } from "./shapes";
 
 const ChartView = dynamic(() => import("./chart-view").then((m) => m.ChartView), {
   ssr: false,
@@ -286,6 +286,7 @@ export function LabView({ q, answer, onChange, checked }: LabViewProps) {
               className="absolute inset-0 overflow-hidden"
               aria-hidden="true"
             >
+              <CandleNumbers api={api} count={bars.length} />
               {cur && !locked && (
                 <CursorMark
                   api={api}

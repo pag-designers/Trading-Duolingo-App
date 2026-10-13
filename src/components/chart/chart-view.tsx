@@ -357,6 +357,9 @@ export function ChartView(props: ChartViewProps) {
       >
         {bar ? (
           <>
+            <span className="font-black" data-testid="legend-candle">
+              Candle {active + 1}
+            </span>
             <span className="font-black">{barTime(bar.time, tf)}</span>
             <span className={cn("font-black", up ? "text-gain-text" : "text-loss-text")}>
               {up ? "▲ up" : "▼ down"}

@@ -242,3 +242,34 @@ export function CursorMark({ api, bars, index, price: p, showPrice }: CursorProp
     </g>
   );
 }
+
+/** Small candle numbers along the top of the chart (1, 5, 10, …) so "candle 12" can be found by eye. */
+export function CandleNumbers({ api, count }: { api: ChartApi; count: number }) {
+  const marks: number[] = [];
+  for (let i = 0; i < count; i++) if (i === 0 || (i + 1) % 5 === 0) marks.push(i);
+  return (
+    <g data-testid="candle-numbers" aria-hidden="true">
+      {marks.map((i) => {
+        const x = api.xOf(i);
+        if (x == null || x < 0 || x > api.width) return null;
+        return (
+          <text
+            key={i}
+            x={x}
+            y="14"
+            textAnchor="middle"
+            fontSize="12"
+            fontWeight="800"
+            fill="var(--muted)"
+            stroke="var(--surface)"
+            strokeWidth="3"
+            paintOrder="stroke"
+            fontFamily="var(--font-mono)"
+          >
+            {i + 1}
+          </text>
+        );
+      })}
+    </g>
+  );
+}

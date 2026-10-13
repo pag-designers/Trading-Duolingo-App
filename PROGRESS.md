@@ -48,7 +48,7 @@ Acceptance: app runs · onboarding works · path map renders · dark mode works 
 
 Evidence (run on 2026-10-13):
 
-- `pnpm check`: typecheck clean, ESLint clean, **96 unit tests pass** (20 files: progress math, contrast math, integrity checks, sound generator, outline schema, storage fallback, sync reconcile, request guards, backup, all agent canaries).
+- `pnpm check`: typecheck clean, ESLint clean, **100 unit tests pass** (21 files: progress math, contrast math, integrity checks, sound generator, outline schema, storage fallback, sync reconcile, request guards, backup, all agent canaries).
 - `pnpm build`: production build succeeds (12 routes; first-load JS 102 kB shared, 213 kB on Learn).
 - `pnpm e2e`: **21 passed, 1 skipped** (the phone-only test on the desktop project), on desktop Chrome and Pixel 7: first-run redirect, full onboarding, server persistence in SQLite, returning learner on a fresh browser, all 8 units on the map, sheets and risk reminder, dark mode (persists across reload), reading mode / reduced motion / sound toggles, Health page running all agents, every route renders, cross-site/non-JSON writes and non-loopback admin runs refused, axe smoke in light + dark, phone layout (bottom tabs, no horizontal scroll, every tap target ≥ 48px).
 - `pnpm agents:run`: 0 red, 7 amber (stubs only), CP0 criteria met.

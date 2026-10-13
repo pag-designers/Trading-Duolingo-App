@@ -51,10 +51,21 @@ const CP0 = {
   ],
 };
 
+/**
+ * The current checkpoint is the first row of the PROGRESS.md table that is not fully done:
+ * anything other than a plain ✅ (🟡 in progress, ⬜ not started, or "✅ awaiting go").
+ */
+export function currentCheckpointNumber(progressMd: string): number | null {
+  for (const m of progressMd.matchAll(/^\|\s*(\d+)\s*\|[^|]*\|\s*([^|]*?)\s*\|\s*$/gm)) {
+    const status = m[2] ?? "";
+    if (!status.startsWith("✅") || /awaiting/i.test(status)) return Number(m[1]);
+  }
+  return null;
+}
+
 export function checkpointProgress(root: string): CheckpointProgress | null {
-  const progress = readText(root, "PROGRESS.md");
-  // The first checkpoint marked in progress (🟡) is the current one; only CP0 has criteria wired so far.
-  const current = /\|\s*0\s*\|[^|]*\|\s*🟡/.test(progress ?? "") ? CP0 : null;
+  // Only CP0 has acceptance criteria wired so far; later checkpoints add theirs.
+  const current = currentCheckpointNumber(readText(root, "PROGRESS.md") ?? "") === 0 ? CP0 : null;
   if (!current) return null;
 
   const e2e = e2eResults(root);

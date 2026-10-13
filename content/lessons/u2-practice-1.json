@@ -1,0 +1,69 @@
+{
+  "id": "u2-practice-1",
+  "title": "Chart tour practice",
+  "goal": "Practice the parts of the chart screen.",
+  "touchesTrading": true,
+  "objectives": [],
+  "slides": [],
+  "questions": [
+    {
+      "id": "q-u2p-1",
+      "type": "mc",
+      "prompt": "Which part holds the drawing tools?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The watchlist"
+        },
+        {
+          "id": "b",
+          "text": "The toolbar"
+        },
+        {
+          "id": "c",
+          "text": "The price scale"
+        }
+      ],
+      "answer": "b",
+      "explanation": "The toolbar on the left holds the drawing tools."
+    },
+    {
+      "id": "q-u2p-2",
+      "type": "tf",
+      "prompt": "A high spot on the chart is a high price.",
+      "answer": true,
+      "explanation": "Yes. The price scale on the right shows the price at each height."
+    },
+    {
+      "id": "q-u2p-3",
+      "type": "lab",
+      "prompt": "Switch to the 15 min chart.",
+      "explanation": "The 15m chart has one candle for each 15 min.",
+      "window": {
+        "dataset": "practice",
+        "tf": "1h",
+        "start": 0,
+        "count": 21
+      },
+      "timeframes": [
+        "5m",
+        "15m",
+        "1h"
+      ],
+      "task": {
+        "kind": "timeframe",
+        "tf": "15m"
+      }
+    }
+  ],
+  "pool": {
+    "from": [
+      "u2-account",
+      "u2-tour",
+      "u2-timeframes",
+      "u2-axes",
+      "u2-crosshair"
+    ],
+    "perLesson": 2
+  }
+}

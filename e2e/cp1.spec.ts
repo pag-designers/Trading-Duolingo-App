@@ -54,11 +54,12 @@ test("@cp1-finish-unit1 a learner can finish all of Unit 1, start to finish", as
 
   for (const n of unit1)
     await expect(page.getByTestId(`node-${n.id}`)).toHaveAttribute("data-state", "done");
-  // The course moves on: the current step is now the first step of Unit 2, which is honest about not being written yet.
+  // The course moves on: the current step is now the first step of Unit 2.
   await expect(page.getByTestId(`node-u2-account`)).toHaveAttribute("data-state", "current");
   await expect(page.getByTestId("continue-card")).toContainText("Meet TradingView");
   await page.getByTestId("continue").click();
-  await expect(page.getByTestId("coming-soon")).toBeVisible();
+  await expect(page.getByTestId("lesson-player")).toBeVisible();
+  await page.goto("/");
 
   // XP, level and steps all moved.
   await page.goto("/profile");
@@ -398,7 +399,7 @@ test("unknown steps are a 404, not a crash; leaving a lesson is gentle", async (
   await onboard(page);
   const res = await page.goto("/lesson/u9-nothing");
   expect(res?.status()).toBe(404);
-  await page.goto("/lesson/u2-account"); // exists in the outline but is not written yet
+  await page.goto("/lesson/u3-anatomy"); // exists in the outline but is not written yet
   await expect(page.getByText(/404|could not be found/i).first()).toBeVisible();
   await page.goto("/lesson/u1-money");
   await page.getByTestId("leave").click();

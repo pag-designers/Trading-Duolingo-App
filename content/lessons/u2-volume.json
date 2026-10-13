@@ -1,0 +1,196 @@
+{
+  "id": "u2-volume",
+  "title": "Volume",
+  "goal": "Learn why the count of shares traded matters.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-what",
+      "text": "Say what the volume bars show."
+    },
+    {
+      "id": "o-read",
+      "text": "Tell a tall bar from a short bar."
+    },
+    {
+      "id": "o-moves",
+      "text": "Know why volume matters in a big move."
+    },
+    {
+      "id": "o-limit",
+      "text": "Know that volume does not predict."
+    }
+  ],
+  "slides": [
+    {
+      "id": "what",
+      "text": "Volume is how many shares were traded. It shows as bars at the bottom. Each bar matches one candle.",
+      "defines": [],
+      "title": "Bars under the candles",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 250,
+          "count": 40
+        },
+        "indicators": [
+          "volume"
+        ],
+        "caption": "Real Apple history. The bars below show volume."
+      }
+    },
+    {
+      "id": "read",
+      "text": "A tall bar means many shares traded. A short bar means few shares traded.",
+      "defines": [],
+      "title": "Tall and short",
+      "art": "market"
+    },
+    {
+      "id": "moves",
+      "text": "A big move on high volume has a big crowd. A big move on low volume has a small one.",
+      "defines": [],
+      "title": "What it tries to tell you",
+      "art": "bull"
+    },
+    {
+      "id": "limit",
+      "text": "High volume does not tell you the next move. It shows how busy it was. Do not trust it alone.",
+      "defines": [],
+      "title": "Not a promise",
+      "art": "bear"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-vol-1",
+      "type": "mc",
+      "prompt": "What do the volume bars show?",
+      "options": [
+        {
+          "id": "a",
+          "text": "How high the price is"
+        },
+        {
+          "id": "b",
+          "text": "The company name"
+        },
+        {
+          "id": "c",
+          "text": "How many shares traded"
+        }
+      ],
+      "answer": "c",
+      "explanation": "Each bar shows the shares traded.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-vol-2",
+      "type": "tf",
+      "prompt": "A tall volume bar means many shares traded.",
+      "answer": true,
+      "explanation": "Yes. Tall means busy. Short means quiet.",
+      "objective": "o-read"
+    },
+    {
+      "id": "q-vol-3",
+      "type": "mc",
+      "prompt": "A big move comes with high volume. What does it mean?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nobody traded"
+        },
+        {
+          "id": "b",
+          "text": "Many people took part"
+        },
+        {
+          "id": "c",
+          "text": "The chart is old"
+        }
+      ],
+      "answer": "b",
+      "explanation": "High volume means a lot of shares traded in the move.",
+      "objective": "o-moves"
+    },
+    {
+      "id": "q-vol-4",
+      "type": "lab",
+      "prompt": "Find the candle with the most volume. Tap it.",
+      "explanation": "The tall bar is the busy one.",
+      "objective": "o-read",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 316,
+        "count": 30
+      },
+      "start": [
+        "volume"
+      ],
+      "offer": [
+        "volume"
+      ],
+      "task": {
+        "kind": "find-bar",
+        "rule": "highest-volume"
+      }
+    },
+    {
+      "id": "q-vol-5",
+      "type": "tf",
+      "prompt": "High volume tells you which way the price will go next.",
+      "answer": false,
+      "explanation": "No. Volume shows how busy it was.",
+      "objective": "o-limit"
+    },
+    {
+      "id": "q-vol-6",
+      "type": "mc",
+      "prompt": "Where do the volume bars sit?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Above the toolbar"
+        },
+        {
+          "id": "b",
+          "text": "Under the candles"
+        },
+        {
+          "id": "c",
+          "text": "In the watchlist"
+        }
+      ],
+      "answer": "b",
+      "explanation": "Volume bars sit at the bottom.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-vol-7",
+      "type": "lab",
+      "prompt": "Turn on Volume. Keep the rest off.",
+      "explanation": "Volume bars show at the bottom.",
+      "objective": "o-what",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 250,
+        "count": 40
+      },
+      "offer": [
+        "volume",
+        "sma",
+        "rsi"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "volume"
+        ]
+      }
+    }
+  ]
+}

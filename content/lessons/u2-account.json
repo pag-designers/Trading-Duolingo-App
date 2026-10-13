@@ -1,0 +1,179 @@
+{
+  "id": "u2-account",
+  "title": "Meet TradingView",
+  "goal": "Learn what TradingView is and that it is free.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-what",
+      "text": "Say what TradingView is."
+    },
+    {
+      "id": "o-free",
+      "text": "Know that an account is free."
+    },
+    {
+      "id": "o-safe",
+      "text": "Keep your password secret."
+    },
+    {
+      "id": "o-candlo",
+      "text": "Know you can skip the sign up."
+    }
+  ],
+  "slides": [
+    {
+      "id": "tv",
+      "text": "TradingView is a website with charts. It has a phone app too. Traders all over the world use it.",
+      "defines": [
+        "tradingview"
+      ],
+      "title": "A chart website",
+      "art": "candles"
+    },
+    {
+      "id": "free",
+      "text": "You can join for free. The free plan has ads and some limits. Some prices may show up late.",
+      "defines": [],
+      "title": "Free to join",
+      "art": "ticker"
+    },
+    {
+      "id": "signup",
+      "text": "Tap Sign up to join. Use an email you own. Make the password long and hard to guess.",
+      "defines": [],
+      "title": "Making an account",
+      "art": "speech"
+    },
+    {
+      "id": "secret",
+      "text": "Never share your password. Candlo will not ask for it. Beware of sites that ask for it.",
+      "defines": [],
+      "title": "Keep it secret",
+      "art": "chest"
+    },
+    {
+      "id": "optional",
+      "text": "Candlo does not need TradingView. Our Chart Lab has the same tools. You can learn here and never sign up.",
+      "defines": [],
+      "title": "Candlo is on its own",
+      "art": "candles"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-acct-1",
+      "type": "mc",
+      "prompt": "What is TradingView?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A bank for money"
+        },
+        {
+          "id": "b",
+          "text": "A store for shoes"
+        },
+        {
+          "id": "c",
+          "text": "A website with charts"
+        }
+      ],
+      "answer": "c",
+      "explanation": "TradingView is a website and app with charts.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-acct-2",
+      "type": "tf",
+      "prompt": "You must pay to join TradingView.",
+      "answer": false,
+      "explanation": "No. The free plan costs nothing. It has ads and limits.",
+      "objective": "o-free"
+    },
+    {
+      "id": "q-acct-3",
+      "type": "mc",
+      "prompt": "What comes with the free plan?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A prize each day"
+        },
+        {
+          "id": "b",
+          "text": "Ads and some limits"
+        },
+        {
+          "id": "c",
+          "text": "Free stocks"
+        }
+      ],
+      "answer": "b",
+      "explanation": "The free plan costs nothing. It has ads and some limits.",
+      "objective": "o-free"
+    },
+    {
+      "id": "q-acct-4",
+      "type": "tf",
+      "prompt": "It is fine to tell a friend your password.",
+      "answer": false,
+      "explanation": "No. Keep it secret. Only you should know it.",
+      "objective": "o-safe"
+    },
+    {
+      "id": "q-acct-5",
+      "type": "mc",
+      "prompt": "A site asks for your password. What do you do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Do not share it"
+        },
+        {
+          "id": "b",
+          "text": "Type it in fast"
+        },
+        {
+          "id": "c",
+          "text": "Tell a friend"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Never share it. Candlo will not ask for it.",
+      "objective": "o-safe"
+    },
+    {
+      "id": "q-acct-6",
+      "type": "tf",
+      "prompt": "Candlo needs TradingView to work.",
+      "answer": false,
+      "explanation": "No. Candlo works on its own. You never have to sign up.",
+      "objective": "o-candlo"
+    },
+    {
+      "id": "q-acct-7",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "TradingView",
+          "definition": "A website with charts"
+        },
+        {
+          "id": "p2",
+          "term": "Free plan",
+          "definition": "Free to join, with limits"
+        },
+        {
+          "id": "p3",
+          "term": "Password",
+          "definition": "A secret that you keep"
+        }
+      ],
+      "explanation": "TradingView is the chart site. The free plan has limits. A password stays secret.",
+      "objective": "o-what"
+    }
+  ]
+}

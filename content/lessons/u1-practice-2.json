@@ -57,13 +57,7 @@
     }
   ],
   "pool": {
-    "from": [
-      "u1-market",
-      "u1-profit",
-      "u1-tickers",
-      "u1-shorttalk",
-      "u1-bullbear"
-    ],
+    "from": ["u1-market", "u1-profit", "u1-tickers", "u1-shorttalk", "u1-bullbear"],
     "perLesson": 1
   }
 }

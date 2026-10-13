@@ -1,0 +1,202 @@
+{
+  "id": "u2-tour",
+  "title": "A tour of the screen",
+  "goal": "Find the symbol search, the watchlist and the toolbar.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-search",
+      "text": "Find the symbol search."
+    },
+    {
+      "id": "o-watch",
+      "text": "Say what a watchlist is."
+    },
+    {
+      "id": "o-tools",
+      "text": "Find the drawing tools on the left."
+    },
+    {
+      "id": "o-middle",
+      "text": "Know the chart fills the middle."
+    }
+  ],
+  "slides": [
+    {
+      "id": "parts",
+      "text": "The screen has four parts. They are the top, the left, the middle and the right.",
+      "defines": [],
+      "title": "Four parts",
+      "art": "candles"
+    },
+    {
+      "id": "search",
+      "text": "At the top left is the symbol search. Type a ticker like AAPL and press Enter. The chart shows that stock.",
+      "defines": [],
+      "title": "The symbol search",
+      "art": "ticker"
+    },
+    {
+      "id": "toolbar",
+      "text": "The toolbar is a strip of icons on the left. It holds the drawing tools. You will use them soon.",
+      "defines": [
+        "toolbar"
+      ],
+      "title": "The toolbar",
+      "art": "chest"
+    },
+    {
+      "id": "middle",
+      "text": "The big middle part is the chart. Prices run up the right edge. Time is at the bottom.",
+      "defines": [],
+      "title": "The big middle",
+      "art": "candles"
+    },
+    {
+      "id": "watchlist",
+      "text": "A watchlist is a list of tickers to watch. It sits on the right. Tap a ticker to open its chart.",
+      "defines": [
+        "watchlist"
+      ],
+      "title": "The watchlist",
+      "art": "index"
+    },
+    {
+      "id": "top",
+      "text": "The top has a few buttons. They change what you see. You will meet each one soon.",
+      "defines": [],
+      "title": "The top buttons",
+      "art": "speech"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-tour-1",
+      "type": "mc",
+      "prompt": "Where do you type a ticker like AAPL?",
+      "options": [
+        {
+          "id": "a",
+          "text": "In the toolbar"
+        },
+        {
+          "id": "b",
+          "text": "In the symbol search"
+        },
+        {
+          "id": "c",
+          "text": "In the password box"
+        }
+      ],
+      "answer": "b",
+      "explanation": "The symbol search is at the top left. Type a ticker there.",
+      "objective": "o-search"
+    },
+    {
+      "id": "q-tour-2",
+      "type": "tf",
+      "prompt": "A watchlist is a list of tickers to watch.",
+      "answer": true,
+      "explanation": "Yes. Tap a ticker in the watchlist to open its chart.",
+      "objective": "o-watch"
+    },
+    {
+      "id": "q-tour-3",
+      "type": "mc",
+      "prompt": "Where are the drawing tools?",
+      "options": [
+        {
+          "id": "a",
+          "text": "In the toolbar on the left"
+        },
+        {
+          "id": "b",
+          "text": "In the watchlist"
+        },
+        {
+          "id": "c",
+          "text": "In the symbol search"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The toolbar on the left holds the drawing tools.",
+      "objective": "o-tools"
+    },
+    {
+      "id": "q-tour-4",
+      "type": "mc",
+      "prompt": "What fills the big middle part?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The watchlist"
+        },
+        {
+          "id": "b",
+          "text": "The chart"
+        },
+        {
+          "id": "c",
+          "text": "The toolbar"
+        }
+      ],
+      "answer": "b",
+      "explanation": "The chart sits in the middle. Tools and lists sit around it.",
+      "objective": "o-middle"
+    },
+    {
+      "id": "q-tour-5",
+      "type": "match",
+      "prompt": "Match each part to its job.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "Symbol search",
+          "definition": "Where you type a ticker"
+        },
+        {
+          "id": "p2",
+          "term": "Watchlist",
+          "definition": "A list of tickers to watch"
+        },
+        {
+          "id": "p3",
+          "term": "Toolbar",
+          "definition": "A strip of drawing tools"
+        }
+      ],
+      "explanation": "The search finds a ticker. The watchlist keeps tickers. The toolbar holds tools.",
+      "objective": "o-search"
+    },
+    {
+      "id": "q-tour-6",
+      "type": "mc",
+      "prompt": "Which side holds the watchlist?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The right side"
+        },
+        {
+          "id": "b",
+          "text": "The left side"
+        },
+        {
+          "id": "c",
+          "text": "The bottom"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The watchlist sits on the right side.",
+      "objective": "o-watch"
+    },
+    {
+      "id": "q-tour-7",
+      "type": "tf",
+      "prompt": "The toolbar is where you find the drawing tools.",
+      "answer": true,
+      "explanation": "Yes. The toolbar holds all of the drawing tools.",
+      "objective": "o-tools"
+    }
+  ]
+}

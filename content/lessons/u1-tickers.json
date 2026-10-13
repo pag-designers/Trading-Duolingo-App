@@ -21,9 +21,7 @@
     {
       "id": "ticker",
       "text": "A ticker is a short code for a stock. AAPL is the ticker for Apple.",
-      "defines": [
-        "ticker"
-      ],
+      "defines": ["ticker"],
       "title": "Tickers",
       "art": "ticker"
     },
@@ -37,27 +35,21 @@
     {
       "id": "etf",
       "text": "An ETF is a box that holds stocks. SPY holds 500 big companies. QQQ holds 100 tech companies.",
-      "defines": [
-        "etf"
-      ],
+      "defines": ["etf"],
       "title": "ETFs",
       "art": "index"
     },
     {
       "id": "adr",
       "text": "An ADR lets you buy a foreign stock in the US. TSM is an ADR for a Taiwan company.",
-      "defines": [
-        "adr"
-      ],
+      "defines": ["adr"],
       "title": "ADRs",
       "art": "ticker"
     },
     {
       "id": "suffix",
       "text": "Some tickers end with a suffix. The suffix tells where a stock trades. AAPL.L trades in London.",
-      "defines": [
-        "suffix"
-      ],
+      "defines": ["suffix"],
       "title": "Suffixes",
       "art": "ticker"
     }

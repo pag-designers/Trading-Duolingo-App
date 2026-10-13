@@ -1,0 +1,249 @@
+{
+  "id": "u2-timeframes",
+  "title": "Timeframes and chart types",
+  "goal": "Learn to switch the timeframe of a chart.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-tf",
+      "text": "Say what a timeframe is."
+    },
+    {
+      "id": "o-list",
+      "text": "Know the time buttons."
+    },
+    {
+      "id": "o-types",
+      "text": "Know the candle chart and the line chart."
+    },
+    {
+      "id": "o-switch",
+      "text": "Switch a chart to a new timeframe."
+    }
+  ],
+  "slides": [
+    {
+      "id": "tf",
+      "text": "A timeframe is how long one candle lasts. On a 5m chart, a candle lasts 5 min.",
+      "defines": [
+        "timeframe"
+      ],
+      "title": "What is a timeframe?",
+      "art": "candles"
+    },
+    {
+      "id": "buttons",
+      "text": "Tap 1m, 5m, 15m, 1h, D or W to switch. The m is for minute, h is for hour. D is day and W is week.",
+      "defines": [],
+      "title": "The buttons",
+      "art": "ticker"
+    },
+    {
+      "id": "intraday",
+      "text": "Minute and hour charts are intraday charts. Intraday means inside one day.",
+      "defines": [
+        "intraday"
+      ],
+      "title": "Inside one day",
+      "art": "market"
+    },
+    {
+      "id": "small",
+      "text": "A small timeframe shows more wiggles. Each candle here lasts 5 min.",
+      "defines": [],
+      "title": "A small timeframe",
+      "demo": {
+        "window": {
+          "dataset": "practice",
+          "tf": "5m",
+          "start": 0,
+          "count": 60
+        },
+        "indicators": [],
+        "caption": "These prices are made up for practice."
+      }
+    },
+    {
+      "id": "big",
+      "text": "A big timeframe shows the big picture. Each candle here lasts one day.",
+      "defines": [],
+      "title": "A big timeframe",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 120,
+          "count": 60
+        },
+        "indicators": [],
+        "caption": "These are real Apple prices from 2015 and 2016."
+      }
+    },
+    {
+      "id": "types",
+      "text": "A candle chart shows four prices for each time. A line chart joins only the close prices. Bar and area charts are more looks.",
+      "defines": [
+        "line-chart"
+      ],
+      "title": "Chart types",
+      "art": "candles"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-tf-1",
+      "type": "mc",
+      "prompt": "What does one candle on a 5m chart show?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5 days of trading"
+        },
+        {
+          "id": "b",
+          "text": "5 dollars"
+        },
+        {
+          "id": "c",
+          "text": "5 min of trading"
+        }
+      ],
+      "answer": "c",
+      "explanation": "On a 5m chart, each candle lasts 5 min.",
+      "objective": "o-tf"
+    },
+    {
+      "id": "q-tf-2",
+      "type": "tf",
+      "prompt": "A timeframe is how long one candle lasts.",
+      "answer": true,
+      "explanation": "Yes. On a 1h chart, each candle lasts one hour.",
+      "objective": "o-tf"
+    },
+    {
+      "id": "q-tf-3",
+      "type": "match",
+      "prompt": "Match each button to its time.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "1m chart",
+          "definition": "1 minute each"
+        },
+        {
+          "id": "p2",
+          "term": "1h chart",
+          "definition": "1 hour each"
+        },
+        {
+          "id": "p3",
+          "term": "D chart",
+          "definition": "1 day each"
+        },
+        {
+          "id": "p4",
+          "term": "W chart",
+          "definition": "1 week each"
+        }
+      ],
+      "explanation": "m is minute, h is hour, D is day, W is week.",
+      "objective": "o-list"
+    },
+    {
+      "id": "q-tf-4",
+      "type": "mc",
+      "prompt": "Which one is an intraday chart?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The D chart"
+        },
+        {
+          "id": "b",
+          "text": "The W chart"
+        },
+        {
+          "id": "c",
+          "text": "The 15m chart"
+        }
+      ],
+      "answer": "c",
+      "explanation": "Intraday means inside one day. Min and hour charts are intraday.",
+      "objective": "o-list"
+    },
+    {
+      "id": "q-tf-5",
+      "type": "tf",
+      "prompt": "A line chart joins the close prices.",
+      "answer": true,
+      "explanation": "Yes. It uses just the close.",
+      "objective": "o-types"
+    },
+    {
+      "id": "q-tf-6",
+      "type": "mc",
+      "prompt": "Which chart hides the high and low?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The candle chart"
+        },
+        {
+          "id": "b",
+          "text": "The line chart"
+        },
+        {
+          "id": "c",
+          "text": "Neither one"
+        }
+      ],
+      "answer": "b",
+      "explanation": "The line chart shows just the close. The high and low are hidden.",
+      "objective": "o-types"
+    },
+    {
+      "id": "q-tf-7",
+      "type": "lab",
+      "prompt": "Switch to the 1 hour chart.",
+      "explanation": "One candle lasts an hour here. You see fewer candles.",
+      "objective": "o-switch",
+      "window": {
+        "dataset": "practice",
+        "tf": "15m",
+        "start": 0,
+        "count": 52
+      },
+      "timeframes": [
+        "5m",
+        "15m",
+        "1h"
+      ],
+      "task": {
+        "kind": "timeframe",
+        "tf": "1h"
+      }
+    },
+    {
+      "id": "q-tf-8",
+      "type": "lab",
+      "prompt": "Switch to the 5 min chart.",
+      "explanation": "The 5m chart has more candles. It wiggles more.",
+      "objective": "o-switch",
+      "window": {
+        "dataset": "practice",
+        "tf": "1h",
+        "start": 0,
+        "count": 21
+      },
+      "timeframes": [
+        "5m",
+        "15m",
+        "1h"
+      ],
+      "task": {
+        "kind": "timeframe",
+        "tf": "5m"
+      }
+    }
+  ]
+}

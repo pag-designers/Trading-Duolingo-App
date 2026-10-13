@@ -1,0 +1,120 @@
+{
+  "id": "u2-boss",
+  "title": "Unit 2 boss",
+  "goal": "Prove you can read a chart and use the tools.",
+  "touchesTrading": true,
+  "objectives": [],
+  "slides": [],
+  "questions": [
+    {
+      "id": "q-boss2-1",
+      "type": "lab",
+      "prompt": "Draw a flat line at the price of the last close.",
+      "explanation": "The last close is the end price. A flat line there marks it.",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 120,
+        "count": 40
+      },
+      "task": {
+        "kind": "hline",
+        "level": "last-close"
+      }
+    },
+    {
+      "id": "q-boss2-2",
+      "type": "lab",
+      "prompt": "Find the lowest low. Tap that candle.",
+      "explanation": "Its low is the bottom price on the chart.",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 207,
+        "count": 30
+      },
+      "task": {
+        "kind": "find-bar",
+        "rule": "lowest-low"
+      }
+    },
+    {
+      "id": "q-boss2-3",
+      "type": "lab",
+      "prompt": "Switch to the 1 day chart.",
+      "explanation": "Each candle on the D chart is one day. You see the big picture.",
+      "window": {
+        "dataset": "practice",
+        "tf": "1h",
+        "start": 0,
+        "count": 28
+      },
+      "timeframes": [
+        "15m",
+        "1h",
+        "D"
+      ],
+      "task": {
+        "kind": "timeframe",
+        "tf": "D"
+      }
+    },
+    {
+      "id": "q-boss2-4",
+      "type": "lab",
+      "prompt": "Turn on EMA and Bollinger Bands. Turn everything else off.",
+      "explanation": "The EMA and the bands are both overlays on the candles.",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 60,
+        "count": 60
+      },
+      "start": [
+        "rsi",
+        "volume"
+      ],
+      "offer": [
+        "sma",
+        "ema",
+        "rsi",
+        "macd",
+        "bands",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "ema",
+          "bands"
+        ]
+      }
+    },
+    {
+      "id": "q-boss2-5",
+      "type": "tf",
+      "prompt": "Most day traders lose money, and an indicator cannot change that.",
+      "answer": true,
+      "explanation": "Yes. Indicators use old prices. Candlo uses pretend money. You can learn."
+    }
+  ],
+  "pool": {
+    "from": [
+      "u2-timeframes",
+      "u2-axes",
+      "u2-crosshair",
+      "u2-draw-lines",
+      "u2-draw-more",
+      "u2-ma",
+      "u2-vwap",
+      "u2-rsi",
+      "u2-macd",
+      "u2-bands",
+      "u2-volume",
+      "u2-indicator-lab",
+      "u1-stock",
+      "u1-bullbear"
+    ],
+    "perLesson": 1
+  }
+}

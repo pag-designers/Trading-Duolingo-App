@@ -28,28 +28,21 @@
     {
       "id": "profit",
       "text": "That $3 is your profit. Profit is money you make when you sell for more than you paid.",
-      "defines": [
-        "profit"
-      ],
+      "defines": ["profit"],
       "title": "Profit",
       "art": "profit"
     },
     {
       "id": "loss",
       "text": "Say you sell the toy for $3. You paid $5, so you lose $2. That is called a loss.",
-      "defines": [
-        "loss"
-      ],
+      "defines": ["loss"],
       "title": "Loss",
       "art": "loss"
     },
     {
       "id": "trade",
       "text": "One buy or one sell is called a trade. A person who buys and sells stocks is a trader.",
-      "defines": [
-        "trade",
-        "trader"
-      ],
+      "defines": ["trade", "trader"],
       "title": "Trades",
       "art": "coins"
     },

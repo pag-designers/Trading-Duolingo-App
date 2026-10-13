@@ -2,28 +2,99 @@
   "0": {
     "title": "Foundation",
     "criteria": [
-      { "text": "App runs", "e2e": "@cp0-app-runs" },
-      { "text": "Onboarding works", "e2e": "@cp0-onboarding" },
-      { "text": "The path map renders", "e2e": "@cp0-path-map" },
-      { "text": "Dark mode works", "e2e": "@cp0-dark-mode" },
-      { "text": "Agents run", "file": "reports/data-integrity/latest.json" }
+      {
+        "text": "App runs",
+        "e2e": "@cp0-app-runs"
+      },
+      {
+        "text": "Onboarding works",
+        "e2e": "@cp0-onboarding"
+      },
+      {
+        "text": "The path map renders",
+        "e2e": "@cp0-path-map"
+      },
+      {
+        "text": "Dark mode works",
+        "e2e": "@cp0-dark-mode"
+      },
+      {
+        "text": "Agents run",
+        "file": "reports/data-integrity/latest.json"
+      }
     ]
   },
   "1": {
     "title": "Unit 1 and the lesson engine",
     "criteria": [
-      { "text": "A learner can finish all of Unit 1", "e2e": "@cp1-finish-unit1" },
-      { "text": "XP and streak update after a lesson", "e2e": "@cp1-xp-streak" },
-      { "text": "Any lesson can be reopened", "e2e": "@cp1-reopen" },
-      { "text": "Mistakes never block (unlimited hearts)", "e2e": "@cp1-no-lockout" },
-      { "text": "Glossary terms open in lessons", "e2e": "@cp1-glossary" },
+      {
+        "text": "A learner can finish all of Unit 1",
+        "e2e": "@cp1-finish-unit1"
+      },
+      {
+        "text": "XP and streak update after a lesson",
+        "e2e": "@cp1-xp-streak"
+      },
+      {
+        "text": "Any lesson can be reopened",
+        "e2e": "@cp1-reopen"
+      },
+      {
+        "text": "Mistakes never block (unlimited hearts)",
+        "e2e": "@cp1-no-lockout"
+      },
+      {
+        "text": "Glossary terms open in lessons",
+        "e2e": "@cp1-glossary"
+      },
       {
         "text": "Reading-level check passes",
-        "agentCheck": { "agent": "curriculum-auditor", "check": "reading-level" }
+        "agentCheck": {
+          "agent": "curriculum-auditor",
+          "check": "reading-level"
+        }
       },
       {
         "text": "Every term is defined before first use",
-        "agentCheck": { "agent": "curriculum-auditor", "check": "glossary-defined-first" }
+        "agentCheck": {
+          "agent": "curriculum-auditor",
+          "check": "glossary-defined-first"
+        }
+      }
+    ]
+  },
+  "2": {
+    "title": "Chart School (Unit 2)",
+    "criteria": [
+      {
+        "text": "A learner can finish all of Unit 2 on real chart data",
+        "e2e": "@cp2-finish-unit2"
+      },
+      {
+        "text": "Charts show candles, volume and unlocked indicators, and the legend reads OHLC",
+        "e2e": "@cp2-chart"
+      },
+      {
+        "text": "Drawing tools work by mouse and by keyboard",
+        "e2e": "@cp2-drawing"
+      },
+      {
+        "text": "The indicator-toggle exercise works",
+        "e2e": "@cp2-indicator-toggle"
+      },
+      {
+        "text": "Indicators compute correctly (reference + pandas golden)",
+        "agentCheck": {
+          "agent": "financial-accuracy",
+          "check": "indicators"
+        }
+      },
+      {
+        "text": "Unit 2 reading level and glossary checks pass",
+        "agentCheck": {
+          "agent": "curriculum-auditor",
+          "check": "reading-level"
+        }
       }
     ]
   }

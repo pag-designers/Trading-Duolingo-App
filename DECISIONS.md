@@ -141,3 +141,21 @@ Append-only log of decisions that shape the project. Newest at the bottom of eac
 - **A bad content file fails loudly, on purpose.** Pages are prerendered at build time, the Curriculum Auditor canary runs in the pre-commit hook, and `pnpm content:check` explains what to fix, so broken content cannot reach a release.
 - **Drag-and-drop is a mouse extra.** Match always works by tapping. The "you can also drag" hint only shows for devices with a precise pointer; on phones the meanings sit below the words, often off-screen.
 - **Not built in CP1 (see D-016):** Ask-the-Coach chat and the AI "Why?" explanation arrive in CP6.
+
+## D-021 — CP2 scope: Chart School
+
+- **Real data, honestly labelled.** Daily charts use **real historical Apple (AAPL) prices, Feb 2015 – Feb 2017** (open, high, low, close, volume; from the MIT-licensed `plotly/datasets` repository, stored in `src/data/market/aapl-daily.json` with its source). Prices are as traded then, not adjusted. The page always says "Real history, not live".
+- **Intraday is made up, and says so.** Free real 1-minute data is not available offline, so 1m/5m/15m/1h charts use a seeded **"Practice day"** generator (one 390-minute session, higher timeframes aggregated from the 1-minute bars). Every chart shows a label: "Real history: Apple daily" or "Made-up practice day". Never "live".
+- **Lightweight Charts v5** draws every interactive chart (candles, volume, overlays, panes for RSI and MACD). The CP1 SVG chart stays for tiny lesson pictures.
+- **Drawing tools are an SVG layer** on top of the chart (trendline, horizontal line, rectangle, Fibonacci, note, measure, magnet). Points are stored as (bar time, price), so they stay on the right candle when the chart scrolls or zooms. Everything has a **keyboard path** (arrow keys move a cursor, buttons snap to a candle's high/low/open/close).
+- **TradingView itself is not embedded.** Lessons explain the real TradingView screen with pictures and the Chart Lab reproduces its tools on our own chart. The account lesson says plainly that an account is optional and never needed for Candlo.
+
+## D-022 — Chart Lab question type
+
+- New question type `lab`: an interactive chart plus one task (`find-bar`, `hline`, `trendline`, `box`, `fib`, `note`, `measure`, `timeframe`, `indicators`). Tasks are graded by pure functions in `src/lib/chart/lab.ts` with a tolerance written in the content, as a share of the visible price range or a number of candles. A teach slide may also carry a read-only `demo` chart, so each indicator is shown on a real chart as it is explained.
+- Same gentle rules as every question: a miss shows the right answer and the explanation and comes back once. Nothing is ever blocked.
+
+## D-023 — Indicators
+
+- `src/lib/indicators/`: SMA, EMA (seeded with the SMA of the first N values, the standard way), RSI (Wilder smoothing), MACD (12, 26, 9), VWAP (resets every day), Bollinger Bands (20, 2 standard deviations, population deviation) and volume. Results line up with the bars; the warm-up part is `null` (never a made-up number).
+- The **Financial Accuracy Checker** compares them to **independent reference implementations** (naive formulas written separately) and to **golden values computed with pandas** (committed in `agents/fixtures/indicators-golden.json`). A canary feeds it deliberately wrong indicators and expects red.

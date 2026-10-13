@@ -1,0 +1,291 @@
+{
+  "id": "u2-indicator-lab",
+  "title": "Indicator lab",
+  "goal": "Turn indicators on and off and say what each one shows.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-toggle",
+      "text": "Turn indicators on and off."
+    },
+    {
+      "id": "o-match",
+      "text": "Match each indicator to what it shows."
+    },
+    {
+      "id": "o-overlay",
+      "text": "Tell an overlay from a strip under the chart."
+    },
+    {
+      "id": "o-alone",
+      "text": "Know why one indicator is not enough."
+    }
+  ],
+  "slides": [
+    {
+      "id": "overlay",
+      "text": "An overlay is an indicator drawn on top of the candles. The SMA, EMA, VWAP and Bollinger Bands are overlays.",
+      "defines": [
+        "overlay"
+      ],
+      "title": "Overlays",
+      "art": "candles"
+    },
+    {
+      "id": "strips",
+      "text": "RSI, MACD and volume get their own strip under the chart. Each strip has its own scale.",
+      "defines": [],
+      "title": "Strips below",
+      "art": "index"
+    },
+    {
+      "id": "toggle",
+      "text": "Turn an indicator on to see it. Turn it off to hide it. Too many lines make a mess.",
+      "defines": [],
+      "title": "On and off",
+      "art": "chest"
+    },
+    {
+      "id": "alone",
+      "text": "Each indicator shows just one thing. All of them use old prices. Use a few, and do not trust any one alone.",
+      "defines": [],
+      "title": "Never alone",
+      "art": "speech"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-ilab-1",
+      "type": "lab",
+      "prompt": "Turn on SMA and Volume. Leave the rest off.",
+      "explanation": "The SMA is an overlay. Volume bars sit at the bottom.",
+      "objective": "o-toggle",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 120,
+        "count": 60
+      },
+      "offer": [
+        "sma",
+        "ema",
+        "rsi",
+        "macd",
+        "bands",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "sma",
+          "volume"
+        ]
+      }
+    },
+    {
+      "id": "q-ilab-2",
+      "type": "lab",
+      "prompt": "Turn on VWAP and Volume. Turn everything else off.",
+      "explanation": "VWAP needs an intraday chart. This one is.",
+      "objective": "o-toggle",
+      "window": {
+        "dataset": "practice",
+        "tf": "15m",
+        "start": 0,
+        "count": 52
+      },
+      "start": [
+        "sma"
+      ],
+      "offer": [
+        "sma",
+        "ema",
+        "vwap",
+        "rsi",
+        "bands",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "vwap",
+          "volume"
+        ]
+      }
+    },
+    {
+      "id": "q-ilab-3",
+      "type": "lab",
+      "prompt": "Turn on MACD. Turn off RSI.",
+      "explanation": "MACD and RSI both get a strip under the chart. Only MACD should stay on.",
+      "objective": "o-toggle",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 430,
+        "count": 60
+      },
+      "start": [
+        "rsi"
+      ],
+      "offer": [
+        "sma",
+        "rsi",
+        "macd",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "macd"
+        ]
+      }
+    },
+    {
+      "id": "q-ilab-4",
+      "type": "lab",
+      "prompt": "Turn on RSI and Volume. Turn everything else off.",
+      "explanation": "You turned on two strips and turned off the two overlays.",
+      "objective": "o-toggle",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 225,
+        "count": 60
+      },
+      "start": [
+        "bands",
+        "ema"
+      ],
+      "offer": [
+        "ema",
+        "bands",
+        "rsi",
+        "macd",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "rsi",
+          "volume"
+        ]
+      }
+    },
+    {
+      "id": "q-ilab-5",
+      "type": "lab",
+      "prompt": "Turn every indicator off.",
+      "explanation": "A clean chart is a good place to start. Add one indicator at a time.",
+      "objective": "o-toggle",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 120,
+        "count": 60
+      },
+      "start": [
+        "sma",
+        "rsi"
+      ],
+      "offer": [
+        "sma",
+        "ema",
+        "rsi",
+        "macd",
+        "bands",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": []
+      }
+    },
+    {
+      "id": "q-ilab-6",
+      "type": "match",
+      "prompt": "Match each indicator to what it shows.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "SMA",
+          "definition": "The average of the last 20 closes"
+        },
+        {
+          "id": "p2",
+          "term": "VWAP",
+          "definition": "The average price of the day"
+        },
+        {
+          "id": "p3",
+          "term": "RSI",
+          "definition": "A gauge from 0 to 100"
+        },
+        {
+          "id": "p4",
+          "term": "Bollinger Bands",
+          "definition": "Lines that open wide when prices swing"
+        },
+        {
+          "id": "p5",
+          "term": "Volume",
+          "definition": "How many shares traded"
+        }
+      ],
+      "explanation": "Each indicator shows one thing.",
+      "objective": "o-match"
+    },
+    {
+      "id": "q-ilab-7",
+      "type": "mc",
+      "prompt": "Which one is an overlay?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The RSI"
+        },
+        {
+          "id": "b",
+          "text": "The volume bars"
+        },
+        {
+          "id": "c",
+          "text": "The SMA"
+        }
+      ],
+      "answer": "c",
+      "explanation": "The SMA sits on top of the candles. RSI and volume sit in strips below.",
+      "objective": "o-overlay"
+    },
+    {
+      "id": "q-ilab-8",
+      "type": "mc",
+      "prompt": "Where does the RSI show up?",
+      "options": [
+        {
+          "id": "a",
+          "text": "In a strip under the chart"
+        },
+        {
+          "id": "b",
+          "text": "On top of the candles"
+        },
+        {
+          "id": "c",
+          "text": "In the watchlist"
+        }
+      ],
+      "answer": "a",
+      "explanation": "RSI has its own strip. It runs from 0 to 100.",
+      "objective": "o-overlay"
+    },
+    {
+      "id": "q-ilab-9",
+      "type": "tf",
+      "prompt": "One indicator is enough to know what the price will do.",
+      "answer": false,
+      "explanation": "No. All indicators use old prices. Use a few of them.",
+      "objective": "o-alone"
+    }
+  ]
+}

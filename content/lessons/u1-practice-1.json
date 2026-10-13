@@ -36,11 +36,7 @@
     }
   ],
   "pool": {
-    "from": [
-      "u1-money",
-      "u1-company",
-      "u1-stock"
-    ],
+    "from": ["u1-money", "u1-company", "u1-stock"],
     "perLesson": 2
   }
 }

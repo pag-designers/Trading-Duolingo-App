@@ -441,29 +441,33 @@
     {
       "id": "rsi",
       "term": "RSI",
-      "aliases": [],
-      "definition": "RSI is a number from 0 to 100. It shows how fast a price moved.",
-      "analogy": "RSI is like a speed gauge for a price.",
-      "example": "A high RSI means a price rose fast.",
-      "taughtIn": "u1-shorttalk"
+      "aliases": [
+        "relative strength index"
+      ],
+      "definition": "RSI is a gauge from 0 to 100. It reads momentum from the last 14 candles.",
+      "analogy": "RSI is like a speed dial for a price.",
+      "example": "An RSI of 80 means the price rose fast.",
+      "taughtIn": "u2-rsi"
     },
     {
       "id": "macd",
       "term": "MACD",
       "aliases": [],
-      "definition": "MACD shows if a price move is gaining speed.",
+      "definition": "MACD compares a fast EMA with a slow EMA. It shows if momentum grows or shrinks.",
       "analogy": "MACD is like a gas pedal in a car.",
-      "example": "The MACD can show a price is losing speed.",
-      "taughtIn": "u1-shorttalk"
+      "example": "When the bars shrink, the momentum is shrinking.",
+      "taughtIn": "u2-macd"
     },
     {
       "id": "vwap",
       "term": "VWAP",
-      "aliases": [],
-      "definition": "VWAP is the middle price of the day. Busy times count more.",
-      "analogy": "VWAP is like a line that hugs the crowd.",
+      "aliases": [
+        "volume-weighted average price"
+      ],
+      "definition": "VWAP is the average price of the day. Prices with more volume count more.",
+      "analogy": "VWAP is like the middle of where the crowd shopped.",
       "example": "Price over VWAP is high for the day.",
-      "taughtIn": "u1-shorttalk"
+      "taughtIn": "u2-vwap"
     },
     {
       "id": "bull",
@@ -521,6 +525,299 @@
       "analogy": "The Dow is like a small team photo of 30 big companies.",
       "example": "The Dow went up when many of its 30 companies rose.",
       "taughtIn": "u1-bullbear"
+    },
+    {
+      "id": "tradingview",
+      "term": "TradingView",
+      "aliases": [],
+      "definition": "TradingView is a website and app with charts.",
+      "analogy": "TradingView is like a map app, but for prices.",
+      "example": "You type AAPL and TradingView draws the chart.",
+      "taughtIn": "u2-account"
+    },
+    {
+      "id": "toolbar",
+      "term": "toolbar",
+      "aliases": [],
+      "definition": "The toolbar is a strip of tools on the left.",
+      "analogy": "The toolbar is like a drawer of tools.",
+      "example": "Click the toolbar to pick a tool.",
+      "taughtIn": "u2-tour"
+    },
+    {
+      "id": "watchlist",
+      "term": "watchlist",
+      "aliases": [
+        "watch list"
+      ],
+      "definition": "A watchlist is a list of tickers you keep an eye on.",
+      "analogy": "A watchlist is like a list of players you want to follow.",
+      "example": "Your watchlist has AAPL, TSLA and NVDA.",
+      "taughtIn": "u2-tour"
+    },
+    {
+      "id": "timeframe",
+      "term": "timeframe",
+      "aliases": [
+        "time frame"
+      ],
+      "definition": "A timeframe is how long one candle lasts.",
+      "analogy": "A timeframe is like how far you zoom.",
+      "example": "On a 5m timeframe, a candle lasts 5 min.",
+      "taughtIn": "u2-timeframes"
+    },
+    {
+      "id": "intraday",
+      "term": "intraday",
+      "aliases": [],
+      "definition": "Intraday means inside one day. Minute and hour charts are intraday charts.",
+      "analogy": "Intraday is like watching a game play by play.",
+      "example": "A 5m chart is an intraday chart.",
+      "taughtIn": "u2-timeframes"
+    },
+    {
+      "id": "line-chart",
+      "term": "line chart",
+      "aliases": [],
+      "definition": "A line chart joins the close price of each candle with one line.",
+      "analogy": "A line chart is like a join the dots game.",
+      "example": "A line chart hides the high and low.",
+      "taughtIn": "u2-timeframes"
+    },
+    {
+      "id": "ohlc",
+      "term": "OHLC",
+      "aliases": [],
+      "definition": "OHLC means open, high, low and close. These are the four prices of one candle.",
+      "analogy": "OHLC is like the start, top, bottom and end of a hike.",
+      "example": "It opened at $10 and closed at $11.",
+      "taughtIn": "u2-axes"
+    },
+    {
+      "id": "price-scale",
+      "term": "price scale",
+      "aliases": [
+        "price axis"
+      ],
+      "definition": "The price scale lists prices up the right side.",
+      "analogy": "The price scale is like a ruler.",
+      "example": "At the 150 mark, the price is $150.",
+      "taughtIn": "u2-axes"
+    },
+    {
+      "id": "time-axis",
+      "term": "time axis",
+      "aliases": [
+        "time scale"
+      ],
+      "definition": "The time axis lists days at the bottom.",
+      "analogy": "The time axis is like a row of dates.",
+      "example": "New candles sit at the right end.",
+      "taughtIn": "u2-axes"
+    },
+    {
+      "id": "legend",
+      "term": "legend",
+      "aliases": [],
+      "definition": "The legend sits at the top left. It shows the OHLC of one candle.",
+      "analogy": "The legend is like a label.",
+      "example": "Point at a candle and the legend shows its prices.",
+      "taughtIn": "u2-axes"
+    },
+    {
+      "id": "crosshair",
+      "term": "crosshair",
+      "aliases": [],
+      "definition": "The crosshair is two lines that follow your mouse. It shows the price and time under it.",
+      "analogy": "The crosshair is like a finger that traces a map.",
+      "example": "Move the crosshair to read a candle.",
+      "taughtIn": "u2-crosshair"
+    },
+    {
+      "id": "trendline",
+      "term": "trendline",
+      "aliases": [
+        "trend line"
+      ],
+      "definition": "A trendline is a line through the lows or highs.",
+      "analogy": "A trendline is like a ruler on a hill.",
+      "example": "A line on rising lows is a trendline.",
+      "taughtIn": "u2-draw-lines"
+    },
+    {
+      "id": "horizontal-line",
+      "term": "horizontal line",
+      "aliases": [
+        "flat line"
+      ],
+      "definition": "A horizontal line is a flat line at one price.",
+      "analogy": "A horizontal line is like a mark on the wall for your height.",
+      "example": "Draw a horizontal line at $100 to mark that price.",
+      "taughtIn": "u2-draw-lines"
+    },
+    {
+      "id": "magnet-mode",
+      "term": "magnet mode",
+      "aliases": [],
+      "definition": "Magnet mode snaps clicks to a candle price.",
+      "analogy": "It acts like a magnet for your pen.",
+      "example": "With magnet mode on, your line starts right on a low.",
+      "taughtIn": "u2-draw-lines"
+    },
+    {
+      "id": "rectangle",
+      "term": "rectangle",
+      "aliases": [],
+      "definition": "A rectangle is a box you draw on the chart to mark a zone.",
+      "analogy": "A rectangle is like a frame on a photo.",
+      "example": "Draw a rectangle on flat candles.",
+      "taughtIn": "u2-draw-more"
+    },
+    {
+      "id": "fibonacci",
+      "term": "Fibonacci",
+      "aliases": [
+        "Fib",
+        "Fibonacci levels",
+        "Fibonacci retracement"
+      ],
+      "definition": "Fibonacci levels are lines between a low and a high. They mark set shares of the move, like 50%.",
+      "analogy": "Fibonacci levels are like marks on a stair that show half way up.",
+      "example": "After a $10 climb, the 50% line is $5 down.",
+      "taughtIn": "u2-draw-more"
+    },
+    {
+      "id": "measure-tool",
+      "term": "measure tool",
+      "aliases": [],
+      "definition": "The measure tool shows how far the price moved between two points.",
+      "analogy": "The measure tool is like a tape measure for a chart.",
+      "example": "It can show a move of $5, or 4%.",
+      "taughtIn": "u2-draw-more"
+    },
+    {
+      "id": "indicator",
+      "term": "indicator",
+      "aliases": [],
+      "definition": "An indicator is a line or bars added to a chart. It is made from the price numbers.",
+      "analogy": "An indicator is like a dial on a car. It reads the past, not what is next.",
+      "example": "The moving average is an indicator.",
+      "taughtIn": "u2-ma"
+    },
+    {
+      "id": "moving-average",
+      "term": "moving average",
+      "aliases": [],
+      "definition": "A moving average is the average price of the last few candles. It slides on as new candles come.",
+      "analogy": "It is like a score you update each game.",
+      "example": "It adds the last 20 closes and divides by 20.",
+      "taughtIn": "u2-ma"
+    },
+    {
+      "id": "sma",
+      "term": "SMA",
+      "aliases": [
+        "simple moving average"
+      ],
+      "definition": "SMA is a moving average where all count the same.",
+      "analogy": "SMA is like a vote where all count.",
+      "example": "A 20 SMA adds 20 closes and divides by 20.",
+      "taughtIn": "u2-ma"
+    },
+    {
+      "id": "ema",
+      "term": "EMA",
+      "aliases": [
+        "exponential moving average"
+      ],
+      "definition": "EMA is a moving average that counts new candles more.",
+      "analogy": "EMA is like a vote where new ones shout.",
+      "example": "The EMA turns sooner than the SMA.",
+      "taughtIn": "u2-ma"
+    },
+    {
+      "id": "momentum",
+      "term": "momentum",
+      "aliases": [],
+      "definition": "Momentum is how fast and how hard a price is moving.",
+      "analogy": "Momentum is like a rolling ball. A faster ball has more momentum.",
+      "example": "A quick climb with big candles has strong momentum.",
+      "taughtIn": "u2-rsi"
+    },
+    {
+      "id": "overbought",
+      "term": "overbought",
+      "aliases": [],
+      "definition": "Overbought means the RSI is above 70. The price rose fast.",
+      "analogy": "Overbought is like a runner out of breath.",
+      "example": "An RSI of 75 is overbought. The price may still go up.",
+      "taughtIn": "u2-rsi"
+    },
+    {
+      "id": "oversold",
+      "term": "oversold",
+      "aliases": [],
+      "definition": "Oversold means the RSI is below 30. The price fell fast.",
+      "analogy": "Oversold is like a ball pushed down hard in water.",
+      "example": "An RSI of 25 is oversold. The price may still fall.",
+      "taughtIn": "u2-rsi"
+    },
+    {
+      "id": "signal-line",
+      "term": "signal line",
+      "aliases": [],
+      "definition": "The signal line is a 9 candle average of the MACD line.",
+      "analogy": "The signal line is a slow shadow of MACD.",
+      "example": "When the MACD line crosses the signal line, the bars flip.",
+      "taughtIn": "u2-macd"
+    },
+    {
+      "id": "histogram",
+      "term": "histogram",
+      "aliases": [],
+      "definition": "The histogram is the set of bars on the MACD. Each bar is the MACD line minus the signal line.",
+      "analogy": "The histogram is like a bar graph of the gap.",
+      "example": "Tall bars mean the two lines are far apart.",
+      "taughtIn": "u2-macd"
+    },
+    {
+      "id": "bollinger-bands",
+      "term": "Bollinger Bands",
+      "aliases": [
+        "Bollinger Band",
+        "bands"
+      ],
+      "definition": "Bollinger Bands are three lines around the price. The mid line is a 20 candle average.",
+      "analogy": "Bollinger Bands are like a stretchy fence. It opens wide when prices swing.",
+      "example": "Tight bands mean calm prices. Wide bands mean big swings.",
+      "taughtIn": "u2-bands"
+    },
+    {
+      "id": "standard-deviation",
+      "term": "standard deviation",
+      "aliases": [],
+      "definition": "A standard deviation is a number for how much the price swings.",
+      "analogy": "A standard deviation is like how far a puppy runs from you.",
+      "example": "A big standard deviation means wild swings.",
+      "taughtIn": "u2-bands"
+    },
+    {
+      "id": "overlay",
+      "term": "overlay",
+      "aliases": [],
+      "definition": "An overlay is an indicator drawn right on top of the candles.",
+      "analogy": "An overlay is like film on a photo.",
+      "example": "The SMA is an overlay. The RSI is not.",
+      "taughtIn": "u2-indicator-lab"
+    },
+    {
+      "id": "average",
+      "term": "average",
+      "aliases": [],
+      "definition": "An average is one fair number for a group. Add the group up, then divide by the count.",
+      "analogy": "An average is like a fair share.",
+      "example": "The average of 2, 4 and 6 is 4.",
+      "taughtIn": "u2-ma"
     }
   ]
 }

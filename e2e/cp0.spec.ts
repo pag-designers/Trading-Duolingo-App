@@ -94,8 +94,8 @@ test("@cp0-path-map renders all 8 units with a current step; open steps start, u
   await expect(dialog).toBeHidden();
 
   // A step that is not written yet says so, and offers no dead button.
-  await page.getByTestId("node-u2-account").scrollIntoViewIfNeeded();
-  await page.getByTestId("node-u2-account").click();
+  await page.getByTestId("node-u3-anatomy").scrollIntoViewIfNeeded();
+  await page.getByTestId("node-u3-anatomy").click();
   await expect(dialog.getByTestId("coming-soon")).toBeVisible();
   await expect(dialog.getByTestId("start-lesson")).toHaveCount(0);
   await page.keyboard.press("Escape");
@@ -177,7 +177,7 @@ test("every in-app route renders (no placeholders, no crashes)", async ({ page }
   await onboard(page);
   for (const [path, heading] of [
     ["/trade-lab", /Trade Lab is warming up/],
-    ["/chart-school", /Chart School opens with Unit 2/],
+    ["/chart-school", /Chart School/],
     ["/glossary", /Glossary/],
     ["/journal", /No trades yet/],
     ["/profile", /Ada/],

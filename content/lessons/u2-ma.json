@@ -1,0 +1,255 @@
+{
+  "id": "u2-ma",
+  "title": "Moving averages",
+  "goal": "See how SMA and EMA smooth out a wiggly price line.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-indicator",
+      "text": "Say what an indicator is."
+    },
+    {
+      "id": "o-ma",
+      "text": "Say what a moving average does."
+    },
+    {
+      "id": "o-sma",
+      "text": "Say how the SMA is made."
+    },
+    {
+      "id": "o-ema",
+      "text": "Say how the EMA is different."
+    },
+    {
+      "id": "o-limit",
+      "text": "Know that a moving average is late."
+    }
+  ],
+  "slides": [
+    {
+      "id": "indicator",
+      "text": "An indicator is a line or bars added to a chart. It is made from the price numbers. It cannot see what is next.",
+      "defines": [
+        "indicator"
+      ],
+      "title": "What is an indicator?",
+      "art": "candles"
+    },
+    {
+      "id": "average",
+      "text": "An average is one fair number for a group. Add the group up. Then divide by the count.",
+      "defines": [
+        "average"
+      ],
+      "title": "What is an average?",
+      "art": "tag"
+    },
+    {
+      "id": "ma",
+      "text": "A moving average is the average price of the last few candles. It slides on as new candles come. It smooths out the wiggles.",
+      "defines": [
+        "moving-average"
+      ],
+      "title": "The moving average",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 120,
+          "count": 60
+        },
+        "indicators": [
+          "sma"
+        ],
+        "caption": "Real Apple prices. The line is the 20 day average."
+      }
+    },
+    {
+      "id": "sma",
+      "text": "The SMA adds up the last 20 closes and divides by 20. Each candle counts the same.",
+      "defines": [
+        "sma"
+      ],
+      "title": "The SMA",
+      "art": "tag"
+    },
+    {
+      "id": "ema",
+      "text": "The EMA counts new candles more than old ones. So it turns sooner than the SMA. It uses 20 candles too.",
+      "defines": [
+        "ema"
+      ],
+      "title": "The EMA",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 120,
+          "count": 60
+        },
+        "indicators": [
+          "sma",
+          "ema"
+        ],
+        "caption": "Real Apple prices. Solid is the SMA. Dashed is the EMA."
+      }
+    },
+    {
+      "id": "read",
+      "text": "A moving average tries to show which way the price has leaned. Price over the line means it rose. Under it means it fell.",
+      "defines": [],
+      "title": "What it tries to tell you",
+      "art": "bull"
+    },
+    {
+      "id": "late",
+      "text": "A moving average is built from old prices, so it is late. In a flat market it gives many false hints. Do not trust it alone.",
+      "defines": [],
+      "title": "Do not trust it alone",
+      "art": "bear"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-ma-1",
+      "type": "mc",
+      "prompt": "What is an indicator?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A news story"
+        },
+        {
+          "id": "b",
+          "text": "A kind of stock"
+        },
+        {
+          "id": "c",
+          "text": "A line or bars made from prices"
+        }
+      ],
+      "answer": "c",
+      "explanation": "An indicator is added to a chart. It is made from the price numbers.",
+      "objective": "o-indicator"
+    },
+    {
+      "id": "q-ma-2",
+      "type": "tf",
+      "prompt": "An indicator can see the future.",
+      "answer": false,
+      "explanation": "No. An indicator only uses prices from the past.",
+      "objective": "o-indicator"
+    },
+    {
+      "id": "q-ma-3",
+      "type": "mc",
+      "prompt": "What does a moving average do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Makes prices go up"
+        },
+        {
+          "id": "b",
+          "text": "Smooths out the wiggles"
+        },
+        {
+          "id": "c",
+          "text": "Hides the candles"
+        }
+      ],
+      "answer": "b",
+      "explanation": "It averages a few candles. The wiggles get small.",
+      "objective": "o-ma"
+    },
+    {
+      "id": "q-ma-4",
+      "type": "mc",
+      "prompt": "A 20 SMA adds up how many closes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5 closes"
+        },
+        {
+          "id": "b",
+          "text": "100 closes"
+        },
+        {
+          "id": "c",
+          "text": "20 closes"
+        }
+      ],
+      "answer": "c",
+      "explanation": "A 20 SMA adds the last 20 closes and divides by 20.",
+      "objective": "o-sma"
+    },
+    {
+      "id": "q-ma-5",
+      "type": "tf",
+      "prompt": "The EMA turns sooner than the SMA.",
+      "answer": true,
+      "explanation": "Yes. The EMA counts new candles more, so it reacts fast.",
+      "objective": "o-ema"
+    },
+    {
+      "id": "q-ma-6",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "Moving average",
+          "definition": "The average of the last few candles"
+        },
+        {
+          "id": "p2",
+          "term": "SMA",
+          "definition": "All count the same"
+        },
+        {
+          "id": "p3",
+          "term": "EMA",
+          "definition": "New candles count more"
+        },
+        {
+          "id": "p4",
+          "term": "Indicator",
+          "definition": "A line or bars made from prices"
+        }
+      ],
+      "explanation": "The SMA and the EMA are both moving averages. They count candles in two ways.",
+      "objective": "o-ma"
+    },
+    {
+      "id": "q-ma-7",
+      "type": "tf",
+      "prompt": "A moving average is late, because it uses old prices.",
+      "answer": true,
+      "explanation": "Yes. It shows the past. So it turns late.",
+      "objective": "o-limit"
+    },
+    {
+      "id": "q-ma-8",
+      "type": "mc",
+      "prompt": "Price is over its moving average. What is true?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The price has been rising"
+        },
+        {
+          "id": "b",
+          "text": "The price will keep rising"
+        },
+        {
+          "id": "c",
+          "text": "You must buy now"
+        }
+      ],
+      "answer": "a",
+      "explanation": "It shows the past. It makes no promise.",
+      "objective": "o-limit"
+    }
+  ]
+}

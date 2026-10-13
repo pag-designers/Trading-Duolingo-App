@@ -255,7 +255,7 @@
       "meaning": "A number from 0 to 100. It shows how fast a price moved.",
       "example": "A high RSI means a price rose fast.",
       "category": "chart",
-      "taughtIn": "u1-shorttalk"
+      "taughtIn": "u2-rsi"
     },
     {
       "abbr": "MACD",
@@ -263,7 +263,7 @@
       "meaning": "A tool that shows if a price move is gaining speed.",
       "example": "The MACD can show a price is losing speed.",
       "category": "chart",
-      "taughtIn": "u1-shorttalk"
+      "taughtIn": "u2-macd"
     },
     {
       "abbr": "VWAP",
@@ -271,7 +271,7 @@
       "meaning": "The middle price of the day. Busy times count more.",
       "example": "Price over VWAP is high for the day.",
       "category": "chart",
-      "taughtIn": "u1-shorttalk"
+      "taughtIn": "u2-vwap"
     },
     {
       "abbr": "SMA",
@@ -303,7 +303,7 @@
       "meaning": "The four prices of one candle.",
       "example": "A candle shows its OHLC.",
       "category": "chart",
-      "taughtIn": "u3-anatomy"
+      "taughtIn": "u2-axes"
     },
     {
       "abbr": "DD",
@@ -352,6 +352,62 @@
       "example": "The Dow went up when many of its 30 companies rose.",
       "category": "market",
       "taughtIn": "u1-bullbear"
+    },
+    {
+      "abbr": "TV",
+      "full": "TradingView",
+      "meaning": "A website and app with charts.",
+      "example": "I looked at AAPL on TV.",
+      "category": "chart",
+      "taughtIn": "u2-account"
+    },
+    {
+      "abbr": "TF",
+      "full": "Timeframe",
+      "meaning": "How long one candle lasts.",
+      "example": "On the 5m TF, a candle lasts 5 min.",
+      "category": "chart",
+      "taughtIn": "u2-timeframes"
+    },
+    {
+      "abbr": "OHLCV",
+      "full": "Open, high, low, close, volume",
+      "meaning": "The OHLC prices and the volume.",
+      "example": "OHLCV shows the prices and how busy it was.",
+      "category": "chart",
+      "taughtIn": "u2-axes"
+    },
+    {
+      "abbr": "Fib",
+      "full": "Fibonacci levels",
+      "meaning": "Lines between a low and a high.",
+      "example": "She drew a Fib from the low to the high.",
+      "category": "chart",
+      "taughtIn": "u2-draw-more"
+    },
+    {
+      "abbr": "MA",
+      "full": "Moving average",
+      "meaning": "The average of the last few candles.",
+      "example": "The 20 MA is a smooth line.",
+      "category": "chart",
+      "taughtIn": "u2-ma"
+    },
+    {
+      "abbr": "BB",
+      "full": "Bollinger Bands",
+      "meaning": "Three lines around the price.",
+      "example": "The BB got tight when prices were calm.",
+      "category": "chart",
+      "taughtIn": "u2-bands"
+    },
+    {
+      "abbr": "SD",
+      "full": "Standard deviation",
+      "meaning": "A number for how much the price swings.",
+      "example": "A big SD means wild swings.",
+      "category": "chart",
+      "taughtIn": "u2-bands"
     }
   ]
 }

@@ -21,9 +21,7 @@
     {
       "id": "market",
       "text": "A market is a place where people buy and sell. A farm market sells fruit, eggs and bread.",
-      "defines": [
-        "market"
-      ],
+      "defines": ["market"],
       "title": "Markets",
       "art": "market"
     },
@@ -37,20 +35,14 @@
     {
       "id": "stock-market",
       "text": "The stock market is a place where people buy and sell stocks. It is a big fair for pieces of companies.",
-      "defines": [
-        "stock-market"
-      ],
+      "defines": ["stock-market"],
       "title": "The stock market",
       "art": "market"
     },
     {
       "id": "exchange",
       "text": "An exchange is a business that runs a stock market. The NYSE and the Nasdaq are two big ones.",
-      "defines": [
-        "exchange",
-        "nyse",
-        "nasdaq"
-      ],
+      "defines": ["exchange", "nyse", "nasdaq"],
       "title": "Exchanges",
       "art": "building"
     },

@@ -21,9 +21,7 @@
     {
       "id": "money-tool",
       "text": "Money is what we use to buy things. You can swap it for food, toys or a ride.",
-      "defines": [
-        "money"
-      ],
+      "defines": ["money"],
       "title": "Money is a tool",
       "art": "coins"
     },
@@ -37,9 +35,7 @@
     {
       "id": "price",
       "text": "A price is how much money a thing costs. A toy might have a price of $5.",
-      "defines": [
-        "price"
-      ],
+      "defines": ["price"],
       "title": "Prices",
       "art": "tag"
     },

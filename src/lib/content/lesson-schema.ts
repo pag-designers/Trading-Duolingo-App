@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { INDICATORS, TIMEFRAMES, windowSchema } from "@/lib/market/types";
 
 /** Illustrations a teach slide can show (drawn in src/components/lesson/art.tsx). */
 export const ART_KEYS = [
@@ -32,6 +33,15 @@ export const slideSchema = z.object({
   art: z.enum(ART_KEYS).optional(),
   /** Glossary term ids this slide introduces. A term must be defined here before any earlier slide or question uses it. */
   defines: z.array(slug).default([]),
+  /** A read-only Lightweight Charts picture shown with the slide (real Apple history or made-up practice prices). */
+  demo: z
+    .object({
+      window: windowSchema,
+      indicators: z.array(z.enum(INDICATORS)).default([]),
+      /** One line under the chart saying what to look at. Same reading-level rules as slide text. */
+      caption: text(120),
+    })
+    .optional(),
 });
 
 // ── Questions ───────────────────────────────────────────────────────────────
@@ -106,12 +116,77 @@ export const buildSchema = z.object({
   answer: z.record(slug, slug),
 });
 
+// ── Chart Lab ───────────────────────────────────────────────────────────────
+/** Which candle a rule points at, found from the data itself (nothing is hand-numbered). */
+export const BAR_RULES = [
+  "highest-high",
+  "lowest-low",
+  "highest-close",
+  "lowest-close",
+  "highest-volume",
+  "widest-range",
+] as const;
+export type BarRule = (typeof BAR_RULES)[number];
+
+/** A price level found from the data. */
+export const LEVEL_RULES = ["lowest-low", "highest-high", "last-close", "first-open"] as const;
+export type LevelRule = (typeof LEVEL_RULES)[number];
+
+const barIdx = z.number().int().min(0).max(299);
+/** How close counts as close: a share of the visible price range, and a number of candles. */
+const tolerance = {
+  tol: z.number().min(0.01).max(0.15).default(0.05),
+  tolBars: z.number().int().min(0).max(5).default(1),
+};
+
+export const labTaskSchema = z.discriminatedUnion("kind", [
+  /** Put the crosshair on a candle. */
+  z.object({ kind: z.literal("find-bar"), rule: z.enum(BAR_RULES) }),
+  /** Draw a flat price line. */
+  z.object({ kind: z.literal("hline"), level: z.enum(LEVEL_RULES), ...tolerance }),
+  /** Draw a line that touches the lows (or highs) of two candles. */
+  z.object({
+    kind: z.literal("trendline"),
+    touch: z.enum(["lows", "highs"]),
+    bars: z.tuple([barIdx, barIdx]),
+    ...tolerance,
+  }),
+  /** Draw a box around a run of candles. */
+  z.object({ kind: z.literal("box"), bars: z.tuple([barIdx, barIdx]), ...tolerance }),
+  /** Stretch Fibonacci levels from a swing low to a swing high. */
+  z.object({ kind: z.literal("fib"), low: barIdx, high: barIdx, ...tolerance }),
+  /** Leave a note on a candle. */
+  z.object({ kind: z.literal("note"), bar: barIdx, ...tolerance }),
+  /** Measure the move from one candle's close to another's. */
+  z.object({ kind: z.literal("measure"), from: barIdx, to: barIdx, ...tolerance }),
+  /** Switch the chart to another timeframe. */
+  z.object({ kind: z.literal("timeframe"), tf: z.enum(TIMEFRAMES) }),
+  /** Turn indicators on until exactly this set shows. */
+  z.object({ kind: z.literal("indicators"), want: z.array(z.enum(INDICATORS)).max(7) }),
+]);
+export type LabTask = z.infer<typeof labTaskSchema>;
+export type LabTaskKind = LabTask["kind"];
+
+export const labSchema = z.object({
+  ...questionBase,
+  type: z.literal("lab"),
+  window: windowSchema,
+  /** Indicators already on when the chart opens. */
+  start: z.array(z.enum(INDICATORS)).default([]),
+  /** Which indicators the toolbar offers (default: all that make sense for the timeframe). */
+  offer: z.array(z.enum(INDICATORS)).optional(),
+  /** Which timeframes the switcher offers. Leave out for a fixed timeframe. */
+  timeframes: z.array(z.enum(TIMEFRAMES)).optional(),
+  task: labTaskSchema,
+});
+
 export const questionSchema = z.discriminatedUnion("type", [
   mcSchema,
   tfSchema,
   matchSchema,
   chartSchema,
   buildSchema,
+  labSchema,
 ]);
 
 export type Slide = z.infer<typeof slideSchema>;
@@ -120,6 +195,7 @@ export type TfQuestion = z.infer<typeof tfSchema>;
 export type MatchQuestion = z.infer<typeof matchSchema>;
 export type ChartQuestion = z.infer<typeof chartSchema>;
 export type BuildQuestion = z.infer<typeof buildSchema>;
+export type LabQuestion = z.infer<typeof labSchema>;
 export type Question = z.infer<typeof questionSchema>;
 export type QuestionType = Question["type"];
 

@@ -1,0 +1,253 @@
+{
+  "id": "u2-draw-more",
+  "title": "Boxes, Fibonacci, notes",
+  "goal": "Use rectangles, Fibonacci and notes, and learn the measure tool.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-box",
+      "text": "Draw a rectangle on flat candles."
+    },
+    {
+      "id": "o-fib",
+      "text": "Say what Fibonacci levels are."
+    },
+    {
+      "id": "o-draw-fib",
+      "text": "Draw Fibonacci from a low to a high."
+    },
+    {
+      "id": "o-note",
+      "text": "Leave a note on a candle."
+    },
+    {
+      "id": "o-measure",
+      "text": "Use the measure tool."
+    }
+  ],
+  "slides": [
+    {
+      "id": "rect",
+      "text": "A rectangle is a box you draw on the chart. It marks a zone of time and price. A flat run of candles fits in a box.",
+      "defines": [
+        "rectangle"
+      ],
+      "title": "The rectangle",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 473,
+          "count": 30
+        },
+        "indicators": [],
+        "caption": "Real Apple prices. The candles stay in a tight zone."
+      }
+    },
+    {
+      "id": "fib",
+      "text": "Fibonacci levels are lines between a low and a high. They mark set shares of the move, like 38%, 50% and 62%.",
+      "defines": [
+        "fibonacci"
+      ],
+      "title": "Fibonacci levels",
+      "art": "candles"
+    },
+    {
+      "id": "fib-how",
+      "text": "Click the low first. Then click the high that came after it. The lines fill in between.",
+      "defines": [],
+      "title": "Drawing Fibonacci",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 162,
+          "count": 27
+        },
+        "indicators": [],
+        "caption": "Real Apple prices. The price climbed, then slipped back."
+      }
+    },
+    {
+      "id": "fib-care",
+      "text": "Some traders watch these lines. They are a guess, not a rule. Prices often ignore them.",
+      "defines": [],
+      "title": "Not a law",
+      "art": "speech"
+    },
+    {
+      "id": "note",
+      "text": "The Text tool lets you write a note on a candle. A note says why you looked.",
+      "defines": [],
+      "title": "Notes",
+      "art": "chest"
+    },
+    {
+      "id": "measure",
+      "text": "The measure tool shows how far the price moved between two points. It shows dollars. It shows percent too.",
+      "defines": [
+        "measure-tool"
+      ],
+      "title": "The measure tool",
+      "art": "profit"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-more-1",
+      "type": "mc",
+      "prompt": "What is a rectangle used for?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Buying a stock"
+        },
+        {
+          "id": "b",
+          "text": "Hiding a candle"
+        },
+        {
+          "id": "c",
+          "text": "Marking a zone on the chart"
+        }
+      ],
+      "answer": "c",
+      "explanation": "A rectangle marks a zone of time and price.",
+      "objective": "o-box"
+    },
+    {
+      "id": "q-more-2",
+      "type": "tf",
+      "prompt": "Fibonacci levels sit between a low and a high.",
+      "answer": true,
+      "explanation": "Click a low, then a high. Lines fill the gap.",
+      "objective": "o-fib"
+    },
+    {
+      "id": "q-more-3",
+      "type": "tf",
+      "prompt": "Prices must stop at a Fibonacci level.",
+      "answer": false,
+      "explanation": "No. Fib lines are a guess. Prices often ignore them.",
+      "objective": "o-fib"
+    },
+    {
+      "id": "q-more-4",
+      "type": "mc",
+      "prompt": "What is a note on a candle for?",
+      "options": [
+        {
+          "id": "a",
+          "text": "To change the price"
+        },
+        {
+          "id": "b",
+          "text": "To call a friend"
+        },
+        {
+          "id": "c",
+          "text": "To save a thought"
+        }
+      ],
+      "answer": "c",
+      "explanation": "A note is for you. It says what you saw.",
+      "objective": "o-note"
+    },
+    {
+      "id": "q-more-5",
+      "type": "mc",
+      "prompt": "What does the measure tool show?",
+      "options": [
+        {
+          "id": "a",
+          "text": "How far the price moved"
+        },
+        {
+          "id": "b",
+          "text": "Your password"
+        },
+        {
+          "id": "c",
+          "text": "The weather"
+        }
+      ],
+      "answer": "a",
+      "explanation": "It shows how far the price went.",
+      "objective": "o-measure"
+    },
+    {
+      "id": "q-more-6",
+      "type": "lab",
+      "prompt": "Draw a rectangle on candles 8 to 15. That is the flat part.",
+      "explanation": "The box covers the flat part. Its top meets the high. Its bottom meets the low.",
+      "objective": "o-box",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 473,
+        "count": 30
+      },
+      "task": {
+        "kind": "box",
+        "bars": [
+          7,
+          14
+        ]
+      }
+    },
+    {
+      "id": "q-more-7",
+      "type": "lab",
+      "prompt": "Draw a Fib. Start at the low of candle 3. End at the high of candle 22.",
+      "explanation": "Candle 3 is the low spot. Candle 22 is the top of the climb. Lines fill the gap.",
+      "objective": "o-draw-fib",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 162,
+        "count": 27
+      },
+      "task": {
+        "kind": "fib",
+        "low": 2,
+        "high": 21
+      }
+    },
+    {
+      "id": "q-more-8",
+      "type": "lab",
+      "prompt": "Find the top price. Write a note on it.",
+      "explanation": "The tall spike is candle 13. A note helps you find it.",
+      "objective": "o-note",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 316,
+        "count": 30
+      },
+      "task": {
+        "kind": "note",
+        "bar": 12
+      }
+    },
+    {
+      "id": "q-more-9",
+      "type": "lab",
+      "prompt": "Use the measure tool. Start at the close of candle 5. End at the close of candle 23.",
+      "explanation": "The measure tool joins two closes. It shows how far the price rose.",
+      "objective": "o-measure",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 159,
+        "count": 30
+      },
+      "task": {
+        "kind": "measure",
+        "from": 4,
+        "to": 22
+      }
+    }
+  ]
+}

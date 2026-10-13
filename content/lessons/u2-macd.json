@@ -1,0 +1,217 @@
+{
+  "id": "u2-macd",
+  "title": "MACD",
+  "goal": "See how two averages can show a change in momentum.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-what",
+      "text": "Say what MACD shows."
+    },
+    {
+      "id": "o-parts",
+      "text": "Name the MACD line, the signal line and the bars."
+    },
+    {
+      "id": "o-cross",
+      "text": "Say what a cross may hint."
+    },
+    {
+      "id": "o-limit",
+      "text": "Know that MACD is late and can be wrong."
+    }
+  ],
+  "slides": [
+    {
+      "id": "macd",
+      "text": "MACD compares a fast EMA with a slow EMA. It shows if momentum grows or shrinks.",
+      "defines": [
+        "macd"
+      ],
+      "title": "Two averages",
+      "art": "ticker"
+    },
+    {
+      "id": "line",
+      "text": "The MACD line is the fast EMA minus the slow EMA. The fast one uses 12 candles. The slow one uses 26.",
+      "defines": [],
+      "title": "The MACD line",
+      "art": "tag"
+    },
+    {
+      "id": "signal",
+      "text": "The signal line is a 9 candle average of the MACD line. The histogram is the bars. Each bar is the MACD line minus the signal line.",
+      "defines": [
+        "signal-line",
+        "histogram"
+      ],
+      "title": "Signal line and bars",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 430,
+          "count": 60
+        },
+        "indicators": [
+          "macd"
+        ],
+        "caption": "Real Apple prices. See both lines and the bars."
+      }
+    },
+    {
+      "id": "cross",
+      "text": "At times the MACD line crosses the signal line. The bars flip at zero. Some traders see a hint that momentum is changing.",
+      "defines": [],
+      "title": "What it tries to tell you",
+      "art": "candles"
+    },
+    {
+      "id": "late",
+      "text": "MACD uses old prices, so it is late. In a flat market it crosses a lot. Those false hints can fool you.",
+      "defines": [],
+      "title": "Do not trust it alone",
+      "art": "bear"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-macd-1",
+      "type": "mc",
+      "prompt": "What does MACD compare?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Two companies"
+        },
+        {
+          "id": "b",
+          "text": "Two days of news"
+        },
+        {
+          "id": "c",
+          "text": "A fast EMA and a slow EMA"
+        }
+      ],
+      "answer": "c",
+      "explanation": "MACD compares a fast EMA with a slow EMA.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-macd-2",
+      "type": "match",
+      "prompt": "Match each part to its meaning.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "MACD line",
+          "definition": "Fast EMA minus slow EMA"
+        },
+        {
+          "id": "p2",
+          "term": "Signal line",
+          "definition": "A 9 candle average of the MACD line"
+        },
+        {
+          "id": "p3",
+          "term": "Histogram",
+          "definition": "Bars for the gap between the two"
+        }
+      ],
+      "explanation": "There are two lines. The histogram bars show the gap.",
+      "objective": "o-parts"
+    },
+    {
+      "id": "q-macd-3",
+      "type": "tf",
+      "prompt": "The histogram bars show the gap between the two lines.",
+      "answer": true,
+      "explanation": "Yes. Tall bars mean the two lines are far apart.",
+      "objective": "o-parts"
+    },
+    {
+      "id": "q-macd-4",
+      "type": "mc",
+      "prompt": "The MACD line crosses the signal line. What may it hint?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The price will rise for sure"
+        },
+        {
+          "id": "b",
+          "text": "The chart is broken"
+        },
+        {
+          "id": "c",
+          "text": "Momentum may be changing"
+        }
+      ],
+      "answer": "c",
+      "explanation": "A cross is a hint, not a promise. Momentum may be changing.",
+      "objective": "o-cross"
+    },
+    {
+      "id": "q-macd-5",
+      "type": "tf",
+      "prompt": "MACD can give a false hint.",
+      "answer": true,
+      "explanation": "Yes. In a flat market it crosses a lot and can fool you.",
+      "objective": "o-limit"
+    },
+    {
+      "id": "q-macd-6",
+      "type": "mc",
+      "prompt": "Which numbers does MACD use?",
+      "options": [
+        {
+          "id": "a",
+          "text": "1, 2 and 3"
+        },
+        {
+          "id": "b",
+          "text": "12, 26 and 9"
+        },
+        {
+          "id": "c",
+          "text": "70 and 30"
+        }
+      ],
+      "answer": "b",
+      "explanation": "The usual MACD uses 12, 26 and 9. The 70 and 30 are for RSI.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-macd-7",
+      "type": "tf",
+      "prompt": "MACD is late, because it uses old prices.",
+      "answer": true,
+      "explanation": "Yes. It trails the price. So it turns late.",
+      "objective": "o-limit"
+    },
+    {
+      "id": "q-macd-8",
+      "type": "lab",
+      "prompt": "Turn on MACD. Keep the rest off.",
+      "explanation": "The MACD strip shows two lines and the bars.",
+      "objective": "o-parts",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 430,
+        "count": 60
+      },
+      "offer": [
+        "macd",
+        "ema",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "macd"
+        ]
+      }
+    }
+  ]
+}

@@ -85,37 +85,37 @@
       "id": "u2",
       "number": 2,
       "title": "Reading a chart",
-      "tagline": "Learn the TradingView screen, one button at a time.",
+      "tagline": "Learn the chart screen, one button at a time.",
       "nodes": [
         {
           "id": "u2-account",
           "type": "lesson",
           "title": "Meet TradingView",
-          "goal": "See what TradingView is and how to make a free account."
+          "goal": "Learn what TradingView is and that it is free."
         },
         {
           "id": "u2-tour",
           "type": "lesson",
           "title": "A tour of the screen",
-          "goal": "Find the symbol search, the watchlist and the layout."
+          "goal": "Find the symbol search, the watchlist and the toolbar."
         },
         {
           "id": "u2-timeframes",
           "type": "lesson",
           "title": "Timeframes and chart types",
-          "goal": "Switch between 1 minute, 1 hour and 1 day charts."
+          "goal": "Learn to switch the timeframe of a chart."
         },
         {
           "id": "u2-axes",
           "type": "chart",
           "title": "Axes and the legend",
-          "goal": "Read the price scale, the time scale and the OHLC numbers."
+          "goal": "Read the price scale, the time axis and the OHLC numbers."
         },
         {
           "id": "u2-crosshair",
           "type": "lesson",
           "title": "Zoom, scroll, crosshair",
-          "goal": "Move around a chart and read any candle with the crosshair."
+          "goal": "Move around a chart. Read any candle."
         },
         {
           "id": "u2-practice-1",
@@ -133,7 +133,7 @@
           "id": "u2-draw-more",
           "type": "chart",
           "title": "Boxes, Fibonacci, notes",
-          "goal": "Use rectangles, Fibonacci and text notes, and learn the measure tool."
+          "goal": "Use rectangles, Fibonacci and notes, and learn the measure tool."
         },
         {
           "id": "u2-ma",
@@ -145,19 +145,19 @@
           "id": "u2-vwap",
           "type": "lesson",
           "title": "VWAP",
-          "goal": "Learn the average price of the day, weighted by volume."
+          "goal": "Learn the average price of the day."
         },
         {
           "id": "u2-rsi",
           "type": "lesson",
           "title": "RSI",
-          "goal": "Learn a 0 to 100 gauge of how fast a price has moved."
+          "goal": "Learn a 0 to 100 gauge of how fast a price moved."
         },
         {
           "id": "u2-macd",
           "type": "lesson",
           "title": "MACD",
-          "goal": "See how two moving averages can show a change in momentum."
+          "goal": "See how two averages can show a change in momentum."
         },
         {
           "id": "u2-bands",
@@ -169,7 +169,7 @@
           "id": "u2-volume",
           "type": "lesson",
           "title": "Volume",
-          "goal": "Learn why the number of shares traded matters."
+          "goal": "Learn why the count of shares traded matters."
         },
         {
           "id": "u2-indicator-lab",

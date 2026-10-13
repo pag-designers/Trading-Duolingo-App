@@ -15,6 +15,7 @@ import type { Answer } from "@/lib/lesson/grade";
 import { seededRng, shuffle } from "@/lib/lesson/pool";
 import { playSound } from "@/lib/sound";
 import { cn } from "@/lib/utils";
+import { LabView } from "@/components/chart/lab-view";
 import { CandleChart } from "./candle-chart";
 
 /** Shared props. `checked` is true once the answer was graded; then `grade` tells which parts were right. */
@@ -413,7 +414,7 @@ export function QuestionView({
 }: {
   q: Question;
   answer: Answer | null;
-  onChange: (a: Answer) => void;
+  onChange: (a: Answer | null) => void;
   checked: boolean;
 }): ReactNode {
   const as = <A extends Answer["type"]>(type: A) =>
@@ -429,5 +430,7 @@ export function QuestionView({
       return <ChartView q={q} answer={as("chart")} onChange={onChange} checked={checked} />;
     case "build":
       return <BuildView q={q} answer={as("build")} onChange={onChange} checked={checked} />;
+    case "lab":
+      return <LabView q={q} answer={as("lab")} onChange={onChange} checked={checked} />;
   }
 }

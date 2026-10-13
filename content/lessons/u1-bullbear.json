@@ -28,18 +28,14 @@
     {
       "id": "bull",
       "text": "A bull thinks prices will rise. In a bull market, prices rise for a long time.",
-      "defines": [
-        "bull"
-      ],
+      "defines": ["bull"],
       "title": "Bulls",
       "art": "bull"
     },
     {
       "id": "bear",
       "text": "A bear thinks prices will fall. In a bear market, prices fall for a long time.",
-      "defines": [
-        "bear"
-      ],
+      "defines": ["bear"],
       "title": "Bears",
       "art": "bear"
     },
@@ -53,19 +49,14 @@
     {
       "id": "index",
       "text": "An index is a list of stocks that shows how a group is doing. If many stocks in the list rise, the index goes up.",
-      "defines": [
-        "index"
-      ],
+      "defines": ["index"],
       "title": "Indexes",
       "art": "index"
     },
     {
       "id": "big-three",
       "text": "The S&P 500 is an index of 500 big US companies. The Dow is an index of 30 big companies. The Nasdaq has an index too.",
-      "defines": [
-        "sp500",
-        "dow"
-      ],
+      "defines": ["sp500", "dow"],
       "title": "Big indexes",
       "art": "index"
     }

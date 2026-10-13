@@ -1,0 +1,225 @@
+{
+  "id": "u2-axes",
+  "title": "Axes and the legend",
+  "goal": "Read the price scale, the time axis and the OHLC numbers.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-ohlc",
+      "text": "Name open, high, low and close."
+    },
+    {
+      "id": "o-price",
+      "text": "Read the price scale."
+    },
+    {
+      "id": "o-time",
+      "text": "Read the time axis."
+    },
+    {
+      "id": "o-legend",
+      "text": "Read the legend."
+    }
+  ],
+  "slides": [
+    {
+      "id": "ohlc",
+      "text": "OHLC means open, high, low and close. These are the four prices of one candle.",
+      "defines": [
+        "ohlc"
+      ],
+      "title": "Four prices",
+      "art": "candles"
+    },
+    {
+      "id": "price-scale",
+      "text": "The price scale runs up the right side. A high spot on the chart is a high price.",
+      "defines": [
+        "price-scale"
+      ],
+      "title": "The price scale",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 316,
+          "count": 30
+        },
+        "indicators": [],
+        "caption": "Real Apple prices. Look at the right edge."
+      }
+    },
+    {
+      "id": "time-axis",
+      "text": "The time axis is at the bottom. Old days sit on the left. New candles sit on the right.",
+      "defines": [
+        "time-axis"
+      ],
+      "title": "The time axis",
+      "art": "ticker"
+    },
+    {
+      "id": "legend",
+      "text": "The legend sits at the top left. It shows the OHLC of one candle. Point at a candle and it changes.",
+      "defines": [
+        "legend"
+      ],
+      "title": "The legend",
+      "art": "speech"
+    },
+    {
+      "id": "colors",
+      "text": "A green candle means the price rose. A red candle means the price fell.",
+      "defines": [],
+      "title": "Green and red",
+      "art": "candles"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-axes-1",
+      "type": "match",
+      "prompt": "Match each letter to its price.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "Open",
+          "definition": "The first price"
+        },
+        {
+          "id": "p2",
+          "term": "High",
+          "definition": "The top price"
+        },
+        {
+          "id": "p3",
+          "term": "Low",
+          "definition": "The bottom price"
+        },
+        {
+          "id": "p4",
+          "term": "Close",
+          "definition": "The last price"
+        }
+      ],
+      "explanation": "O, H, L and C are the four prices.",
+      "objective": "o-ohlc"
+    },
+    {
+      "id": "q-axes-2",
+      "type": "mc",
+      "prompt": "Where is the price scale?",
+      "options": [
+        {
+          "id": "a",
+          "text": "At the bottom"
+        },
+        {
+          "id": "b",
+          "text": "On the right side"
+        },
+        {
+          "id": "c",
+          "text": "In the watchlist"
+        }
+      ],
+      "answer": "b",
+      "explanation": "The price scale runs up the right side of the chart.",
+      "objective": "o-price"
+    },
+    {
+      "id": "q-axes-3",
+      "type": "mc",
+      "prompt": "Where is the time axis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Up the right side"
+        },
+        {
+          "id": "b",
+          "text": "In the toolbar"
+        },
+        {
+          "id": "c",
+          "text": "Along the bottom"
+        }
+      ],
+      "answer": "c",
+      "explanation": "The time axis is at the bottom.",
+      "objective": "o-time"
+    },
+    {
+      "id": "q-axes-4",
+      "type": "tf",
+      "prompt": "New candles sit on the right.",
+      "answer": true,
+      "explanation": "Time runs left to right. New candles sit on the right.",
+      "objective": "o-time"
+    },
+    {
+      "id": "q-axes-5",
+      "type": "mc",
+      "prompt": "What does the legend show?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The news of the day"
+        },
+        {
+          "id": "b",
+          "text": "The OHLC of a candle"
+        },
+        {
+          "id": "c",
+          "text": "Your password"
+        }
+      ],
+      "answer": "b",
+      "explanation": "The legend shows the OHLC of a candle.",
+      "objective": "o-legend"
+    },
+    {
+      "id": "q-axes-6",
+      "type": "lab",
+      "prompt": "Find the top price. Tap that candle.",
+      "explanation": "Its high is the top price on the chart.",
+      "objective": "o-price",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 316,
+        "count": 30
+      },
+      "task": {
+        "kind": "find-bar",
+        "rule": "highest-high"
+      }
+    },
+    {
+      "id": "q-axes-7",
+      "type": "lab",
+      "prompt": "Find the lowest close. Tap that candle.",
+      "explanation": "The legend shows each close. The low one is at the bottom.",
+      "objective": "o-legend",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 316,
+        "count": 30
+      },
+      "task": {
+        "kind": "find-bar",
+        "rule": "lowest-close"
+      }
+    },
+    {
+      "id": "q-axes-8",
+      "type": "tf",
+      "prompt": "A green candle means the price fell.",
+      "answer": false,
+      "explanation": "No. Green means the price rose. Red means it fell.",
+      "objective": "o-ohlc"
+    }
+  ]
+}

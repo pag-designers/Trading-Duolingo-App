@@ -13,7 +13,7 @@ Candlo is a Duolingo-style app that teaches day trading to a complete beginner w
 
 ## Current state
 
-**CP0 and CP1 are done. Waiting for the owner's “go” before CP2 (Chart School).** See `PROGRESS.md`. **Work one checkpoint at a time (CP0–CP8). Stop after each and report in the §10 format. Wait for "go". Do not build LATER items.** Never leave the app broken at the end of a checkpoint.
+**CP0 and CP1 are done. CP2 (Chart School, Unit 2) is in progress.** See `PROGRESS.md`. **Work one checkpoint at a time (CP0–CP8). Stop after each and report in the §10 format. Wait for "go". Do not build LATER items.** Never leave the app broken at the end of a checkpoint.
 
 ## Commands
 

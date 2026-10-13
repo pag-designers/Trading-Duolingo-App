@@ -1,6 +1,9 @@
 import { expect, type Page } from "@playwright/test";
 import { loadContent } from "../src/lib/content/load";
-import type { Question } from "../src/lib/content/lesson-schema";
+import { priceRange, solutionFor, type LabAnswer, type Pt } from "../src/lib/chart/lab";
+import type { LabQuestion, Question } from "../src/lib/content/lesson-schema";
+import { windowBars } from "../src/lib/market/data";
+import { INDICATORS } from "../src/lib/market/types";
 
 /** Everything the app teaches, read from the same files the app uses (so tests never drift from content). */
 export const content = loadContent(process.cwd());
@@ -46,6 +49,92 @@ export async function nextSlide(page: Page): Promise<void> {
   await settle(page);
 }
 
+/**
+ * Solve (or deliberately fail) a Chart Lab question with the KEYBOARD, the same way a learner without a mouse would:
+ * arrow keys move a cursor to a candle, a snap button sets the price to its high/low/open/close, arrow keys fine-tune the
+ * price, and "Place" drops the point.
+ */
+export async function solveLab(page: Page, q: LabQuestion, right = true): Promise<void> {
+  const bars = windowBars(q.window);
+  const chart = page.getByTestId("lab-chart");
+  const mid = Math.floor((bars.length - 1) / 2);
+  const step = priceRange(bars) / 60;
+  let idx: number | null = null;
+
+  const goto = async (i: number) => {
+    await chart.focus();
+    if (idx === null) {
+      await page.keyboard.press("ArrowRight"); // the first arrow press puts the cursor on the middle candle
+      idx = mid;
+    }
+    while (idx !== i) {
+      const d = i - idx;
+      const big = Math.abs(d) >= 5;
+      await page.keyboard.press(`${big ? "Shift+" : ""}Arrow${d > 0 ? "Right" : "Left"}`);
+      idx += Math.sign(d) * (big ? 5 : 1);
+    }
+  };
+  const point = async (p: Pt) => {
+    const i = Math.max(0, Math.min(bars.length - 1, Math.round(p.i)));
+    await goto(i);
+    const b = bars[i]!;
+    const fields = ["open", "high", "low", "close"] as const;
+    const field = fields.reduce((best, f) =>
+      Math.abs(b[f] - p.price) < Math.abs(b[best] - p.price) ? f : best,
+    );
+    await page.getByTestId(`snap-${field}`).click();
+    let n = Math.round((p.price - b[field]) / step);
+    await chart.focus();
+    while (n !== 0) {
+      const big = Math.abs(n) >= 5;
+      await page.keyboard.press(`${big ? "Shift+" : ""}Arrow${n > 0 ? "Up" : "Down"}`);
+      n -= Math.sign(n) * (big ? 5 : 1);
+    }
+    await page.getByTestId("place-point").click();
+  };
+  /** A point that is surely wrong: half the chart's price range higher. */
+  const off = (p: Pt): Pt => ({ i: p.i, price: p.price + priceRange(bars) * 0.5 });
+
+  const sol: LabAnswer = solutionFor(q, bars);
+  switch (sol.kind) {
+    case "find-bar": {
+      const target = right ? sol.bar : sol.bar === 0 ? 1 : 0;
+      await goto(target);
+      return;
+    }
+    case "hline":
+      await point({ i: 0, price: right ? sol.price : sol.price + priceRange(bars) * 0.5 });
+      return;
+    case "trendline":
+    case "box":
+    case "fib":
+    case "measure":
+      await point(right ? sol.a : off(sol.a));
+      await point(right ? sol.b : off(sol.b));
+      return;
+    case "note": {
+      await point(right ? sol.at : { i: (sol.at.i + 10) % bars.length, price: sol.at.price });
+      await page.getByTestId("note-text").fill(sol.text);
+      return;
+    }
+    case "timeframe": {
+      const other = (q.timeframes ?? []).find((t) => t !== sol.tf)!;
+      await page.getByTestId(`tf-${right ? sol.tf : other}`).click();
+      return;
+    }
+    case "indicators": {
+      const want = right ? sol.on : sol.on.length ? [] : ["rsi" as const];
+      for (const id of INDICATORS) {
+        const button = page.getByTestId(`ind-${id}`);
+        if (!(await button.count())) continue;
+        const isOn = (await button.getAttribute("aria-pressed")) === "true";
+        if (isOn !== want.includes(id)) await button.click();
+      }
+      return;
+    }
+  }
+}
+
 /** Answer the question on screen correctly (or deliberately wrongly). Does not press Check. */
 export async function answer(page: Page, q: Question, right = true): Promise<void> {
   switch (q.type) {
@@ -83,6 +172,8 @@ export async function answer(page: Page, q: Question, right = true): Promise<voi
       for (const b of blocks) await page.getByTestId(`block-${b}`).click();
       return;
     }
+    case "lab":
+      return solveLab(page, q, right);
   }
 }
 

@@ -1,4 +1,6 @@
+import { labProblems } from "../chart/lab";
 import { buildMatcher, type TermMatcher } from "../glossary";
+import { windowBars } from "../market/data";
 import { READING_LIMIT, scoreText, splitSentences } from "../readability";
 import {
   MAX_TAP_CANDLES,
@@ -63,6 +65,7 @@ export function lessonTexts(l: Lesson): { where: string; text: string }[] {
   l.slides.forEach((s) => {
     if (s.title) out.push({ where: `${l.id} › slide ${s.id} title`, text: s.title });
     out.push({ where: `${l.id} › slide ${s.id}`, text: s.text });
+    if (s.demo) out.push({ where: `${l.id} › slide ${s.id} chart caption`, text: s.demo.caption });
   });
   l.questions.forEach((q) =>
     questionTexts(q).forEach((t) =>
@@ -139,7 +142,13 @@ export function auditContent(input: AuditInput): { findings: Finding[]; matcher:
     if (!l) continue;
     for (const s of l.slides) {
       const defines = new Set(s.defines);
-      checkTerms(`${l.id} › slide ${s.id}`, `${s.title ?? ""}. ${s.text}`, defines);
+      checkTerms(
+        `${l.id} › slide ${s.id}`,
+        `${s.title ?? ""}. ${s.text}. ${s.demo?.caption ?? ""}`,
+        defines,
+      );
+      if (s.demo && windowBars(s.demo.window).length < s.demo.window.count)
+        add("links", `${l.id} › slide ${s.id}`, "the chart picture asks for more bars than exist");
       for (const id of s.defines) {
         if (!termIds.has(id)) {
           add("links", `${l.id} › slide ${s.id}`, `defines “${id}”, which is not in the glossary`);
@@ -314,6 +323,9 @@ function checkAnswerKey(q: Question, fail: (message: string) => void): void {
       if (!unique(Object.values(q.answer))) fail("one block is used in two slots");
       break;
     }
+    case "lab":
+      for (const problem of labProblems(q)) fail(problem);
+      break;
     case "tf":
       break;
   }

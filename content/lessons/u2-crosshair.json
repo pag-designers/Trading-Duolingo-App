@@ -1,0 +1,196 @@
+{
+  "id": "u2-crosshair",
+  "title": "Zoom, scroll, crosshair",
+  "goal": "Move around a chart. Read any candle.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-zoom",
+      "text": "Zoom in and out of a chart."
+    },
+    {
+      "id": "o-scroll",
+      "text": "Scroll back in time."
+    },
+    {
+      "id": "o-cross",
+      "text": "Use the crosshair to read a candle."
+    },
+    {
+      "id": "o-reset",
+      "text": "Use Reset chart."
+    }
+  ],
+  "slides": [
+    {
+      "id": "zoom",
+      "text": "Zoom in to see big candles. Zoom out to see more. Use the mouse wheel, or pinch on a phone.",
+      "defines": [],
+      "title": "Zoom",
+      "art": "candles"
+    },
+    {
+      "id": "scroll",
+      "text": "Drag the chart to scroll it. Drag it right to see old candles. Drag it left to get back to new ones.",
+      "defines": [],
+      "title": "Scroll",
+      "art": "ticker"
+    },
+    {
+      "id": "crosshair",
+      "text": "The crosshair is two lines that trail your mouse. It shows the price and time under it. The legend shows that candle.",
+      "defines": [
+        "crosshair"
+      ],
+      "title": "The crosshair",
+      "art": "speech"
+    },
+    {
+      "id": "menu",
+      "text": "Right-click the chart to see a menu. Reset chart puts the view back. Remove clears the lines you drew.",
+      "defines": [],
+      "title": "Reset and remove",
+      "art": "chest"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-cross-1",
+      "type": "mc",
+      "prompt": "What does zooming out do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Shows more candles"
+        },
+        {
+          "id": "b",
+          "text": "Shows fewer candles"
+        },
+        {
+          "id": "c",
+          "text": "Deletes the chart"
+        }
+      ],
+      "answer": "a",
+      "explanation": "More candles fit when you zoom out. They get small.",
+      "objective": "o-zoom"
+    },
+    {
+      "id": "q-cross-2",
+      "type": "tf",
+      "prompt": "Drag the chart right to see old candles.",
+      "answer": true,
+      "explanation": "Yes. Drag right and old candles show.",
+      "objective": "o-scroll"
+    },
+    {
+      "id": "q-cross-3",
+      "type": "mc",
+      "prompt": "What does the crosshair show?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Your password"
+        },
+        {
+          "id": "b",
+          "text": "The news"
+        },
+        {
+          "id": "c",
+          "text": "The price and time under it"
+        }
+      ],
+      "answer": "c",
+      "explanation": "The crosshair shows the price and time where you point.",
+      "objective": "o-cross"
+    },
+    {
+      "id": "q-cross-4",
+      "type": "lab",
+      "prompt": "Find the highest close. Put the crosshair on it.",
+      "explanation": "Point at a candle and read its close in the legend. This close is the highest.",
+      "objective": "o-cross",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 28,
+        "count": 30
+      },
+      "task": {
+        "kind": "find-bar",
+        "rule": "highest-close"
+      }
+    },
+    {
+      "id": "q-cross-5",
+      "type": "lab",
+      "prompt": "Find the tallest candle. Put the crosshair on it.",
+      "explanation": "A tall candle has a wide range. Its high and low are far apart.",
+      "objective": "o-scroll",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 316,
+        "count": 30
+      },
+      "task": {
+        "kind": "find-bar",
+        "rule": "widest-range"
+      }
+    },
+    {
+      "id": "q-cross-6",
+      "type": "tf",
+      "prompt": "Reset chart puts the view back.",
+      "answer": true,
+      "explanation": "Yes. Use it when you get lost after you zoom and scroll.",
+      "objective": "o-reset"
+    },
+    {
+      "id": "q-cross-7",
+      "type": "mc",
+      "prompt": "Which choice clears the lines you drew?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Remove"
+        },
+        {
+          "id": "b",
+          "text": "Reset chart"
+        },
+        {
+          "id": "c",
+          "text": "Sign up"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Remove clears your lines. Reset chart just moves the view.",
+      "objective": "o-reset"
+    },
+    {
+      "id": "q-cross-8",
+      "type": "mc",
+      "prompt": "How do you zoom on a phone?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Shake the phone"
+        },
+        {
+          "id": "b",
+          "text": "Pinch with two fingers"
+        },
+        {
+          "id": "c",
+          "text": "Tap the logo"
+        }
+      ],
+      "answer": "b",
+      "explanation": "Pinch with two fingers to zoom in or out.",
+      "objective": "o-zoom"
+    }
+  ]
+}

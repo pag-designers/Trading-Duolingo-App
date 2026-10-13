@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useReducer, useState } from "react";
+import { DemoChart } from "@/components/chart/demo-chart";
 import { RiskReminder } from "@/components/risk-reminder";
 import { Button } from "@/components/ui/button";
 import { Sheet } from "@/components/ui/sheet";
@@ -47,6 +48,7 @@ const TYPE_LABEL: Record<Question["type"], string> = {
   match: "Match",
   chart: "Chart spot",
   build: "Build",
+  lab: "Chart lab",
 };
 
 /** Build the list of questions for this play: a lesson's own, plus a mix from earlier lessons for practice and boss steps. */
@@ -200,7 +202,11 @@ export function LessonPlayer(props: LessonPlayerProps) {
                 data-testid="slide"
                 data-step={state.index}
               >
-                {step.slide.art && <Art name={step.slide.art} />}
+                {step.slide.demo ? (
+                  <DemoChart demo={step.slide.demo} />
+                ) : (
+                  step.slide.art && <Art name={step.slide.art} />
+                )}
                 {step.slide.title && <h1 className="text-3xl">{step.slide.title}</h1>}
                 <p className="text-2xl leading-snug">
                   <RichText text={step.slide.text} />

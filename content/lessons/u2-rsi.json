@@ -1,0 +1,261 @@
+{
+  "id": "u2-rsi",
+  "title": "RSI",
+  "goal": "Learn a 0 to 100 gauge of how fast a price moved.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-what",
+      "text": "Say what RSI shows."
+    },
+    {
+      "id": "o-scale",
+      "text": "Know that RSI goes from 0 to 100."
+    },
+    {
+      "id": "o-lines",
+      "text": "Know what the 70 and 30 lines mean."
+    },
+    {
+      "id": "o-limit",
+      "text": "Know that RSI can stay high or low."
+    }
+  ],
+  "slides": [
+    {
+      "id": "momentum",
+      "text": "Momentum is how fast and how hard a price is moving. A quick climb with big candles has strong momentum.",
+      "defines": [
+        "momentum"
+      ],
+      "title": "Momentum",
+      "art": "bull"
+    },
+    {
+      "id": "rsi",
+      "text": "RSI is a gauge from 0 to 100. It reads the last 14 candles to size up momentum. It sits in a strip under the chart.",
+      "defines": [
+        "rsi"
+      ],
+      "title": "The RSI gauge",
+      "art": "ticker"
+    },
+    {
+      "id": "high",
+      "text": "Overbought means the RSI is over 70. The price rose fast. A dotted line at 70 marks it.",
+      "defines": [
+        "overbought"
+      ],
+      "title": "Overbought",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 225,
+          "count": 60
+        },
+        "indicators": [
+          "rsi"
+        ],
+        "caption": "Real Apple prices. The RSI went over 70."
+      }
+    },
+    {
+      "id": "low",
+      "text": "Oversold means the RSI is under 30. The price fell fast. A dotted line at 30 marks it.",
+      "defines": [
+        "oversold"
+      ],
+      "title": "Oversold",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 205,
+          "count": 60
+        },
+        "indicators": [
+          "rsi"
+        ],
+        "caption": "Real Apple prices. The RSI went under 30."
+      }
+    },
+    {
+      "id": "stay",
+      "text": "A high RSI does not mean the price must fall. A strong climb can stay overbought for weeks. Do not trust RSI alone.",
+      "defines": [],
+      "title": "Not a stop sign",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 440,
+          "count": 60
+        },
+        "indicators": [
+          "rsi"
+        ],
+        "caption": "Real Apple prices. RSI stayed over 70 as price rose."
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-rsi-1",
+      "type": "mc",
+      "prompt": "What does RSI show?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The news of the day"
+        },
+        {
+          "id": "b",
+          "text": "The size of a company"
+        },
+        {
+          "id": "c",
+          "text": "How fast the price moved"
+        }
+      ],
+      "answer": "c",
+      "explanation": "RSI is a gauge of momentum. It shows how fast the price moved.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-rsi-2",
+      "type": "mc",
+      "prompt": "RSI goes from which number to which?",
+      "options": [
+        {
+          "id": "a",
+          "text": "0 to 100"
+        },
+        {
+          "id": "b",
+          "text": "1 to 10"
+        },
+        {
+          "id": "c",
+          "text": "0 to 1,000"
+        }
+      ],
+      "answer": "a",
+      "explanation": "RSI stays between 0 and 100.",
+      "objective": "o-scale"
+    },
+    {
+      "id": "q-rsi-3",
+      "type": "tf",
+      "prompt": "An RSI over 70 is called overbought.",
+      "answer": true,
+      "explanation": "Yes. Over 70 is overbought. Under 30 is oversold.",
+      "objective": "o-lines"
+    },
+    {
+      "id": "q-rsi-4",
+      "type": "mc",
+      "prompt": "The RSI is 25. What is it called?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Overbought"
+        },
+        {
+          "id": "b",
+          "text": "Neutral"
+        },
+        {
+          "id": "c",
+          "text": "Oversold"
+        }
+      ],
+      "answer": "c",
+      "explanation": "Under 30 is oversold. The price fell fast.",
+      "objective": "o-lines"
+    },
+    {
+      "id": "q-rsi-5",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "RSI",
+          "definition": "A gauge from 0 to 100"
+        },
+        {
+          "id": "p2",
+          "term": "Overbought",
+          "definition": "RSI over 70"
+        },
+        {
+          "id": "p3",
+          "term": "Oversold",
+          "definition": "RSI under 30"
+        },
+        {
+          "id": "p4",
+          "term": "Momentum",
+          "definition": "How fast a price is moving"
+        }
+      ],
+      "explanation": "RSI reads momentum. The 70 and 30 lines give two names.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-rsi-6",
+      "type": "tf",
+      "prompt": "When the RSI is over 70, the price must fall now.",
+      "answer": false,
+      "explanation": "No. A strong climb can stay overbought for a long time.",
+      "objective": "o-limit"
+    },
+    {
+      "id": "q-rsi-7",
+      "type": "mc",
+      "prompt": "What is a safe way to use RSI?",
+      "options": [
+        {
+          "id": "a",
+          "text": "As a sure sign to buy"
+        },
+        {
+          "id": "b",
+          "text": "As a sure sign to sell"
+        },
+        {
+          "id": "c",
+          "text": "Along with other tools"
+        }
+      ],
+      "answer": "c",
+      "explanation": "RSI is one clue. Use it with other tools.",
+      "objective": "o-limit"
+    },
+    {
+      "id": "q-rsi-8",
+      "type": "lab",
+      "prompt": "Turn on RSI. Keep the rest off.",
+      "explanation": "The RSI strip shows the gauge.",
+      "objective": "o-what",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 225,
+        "count": 60
+      },
+      "offer": [
+        "rsi",
+        "sma",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "rsi"
+        ]
+      }
+    }
+  ]
+}

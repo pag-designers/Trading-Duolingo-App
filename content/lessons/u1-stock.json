@@ -28,18 +28,14 @@
     {
       "id": "stock",
       "text": "A stock is a small piece of a company that you can own. Each slice of the pie is a piece.",
-      "defines": [
-        "stock"
-      ],
+      "defines": ["stock"],
       "title": "Stocks",
       "art": "pie"
     },
     {
       "id": "share",
       "text": "One unit of a stock is called a share. If you own 10 shares, you own 10 slices.",
-      "defines": [
-        "share"
-      ],
+      "defines": ["share"],
       "title": "Shares",
       "art": "pie"
     },

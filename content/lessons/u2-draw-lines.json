@@ -1,0 +1,240 @@
+{
+  "id": "u2-draw-lines",
+  "title": "Trendlines and levels",
+  "goal": "Draw a trendline and a flat price line on a real chart.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-trend",
+      "text": "Say what a trendline is."
+    },
+    {
+      "id": "o-draw-trend",
+      "text": "Draw a trendline through two lows or highs."
+    },
+    {
+      "id": "o-hline",
+      "text": "Say what a flat line is for."
+    },
+    {
+      "id": "o-draw-h",
+      "text": "Draw a flat line at a price."
+    },
+    {
+      "id": "o-magnet",
+      "text": "Use magnet mode to snap to a candle."
+    }
+  ],
+  "slides": [
+    {
+      "id": "trend",
+      "text": "A trendline is a line through the lows or the highs of a chart. It shows which way the price leans.",
+      "defines": [
+        "trendline"
+      ],
+      "title": "The trendline",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 159,
+          "count": 30
+        },
+        "indicators": [],
+        "caption": "Real Apple prices. The lows climb. A line under them leans up."
+      }
+    },
+    {
+      "id": "how",
+      "text": "Pick the trendline tool in the toolbar. Click on one low. Then click on a later low.",
+      "defines": [],
+      "title": "How to draw one",
+      "art": "chest"
+    },
+    {
+      "id": "flat",
+      "text": "A horizontal line is a flat line at one price. Use it to mark a price.",
+      "defines": [
+        "horizontal-line"
+      ],
+      "title": "The flat line",
+      "art": "ticker"
+    },
+    {
+      "id": "magnet",
+      "text": "Magnet mode snaps clicks to a candle price. It keeps your lines neat.",
+      "defines": [
+        "magnet-mode"
+      ],
+      "title": "Magnet mode",
+      "art": "chest"
+    },
+    {
+      "id": "guess",
+      "text": "Lines are your own guesses. Two people can draw them in two ways. No line can tell what is next.",
+      "defines": [],
+      "title": "Lines are guesses",
+      "art": "speech"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-lines-1",
+      "type": "mc",
+      "prompt": "What does a trendline join?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Two companies"
+        },
+        {
+          "id": "b",
+          "text": "Two lows or two highs"
+        },
+        {
+          "id": "c",
+          "text": "Two days of the week"
+        }
+      ],
+      "answer": "b",
+      "explanation": "A trendline runs through the lows, or the highs, of a chart.",
+      "objective": "o-trend"
+    },
+    {
+      "id": "q-lines-2",
+      "type": "tf",
+      "prompt": "A horizontal line is flat.",
+      "answer": true,
+      "explanation": "Yes. It stays at one price all the way across.",
+      "objective": "o-hline"
+    },
+    {
+      "id": "q-lines-3",
+      "type": "mc",
+      "prompt": "What is a flat line at one price good for?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Marking a price"
+        },
+        {
+          "id": "b",
+          "text": "Telling the future"
+        },
+        {
+          "id": "c",
+          "text": "Buying a stock"
+        }
+      ],
+      "answer": "a",
+      "explanation": "It marks a price. You see when the chart comes back to it.",
+      "objective": "o-hline"
+    },
+    {
+      "id": "q-lines-4",
+      "type": "tf",
+      "prompt": "A trendline can tell you what the price will do next.",
+      "answer": false,
+      "explanation": "No. A trendline shows the past. It cannot say what is next.",
+      "objective": "o-trend"
+    },
+    {
+      "id": "q-lines-5",
+      "type": "mc",
+      "prompt": "What does magnet mode do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pulls the price up"
+        },
+        {
+          "id": "b",
+          "text": "Hides the chart"
+        },
+        {
+          "id": "c",
+          "text": "Snaps clicks to candle prices"
+        }
+      ],
+      "answer": "c",
+      "explanation": "Magnet mode pulls clicks to a candle price.",
+      "objective": "o-magnet"
+    },
+    {
+      "id": "q-lines-6",
+      "type": "lab",
+      "prompt": "Draw a flat line at the lowest price on the chart.",
+      "explanation": "Its low is the bottom price on the chart. A flat line there marks the low.",
+      "objective": "o-draw-h",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 207,
+        "count": 30
+      },
+      "task": {
+        "kind": "hline",
+        "level": "lowest-low"
+      }
+    },
+    {
+      "id": "q-lines-7",
+      "type": "lab",
+      "prompt": "Draw a flat line at the highest price on the chart.",
+      "explanation": "The highest price is the top of the tall spike. A flat line there marks the high.",
+      "objective": "o-draw-h",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 316,
+        "count": 30
+      },
+      "task": {
+        "kind": "hline",
+        "level": "highest-high"
+      }
+    },
+    {
+      "id": "q-lines-8",
+      "type": "lab",
+      "prompt": "Draw a trendline on the lows. Start at candle 5. End at candle 29.",
+      "explanation": "Both candles are low spots on the way up. A line through them leans up.",
+      "objective": "o-draw-trend",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 159,
+        "count": 30
+      },
+      "task": {
+        "kind": "trendline",
+        "touch": "lows",
+        "bars": [
+          4,
+          28
+        ]
+      }
+    },
+    {
+      "id": "q-lines-9",
+      "type": "lab",
+      "prompt": "Draw a trendline on the highs. Start at candle 1. End at candle 30.",
+      "explanation": "These two highs sit far apart. A line through them leans down.",
+      "objective": "o-draw-trend",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 207,
+        "count": 30
+      },
+      "task": {
+        "kind": "trendline",
+        "touch": "highs",
+        "bars": [
+          0,
+          29
+        ]
+      }
+    }
+  ]
+}

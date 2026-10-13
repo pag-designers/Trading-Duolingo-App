@@ -17,19 +17,14 @@
     {
       "id": "company",
       "text": "A company is a group of people who make or sell things. A shop that bakes bread is a company.",
-      "defines": [
-        "company"
-      ],
+      "defines": ["company"],
       "title": "Companies",
       "art": "building"
     },
     {
       "id": "product-customer",
       "text": "The things a company sells are its products. The people who buy them are customers.",
-      "defines": [
-        "product",
-        "customer"
-      ],
+      "defines": ["product", "customer"],
       "title": "Products and customers",
       "art": "shop"
     },
@@ -43,9 +38,7 @@
     {
       "id": "owner",
       "text": "Every company has owners. An owner owns a part of the company.",
-      "defines": [
-        "owner"
-      ],
+      "defines": ["owner"],
       "title": "Owners",
       "art": "building"
     }

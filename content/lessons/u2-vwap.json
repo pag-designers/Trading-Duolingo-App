@@ -1,0 +1,205 @@
+{
+  "id": "u2-vwap",
+  "title": "VWAP",
+  "goal": "Learn the average price of the day.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-what",
+      "text": "Say what VWAP is."
+    },
+    {
+      "id": "o-reset",
+      "text": "Know that VWAP starts over each day."
+    },
+    {
+      "id": "o-intraday",
+      "text": "Know that VWAP is for intraday charts."
+    },
+    {
+      "id": "o-read",
+      "text": "Say if price is over VWAP."
+    },
+    {
+      "id": "o-limit",
+      "text": "Know that VWAP is not a promise."
+    }
+  ],
+  "slides": [
+    {
+      "id": "vwap",
+      "text": "VWAP is the average price of the day. Prices with more volume count more.",
+      "defines": [
+        "vwap"
+      ],
+      "title": "The day's average",
+      "art": "tag"
+    },
+    {
+      "id": "reset",
+      "text": "VWAP starts fresh each day. Each day gets a new VWAP line.",
+      "defines": [],
+      "title": "A fresh start",
+      "demo": {
+        "window": {
+          "dataset": "practice",
+          "tf": "15m",
+          "start": 0,
+          "count": 52
+        },
+        "indicators": [
+          "vwap"
+        ],
+        "caption": "Made-up practice prices. VWAP starts over on day two."
+      }
+    },
+    {
+      "id": "intraday",
+      "text": "VWAP is for intraday charts. A daily chart has no VWAP.",
+      "defines": [],
+      "title": "Only for one day",
+      "art": "market"
+    },
+    {
+      "id": "read",
+      "text": "Price over VWAP means it is up on the day's average. Price under VWAP means it is down.",
+      "defines": [],
+      "title": "What it tries to tell you",
+      "demo": {
+        "window": {
+          "dataset": "practice",
+          "tf": "5m",
+          "start": 0,
+          "count": 78
+        },
+        "indicators": [
+          "vwap"
+        ],
+        "caption": "Made-up practice prices. Watch price cross the VWAP line."
+      }
+    },
+    {
+      "id": "limit",
+      "text": "VWAP is an average of the past. It cannot say what comes next. Do not trust it alone.",
+      "defines": [],
+      "title": "Not a promise",
+      "art": "bear"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-vwap-1",
+      "type": "mc",
+      "prompt": "What is VWAP?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The top price of the day"
+        },
+        {
+          "id": "b",
+          "text": "The average price of the day"
+        },
+        {
+          "id": "c",
+          "text": "A kind of company"
+        }
+      ],
+      "answer": "b",
+      "explanation": "VWAP is the average price of the day. Busy times count more.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-vwap-2",
+      "type": "tf",
+      "prompt": "VWAP starts fresh each day.",
+      "answer": true,
+      "explanation": "Yes. Each day gets its own VWAP line.",
+      "objective": "o-reset"
+    },
+    {
+      "id": "q-vwap-3",
+      "type": "mc",
+      "prompt": "Which chart can show VWAP?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A 5m chart"
+        },
+        {
+          "id": "b",
+          "text": "A weekly chart"
+        },
+        {
+          "id": "c",
+          "text": "A map of a town"
+        }
+      ],
+      "answer": "a",
+      "explanation": "VWAP is for intraday charts, like the 5m chart.",
+      "objective": "o-intraday"
+    },
+    {
+      "id": "q-vwap-4",
+      "type": "tf",
+      "prompt": "Price over VWAP means it is up on the day's average.",
+      "answer": true,
+      "explanation": "Yes. Over the line is up on the average. Under the line is down.",
+      "objective": "o-read"
+    },
+    {
+      "id": "q-vwap-5",
+      "type": "mc",
+      "prompt": "Price is under VWAP. What is true?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is up on the average"
+        },
+        {
+          "id": "b",
+          "text": "The day is over"
+        },
+        {
+          "id": "c",
+          "text": "It is down on the day's average"
+        }
+      ],
+      "answer": "c",
+      "explanation": "Under VWAP means price is low for the day.",
+      "objective": "o-read"
+    },
+    {
+      "id": "q-vwap-6",
+      "type": "tf",
+      "prompt": "VWAP tells you what the price will do next.",
+      "answer": false,
+      "explanation": "No. VWAP is an average of the past.",
+      "objective": "o-limit"
+    },
+    {
+      "id": "q-vwap-7",
+      "type": "lab",
+      "prompt": "Turn on VWAP. Keep the rest off.",
+      "explanation": "VWAP shows as one line. It starts over on each new day.",
+      "objective": "o-what",
+      "window": {
+        "dataset": "practice",
+        "tf": "15m",
+        "start": 0,
+        "count": 52
+      },
+      "offer": [
+        "vwap",
+        "sma",
+        "volume"
+      ],
+      "task": {
+        "kind": "indicators",
+        "want": [
+          "vwap"
+        ]
+      }
+    }
+  ]
+}

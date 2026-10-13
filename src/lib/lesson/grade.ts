@@ -1,3 +1,4 @@
+import { gradeLab, labAnswerText, isLabComplete, type LabAnswer } from "@/lib/chart/lab";
 import type { Question } from "@/lib/content/lesson-schema";
 
 /** What the learner gave as an answer, one shape per question type. */
@@ -8,7 +9,9 @@ export type Answer =
   | { type: "match"; links: Record<string, string> }
   | { type: "chart"; optionId?: string; index?: number }
   /** slotId → blockId */
-  | { type: "build"; placed: Record<string, string> };
+  | { type: "build"; placed: Record<string, string> }
+  /** An interactive chart question (draw a line, switch a timeframe, pick indicators…). */
+  | { type: "lab"; lab: LabAnswer };
 
 export interface Grade {
   correct: boolean;
@@ -41,6 +44,8 @@ export function gradeAnswer(q: Question, a: Answer): Grade {
       const right = slots.filter((s) => a.placed[s] === q.answer[s]).length;
       return { correct: right === slots.length, partsRight: right, partsTotal: slots.length };
     }
+    case "lab":
+      return { correct: a.type === "lab" && gradeLab(q, a.lab) };
   }
 }
 
@@ -58,6 +63,8 @@ export function isAnswerComplete(q: Question, a: Answer | null): boolean {
       return a.type === "chart" && (q.ask === "tap" ? a.index !== undefined : !!a.optionId);
     case "build":
       return a.type === "build" && Object.keys(a.placed).length === q.slots.length;
+    case "lab":
+      return a.type === "lab" && isLabComplete(q.task, a.lab);
   }
 }
 
@@ -77,5 +84,7 @@ export function correctAnswerText(q: Question): string {
       return q.slots
         .map((s) => `${s.label} ${q.blocks.find((b) => b.id === q.answer[s.id])?.text ?? ""}`)
         .join(" ");
+    case "lab":
+      return labAnswerText(q);
   }
 }

@@ -1,0 +1,223 @@
+{
+  "id": "u2-bands",
+  "title": "Bollinger Bands",
+  "goal": "Learn how the bands grow and shrink with price swings.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-what",
+      "text": "Say what Bollinger Bands are."
+    },
+    {
+      "id": "o-width",
+      "text": "Know that wide bands mean big swings."
+    },
+    {
+      "id": "o-read",
+      "text": "Tell if price is near the top or bottom band."
+    },
+    {
+      "id": "o-limit",
+      "text": "Know a band touch is no signal."
+    }
+  ],
+  "slides": [
+    {
+      "id": "bands",
+      "text": "Bollinger Bands are three lines around the price. The mid line is a 20 candle average. One line sits up high and one sits down low.",
+      "defines": ["bollinger-bands"],
+      "title": "Three lines",
+      "art": "candles"
+    },
+    {
+      "id": "sd",
+      "text": "A standard deviation is a number for how much the price swings. The outer lines are 2 of these from the mid line.",
+      "defines": ["standard-deviation"],
+      "title": "How far away",
+      "art": "tag"
+    },
+    {
+      "id": "width",
+      "text": "When prices swing a lot, the bands open wide. When prices are calm, the bands get tight.",
+      "defines": [],
+      "title": "Wide and tight",
+      "demo": {
+        "window": {
+          "dataset": "aapl-daily",
+          "tf": "D",
+          "start": 60,
+          "count": 60
+        },
+        "indicators": ["bands"],
+        "caption": "Real Apple prices. The bands were tight, then wide."
+      }
+    },
+    {
+      "id": "read",
+      "text": "Price near the top band is high for now. Price near the bottom band is low for now.",
+      "defines": [],
+      "title": "What it tries to tell you",
+      "art": "bull"
+    },
+    {
+      "id": "ride",
+      "text": "Price can ride along a band for a long time. Touching a band is not a sign to buy or sell. Do not trust it alone.",
+      "defines": [],
+      "title": "Not a signal",
+      "art": "bear"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-bands-1",
+      "type": "mc",
+      "prompt": "How many lines do Bollinger Bands have?",
+      "options": [
+        {
+          "id": "a",
+          "text": "One"
+        },
+        {
+          "id": "b",
+          "text": "Ten"
+        },
+        {
+          "id": "c",
+          "text": "Three"
+        }
+      ],
+      "answer": "c",
+      "explanation": "There is a mid line, plus one up and one down.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-bands-2",
+      "type": "mc",
+      "prompt": "What is the middle line?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A 20 candle average"
+        },
+        {
+          "id": "b",
+          "text": "The highest price"
+        },
+        {
+          "id": "c",
+          "text": "The news"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The mid line is a 20 candle average.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-bands-3",
+      "type": "mc",
+      "prompt": "The bands open wide. What does that mean?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Prices are calm"
+        },
+        {
+          "id": "b",
+          "text": "Prices are swinging a lot"
+        },
+        {
+          "id": "c",
+          "text": "The chart is broken"
+        }
+      ],
+      "answer": "b",
+      "explanation": "Wide bands mean big swings. Tight bands mean calm prices.",
+      "objective": "o-width"
+    },
+    {
+      "id": "q-bands-4",
+      "type": "tf",
+      "prompt": "Tight bands mean the price is calm.",
+      "answer": true,
+      "explanation": "Yes. When swings are small, the bands squeeze in.",
+      "objective": "o-width"
+    },
+    {
+      "id": "q-bands-5",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        {
+          "id": "p1",
+          "term": "Bollinger Bands",
+          "definition": "Three lines around the price"
+        },
+        {
+          "id": "p2",
+          "term": "Standard deviation",
+          "definition": "A number for how much price swings"
+        },
+        {
+          "id": "p3",
+          "term": "Top band",
+          "definition": "High for now"
+        },
+        {
+          "id": "p4",
+          "term": "Bottom band",
+          "definition": "Low for now"
+        }
+      ],
+      "explanation": "The bands are built from an average and a standard deviation.",
+      "objective": "o-what"
+    },
+    {
+      "id": "q-bands-6",
+      "type": "tf",
+      "prompt": "Price at the top band means it must fall.",
+      "answer": false,
+      "explanation": "No. Price can ride along a band for a long time.",
+      "objective": "o-limit"
+    },
+    {
+      "id": "q-bands-7",
+      "type": "mc",
+      "prompt": "Price is near the bottom band. What can you say?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It will rise for sure"
+        },
+        {
+          "id": "b",
+          "text": "You must sell"
+        },
+        {
+          "id": "c",
+          "text": "It is low for now"
+        }
+      ],
+      "answer": "c",
+      "explanation": "It tells you where the price is now. It is not a promise.",
+      "objective": "o-read"
+    },
+    {
+      "id": "q-bands-8",
+      "type": "lab",
+      "prompt": "Turn on Bollinger Bands. Keep the rest off.",
+      "explanation": "Three lines show up on the chart.",
+      "objective": "o-what",
+      "window": {
+        "dataset": "aapl-daily",
+        "tf": "D",
+        "start": 60,
+        "count": 60
+      },
+      "offer": ["bands", "sma", "volume"],
+      "task": {
+        "kind": "indicators",
+        "want": ["bands"]
+      }
+    }
+  ]
+}

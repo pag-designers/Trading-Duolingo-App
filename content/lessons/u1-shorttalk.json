@@ -133,12 +133,8 @@
     },
     {
       "id": "chart-words",
-      "text": "RSI, MACD and VWAP are chart tools. You will learn each one in Unit 2.",
-      "defines": [
-        "rsi",
-        "macd",
-        "vwap"
-      ],
+      "text": "Some short words name chart tools. You will learn them in Unit 2.",
+      "defines": [],
       "title": "Chart words",
       "art": "candles"
     }

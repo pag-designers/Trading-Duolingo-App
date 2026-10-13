@@ -107,3 +107,23 @@ content/outline.json ────────┘                         │    
 - **Content audit** (`src/lib/content/audit.ts`, `pedagogy.ts`) is pure and shared by `pnpm content:check`, the Curriculum Auditor and the Pedagogy agent: reading level, terms defined before use, answer keys, risk reminder flag, links, one idea per slide, objective coverage.
 - **Glossary**: `buildMatcher()` finds terms (longest first, plurals, ALL-CAPS exact) for the lesson highlights, the readability exemption and the audit.
 - **Progress** is a growing record (days, steps). Streaks, freezes, weeks and levels are derived; browser and database merge with `mergeProgress` (D-018).
+
+## 9. Charts and Chart School (added in CP2)
+
+```
+src/data/market/aapl-daily.json   real Apple daily bars 2015–2017 (MIT, plotly/datasets)
+src/lib/market/                   types · practice.ts (seeded made-up sessions, 2030 dates) · aggregate.ts (1m→5m/15m/1h/D, D→W)
+                                  data.ts: seriesFor(dataset, tf) · windowBars(window) · windowLead() (warm-up history)
+src/lib/indicators/               sma · ema · rsi (Wilder) · macd · vwap (per day) · bollinger — pure, null warm-up
+src/lib/chart/lab.ts              Chart Lab tasks: gradeLab · solutionFor · labProblems (tolerances in content)
+src/lib/chart/unlocks.ts          which Unit 2 lesson unlocks which indicator
+src/components/chart/             ChartView (Lightweight Charts v5: candles, volume, overlays, RSI/MACD panes, OHLC legend)
+                                  LabView (one task + keyboard cursor + SVG drawing layer) · DemoChart (slide picture)
+                                  ChartSchoolScreen (free-play chart, indicators unlock with progress)
+```
+
+- **Honest data.** Every chart prints where its prices come from ("Real history: Apple daily. Not live." or "Made-up practice prices. Not real."). Intraday charts are a seeded generator; higher timeframes are _aggregated_ from the 1-minute bars, so every timeframe tells the same story.
+- **Indicators are verified, not trusted.** The Financial Accuracy agent compares them to independent naive reference formulas and to pandas golden values (`agents/fixtures/indicators-golden.json`, made by `scripts/gen-indicator-golden.py`). A canary swaps in six broken formulas and expects red.
+- **Chart Lab** is a normal question type (`lab`): same Check button, one retry, never blocks. Answers are a few numbers (bar index, price), graded by pure code with tolerances stored in the content; the correct drawing is shown after Check. Everything works by tap/mouse **and** keyboard (arrow keys move a cursor, snap buttons set the price to a candle's high/low/open/close, Place drops the point).
+- **Drawings are an SVG layer** over the chart, positioned from the chart's own coordinate functions, so they stay on their candles when the chart scrolls or zooms.
+- **Attribution:** Lightweight Charts is Apache-2.0; credit to TradingView is printed under every chart and in the README (the in-chart logo is off so it is not a tiny tap target).

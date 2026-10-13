@@ -5,8 +5,8 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ partial
 | CP  | Scope                                    | Status             |
 | --- | ---------------------------------------- | ------------------ |
 | 0   | Foundation                               | ✅                 |
-| 1   | Unit 1 + lesson engine                   | ✅ (awaiting “go”) |
-| 2   | Chart School (Unit 2)                    | ⬜                 |
+| 1   | Unit 1 + lesson engine                   | ✅                 |
+| 2   | Chart School (Unit 2)                    | 🟡                 |
 | 3   | Candlesticks + patterns (Units 3–4)      | ⬜                 |
 | 4   | Trade Lab core                           | ⬜                 |
 | 5   | Day trading mechanics + risk (Units 5–6) | ⬜                 |

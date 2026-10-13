@@ -82,12 +82,13 @@ model XpEvent {
 }
 
 model DailyActivity {
-  userId      String
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  date        String // YYYY-MM-DD in the learner's local time
-  xp          Int     @default(0)
-  lessonsDone Int     @default(0)
-  freezeUsed  Boolean @default(false)
+  userId       String
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date         String // YYYY-MM-DD in the learner's local time
+  xp           Int     @default(0)
+  lessonsDone  Int     @default(0)
+  freezeUsed   Boolean @default(false) // a streak freeze covered this missed day (the app's `frozen`)
+  freezeEarned Boolean @default(false) // a freeze was earned on this day (every 7th streak day)
 
   @@id([userId, date])
 }

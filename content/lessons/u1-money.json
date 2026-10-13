@@ -1,0 +1,159 @@
+{
+  "id": "u1-money",
+  "title": "What is money?",
+  "goal": "Learn that money is a tool we swap for things we need.",
+  "touchesTrading": false,
+  "objectives": [
+    {
+      "id": "o-use",
+      "text": "Say what money is for."
+    },
+    {
+      "id": "o-price",
+      "text": "Say what a price is."
+    },
+    {
+      "id": "o-earn",
+      "text": "Say how people get money."
+    }
+  ],
+  "slides": [
+    {
+      "id": "money-tool",
+      "text": "Money is what we use to buy things. You can swap it for food, toys or a ride.",
+      "defines": [
+        "money"
+      ],
+      "title": "Money is a tool",
+      "art": "coins"
+    },
+    {
+      "id": "earn",
+      "text": "People earn money when they do a job. A job is work you do for pay.",
+      "defines": [],
+      "title": "People earn money",
+      "art": "shop"
+    },
+    {
+      "id": "price",
+      "text": "A price is how much money a thing costs. A toy might have a price of $5.",
+      "defines": [
+        "price"
+      ],
+      "title": "Prices",
+      "art": "tag"
+    },
+    {
+      "id": "save-spend",
+      "text": "You can spend money now, or save it for later. Saving means you keep it.",
+      "defines": [],
+      "title": "Spend or save",
+      "art": "coins"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-money-1",
+      "type": "mc",
+      "prompt": "What is money?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A tool we use to buy things"
+        },
+        {
+          "id": "b",
+          "text": "A kind of food"
+        },
+        {
+          "id": "c",
+          "text": "A game you play"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Money is what we use to buy things. We swap it for what we need.",
+      "objective": "o-use"
+    },
+    {
+      "id": "q-money-2",
+      "type": "tf",
+      "prompt": "A price tells you how much a thing costs.",
+      "answer": true,
+      "explanation": "Yes. A price is how much money a thing costs.",
+      "objective": "o-price"
+    },
+    {
+      "id": "q-money-3",
+      "type": "mc",
+      "prompt": "Which one is a way to earn money?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doing a job"
+        },
+        {
+          "id": "b",
+          "text": "Losing a toy"
+        },
+        {
+          "id": "c",
+          "text": "Eating lunch"
+        }
+      ],
+      "answer": "a",
+      "explanation": "People earn money when they do a job.",
+      "objective": "o-earn"
+    },
+    {
+      "id": "q-money-4",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        {
+          "id": "p-money",
+          "term": "Money",
+          "definition": "What we use to buy things"
+        },
+        {
+          "id": "p-price",
+          "term": "Price",
+          "definition": "How much money a thing costs"
+        },
+        {
+          "id": "p-job",
+          "term": "Job",
+          "definition": "Work you do for pay"
+        },
+        {
+          "id": "p-save",
+          "term": "Save",
+          "definition": "Keep money for later"
+        }
+      ],
+      "explanation": "Money buys things. A price says how much. A job earns money. To save is to keep it.",
+      "objective": "o-use"
+    },
+    {
+      "id": "q-money-5",
+      "type": "mc",
+      "prompt": "A toy has a price of $5. You have $8. Can you buy it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, and you have $3 left"
+        },
+        {
+          "id": "b",
+          "text": "No, you need more money"
+        },
+        {
+          "id": "c",
+          "text": "Yes, and you have $13 left"
+        }
+      ],
+      "answer": "a",
+      "explanation": "$8 is more than $5, so you can buy it. You have $3 left.",
+      "objective": "o-price"
+    }
+  ]
+}

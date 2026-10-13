@@ -1,3 +1,5 @@
+import { loadContent } from "../../src/lib/content/load";
+import { checkPedagogy, type PedagogyCheck } from "../../src/lib/content/pedagogy";
 import { outlineSchema } from "../../src/lib/content/schema";
 import { fail, pass, readJson, stub } from "../lib";
 import type { Agent, Check } from "../types";
@@ -72,14 +74,38 @@ export const pedagogy: Agent = {
           ),
     );
 
+    // Real lesson-quality rules, run on every lesson that exists.
+    const content = loadContent(root);
+    const findings = checkPedagogy(content.lessons, parsed.data);
+    const TITLES: Record<PedagogyCheck, string> = {
+      "one-idea-per-slide": "Teach slides: one idea, at most 3 sentences",
+      "objective-mapping": "Every learning objective has a question that practices it",
+      "enough-practice": "Every teaching lesson has enough questions",
+      "pool-size": "Practice and boss steps have enough questions",
+    };
+    for (const id of Object.keys(TITLES) as PedagogyCheck[]) {
+      const mine = findings.filter((f) => f.check === id);
+      checks.push(
+        mine.length === 0
+          ? pass(id, TITLES[id], `Checked ${content.lessons.length} lessons.`)
+          : fail(
+              id,
+              TITLES[id],
+              `${mine.length} problem(s). ` +
+                mine
+                  .slice(0, 3)
+                  .map((f) => `${f.where}: ${f.message}`)
+                  .join(" | "),
+            ),
+      );
+    }
     checks.push(
       stub(
-        "objective-mapping",
-        "Each learning objective maps to a question and a trade exercise",
-        "CP1+",
+        "trade-exercise-mapping",
+        "Each objective also has a trade exercise (where it applies)",
+        "CP4",
       ),
     );
-    checks.push(stub("one-idea-per-slide", "Teach slides: one idea, max 3 sentences", "CP1"));
     checks.push(stub("difficulty-ramp", "Difficulty does not jump between units", "CP3"));
     return checks;
   },

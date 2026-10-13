@@ -1,0 +1,363 @@
+{
+  "id": "u1-bullbear",
+  "title": "Bulls, bears and indexes",
+  "goal": "Learn what it means when the market is up or down.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-bull-bear",
+      "text": "Say what a bull and a bear think."
+    },
+    {
+      "id": "o-up-down",
+      "text": "Tell if a chart is going up or down."
+    },
+    {
+      "id": "o-index",
+      "text": "Say what an index is."
+    }
+  ],
+  "slides": [
+    {
+      "id": "animals",
+      "text": "Think of two animals. One swings its horns up. One swipes its paw down.",
+      "defines": [],
+      "title": "Two animals",
+      "art": "bull"
+    },
+    {
+      "id": "bull",
+      "text": "A bull thinks prices will rise. In a bull market, prices rise for a long time.",
+      "defines": [
+        "bull"
+      ],
+      "title": "Bulls",
+      "art": "bull"
+    },
+    {
+      "id": "bear",
+      "text": "A bear thinks prices will fall. In a bear market, prices fall for a long time.",
+      "defines": [
+        "bear"
+      ],
+      "title": "Bears",
+      "art": "bear"
+    },
+    {
+      "id": "up-down",
+      "text": "People say the market is up or down. Up means prices rose that day. Down means they fell.",
+      "defines": [],
+      "title": "Up or down",
+      "art": "candles"
+    },
+    {
+      "id": "index",
+      "text": "An index is a list of stocks that shows how a group is doing. If many stocks in the list rise, the index goes up.",
+      "defines": [
+        "index"
+      ],
+      "title": "Indexes",
+      "art": "index"
+    },
+    {
+      "id": "big-three",
+      "text": "The S&P 500 is an index of 500 big US companies. The Dow is an index of 30 big companies. The Nasdaq has an index too.",
+      "defines": [
+        "sp500",
+        "dow"
+      ],
+      "title": "Big indexes",
+      "art": "index"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-bb-1",
+      "type": "mc",
+      "prompt": "A bull thinks prices will...",
+      "options": [
+        {
+          "id": "a",
+          "text": "Rise"
+        },
+        {
+          "id": "b",
+          "text": "Fall"
+        },
+        {
+          "id": "c",
+          "text": "Never move"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A bull thinks prices will rise.",
+      "objective": "o-bull-bear"
+    },
+    {
+      "id": "q-bb-2",
+      "type": "mc",
+      "prompt": "A bear market is a time when prices...",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fall for a long time"
+        },
+        {
+          "id": "b",
+          "text": "Rise for a long time"
+        },
+        {
+          "id": "c",
+          "text": "Do not move"
+        }
+      ],
+      "answer": "a",
+      "explanation": "In a bear market, prices fall for a long time.",
+      "objective": "o-bull-bear"
+    },
+    {
+      "id": "q-bb-3",
+      "type": "chart",
+      "ask": "choice",
+      "prompt": "Look at the chart. Is the price going up or down?",
+      "candles": [
+        {
+          "o": 10,
+          "h": 11.2,
+          "l": 9.6,
+          "c": 10.8
+        },
+        {
+          "o": 10.8,
+          "h": 11.2,
+          "l": 10.1,
+          "c": 10.5
+        },
+        {
+          "o": 10.5,
+          "h": 11.8,
+          "l": 10.1,
+          "c": 11.4
+        },
+        {
+          "o": 11.4,
+          "h": 12.3,
+          "l": 11.0,
+          "c": 11.9
+        },
+        {
+          "o": 11.9,
+          "h": 12.3,
+          "l": 11.2,
+          "c": 11.6
+        },
+        {
+          "o": 11.6,
+          "h": 12.9,
+          "l": 11.2,
+          "c": 12.5
+        },
+        {
+          "o": 12.5,
+          "h": 13.5,
+          "l": 12.1,
+          "c": 13.1
+        },
+        {
+          "o": 13.1,
+          "h": 14.0,
+          "l": 12.7,
+          "c": 13.6
+        }
+      ],
+      "options": [
+        {
+          "id": "up",
+          "text": "Up"
+        },
+        {
+          "id": "down",
+          "text": "Down"
+        }
+      ],
+      "answer": "up",
+      "explanation": "The candles go up. So the price is going up.",
+      "objective": "o-up-down"
+    },
+    {
+      "id": "q-bb-4",
+      "type": "chart",
+      "ask": "choice",
+      "prompt": "Look at the chart. Is the price going up or down?",
+      "candles": [
+        {
+          "o": 13,
+          "h": 13.4,
+          "l": 12.0,
+          "c": 12.4
+        },
+        {
+          "o": 12.4,
+          "h": 13.1,
+          "l": 12.0,
+          "c": 12.7
+        },
+        {
+          "o": 12.7,
+          "h": 13.1,
+          "l": 11.4,
+          "c": 11.8
+        },
+        {
+          "o": 11.8,
+          "h": 12.2,
+          "l": 10.8,
+          "c": 11.2
+        },
+        {
+          "o": 11.2,
+          "h": 11.9,
+          "l": 10.8,
+          "c": 11.5
+        },
+        {
+          "o": 11.5,
+          "h": 11.9,
+          "l": 10.0,
+          "c": 10.4
+        },
+        {
+          "o": 10.4,
+          "h": 10.8,
+          "l": 9.4,
+          "c": 9.8
+        },
+        {
+          "o": 9.8,
+          "h": 10.2,
+          "l": 8.9,
+          "c": 9.3
+        }
+      ],
+      "options": [
+        {
+          "id": "up",
+          "text": "Up"
+        },
+        {
+          "id": "down",
+          "text": "Down"
+        }
+      ],
+      "answer": "down",
+      "explanation": "The candles go down. So the price is going down.",
+      "objective": "o-up-down"
+    },
+    {
+      "id": "q-bb-5",
+      "type": "chart",
+      "ask": "tap",
+      "prompt": "Tap the candle that hits the top price.",
+      "candles": [
+        {
+          "o": 10,
+          "h": 11.2,
+          "l": 9.6,
+          "c": 10.8
+        },
+        {
+          "o": 10.8,
+          "h": 11.2,
+          "l": 10.1,
+          "c": 10.5
+        },
+        {
+          "o": 10.5,
+          "h": 11.8,
+          "l": 10.1,
+          "c": 11.4
+        },
+        {
+          "o": 11.4,
+          "h": 12.3,
+          "l": 11.0,
+          "c": 11.9
+        },
+        {
+          "o": 11.9,
+          "h": 12.3,
+          "l": 11.2,
+          "c": 11.6
+        },
+        {
+          "o": 11.6,
+          "h": 12.9,
+          "l": 11.2,
+          "c": 12.5
+        }
+      ],
+      "answerIndex": 5,
+      "explanation": "The last candle hits the top price.",
+      "objective": "o-up-down"
+    },
+    {
+      "id": "q-bb-6",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        {
+          "id": "p-sp500",
+          "term": "S&P 500",
+          "definition": "An index of 500 big US companies"
+        },
+        {
+          "id": "p-dow",
+          "term": "Dow",
+          "definition": "An index of 30 big US companies"
+        },
+        {
+          "id": "p-bull",
+          "term": "Bull",
+          "definition": "Thinks prices will rise"
+        },
+        {
+          "id": "p-bear",
+          "term": "Bear",
+          "definition": "Thinks prices will fall"
+        }
+      ],
+      "explanation": "The S&P 500 and the Dow are indexes. A bull is hopeful. A bear is not.",
+      "objective": "o-index"
+    },
+    {
+      "id": "q-bb-7",
+      "type": "tf",
+      "prompt": "If an index goes up, many of its stocks rose.",
+      "answer": true,
+      "explanation": "Yes. An index shows how a group of stocks is doing.",
+      "objective": "o-index"
+    },
+    {
+      "id": "q-bb-8",
+      "type": "mc",
+      "prompt": "Which one is an index of 500 big US companies?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The S&P 500"
+        },
+        {
+          "id": "b",
+          "text": "The Dow"
+        },
+        {
+          "id": "c",
+          "text": "The NYSE"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The S&P 500 is an index of 500 big US companies.",
+      "objective": "o-index"
+    }
+  ]
+}

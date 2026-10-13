@@ -28,7 +28,8 @@ export default defineConfig({
     // Production build: deterministic and fast (a cold dev server compiles each route on first visit).
     command: `pnpm exec next build && pnpm exec next start -p ${port}`,
     url: `http://localhost:${port}`,
-    reuseExistingServer: false,
+    // Set REUSE_SERVER=1 to run against a server you started yourself (faster to iterate on one test).
+    reuseExistingServer: !!process.env.REUSE_SERVER,
     timeout: 240_000,
     env: { DATABASE_URL: E2E_DB },
   },

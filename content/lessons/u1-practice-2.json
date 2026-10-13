@@ -1,0 +1,69 @@
+{
+  "id": "u1-practice-2",
+  "title": "Mixed practice",
+  "goal": "Practice tickers, short-talk and bulls and bears.",
+  "touchesTrading": true,
+  "objectives": [],
+  "slides": [],
+  "questions": [
+    {
+      "id": "q-p2-1",
+      "type": "mc",
+      "prompt": "Which one is a ticker?",
+      "options": [
+        {
+          "id": "a",
+          "text": "AAPL"
+        },
+        {
+          "id": "b",
+          "text": "Apple pie"
+        },
+        {
+          "id": "c",
+          "text": "A big shop"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A ticker is a short code for a stock, like AAPL."
+    },
+    {
+      "id": "q-p2-2",
+      "type": "tf",
+      "prompt": "A loss means you sold for less than you paid.",
+      "answer": true,
+      "explanation": "Yes. A loss is money you lose when you sell for less than you paid."
+    },
+    {
+      "id": "q-p2-3",
+      "type": "mc",
+      "prompt": "A bear thinks prices will...",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fall"
+        },
+        {
+          "id": "b",
+          "text": "Rise"
+        },
+        {
+          "id": "c",
+          "text": "Stand still"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A bear thinks prices will fall."
+    }
+  ],
+  "pool": {
+    "from": [
+      "u1-market",
+      "u1-profit",
+      "u1-tickers",
+      "u1-shorttalk",
+      "u1-bullbear"
+    ],
+    "perLesson": 1
+  }
+}

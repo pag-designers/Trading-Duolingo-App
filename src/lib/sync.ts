@@ -1,4 +1,6 @@
 import { meSchema, type Me } from "@/lib/me-schema";
+import { progressSchema } from "@/lib/progress-schema";
+import type { ProgressState } from "@/lib/progress";
 
 /**
  * Decide what to do with local vs server copies of one section.
@@ -32,4 +34,24 @@ export async function putMe(me: Me): Promise<Me> {
   });
   if (!res.ok) throw new Error(`PUT /api/me failed (${res.status})`);
   return meSchema.parse(await res.json());
+}
+
+export async function fetchProgress(timeoutMs = FIRST_SYNC_TIMEOUT_MS): Promise<ProgressState> {
+  const res = await fetch("/api/progress", {
+    cache: "no-store",
+    signal: AbortSignal.timeout(timeoutMs),
+  });
+  if (!res.ok) throw new Error(`GET /api/progress failed (${res.status})`);
+  return progressSchema.parse(await res.json());
+}
+
+/** Send local progress; the server merges it with what it has and returns the merged copy. */
+export async function putProgress(p: ProgressState): Promise<ProgressState> {
+  const res = await fetch("/api/progress", {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(p),
+  });
+  if (!res.ok) throw new Error(`PUT /api/progress failed (${res.status})`);
+  return progressSchema.parse(await res.json());
 }

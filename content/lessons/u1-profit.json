@@ -1,0 +1,194 @@
+{
+  "id": "u1-profit",
+  "title": "Buy low, sell high",
+  "goal": "Learn what profit and loss mean.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-profit",
+      "text": "Say what profit is."
+    },
+    {
+      "id": "o-loss",
+      "text": "Say what a loss is."
+    },
+    {
+      "id": "o-trade",
+      "text": "Say what a trade is."
+    }
+  ],
+  "slides": [
+    {
+      "id": "buy-low",
+      "text": "You buy a toy for $5. Then you sell it for $8. You got $3 more than you paid.",
+      "defines": [],
+      "title": "A toy story",
+      "art": "profit"
+    },
+    {
+      "id": "profit",
+      "text": "That $3 is your profit. Profit is money you make when you sell for more than you paid.",
+      "defines": [
+        "profit"
+      ],
+      "title": "Profit",
+      "art": "profit"
+    },
+    {
+      "id": "loss",
+      "text": "Say you sell the toy for $3. You paid $5, so you lose $2. That is called a loss.",
+      "defines": [
+        "loss"
+      ],
+      "title": "Loss",
+      "art": "loss"
+    },
+    {
+      "id": "trade",
+      "text": "One buy or one sell is called a trade. A person who buys and sells stocks is a trader.",
+      "defines": [
+        "trade",
+        "trader"
+      ],
+      "title": "Trades",
+      "art": "coins"
+    },
+    {
+      "id": "both-ways",
+      "text": "Stock prices go up and down. A trader can make a profit or have a loss.",
+      "defines": [],
+      "title": "Both ways",
+      "art": "candles"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-profit-1",
+      "type": "mc",
+      "prompt": "You buy at $10 and sell at $12. What do you have?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A profit of $2"
+        },
+        {
+          "id": "b",
+          "text": "A loss of $2"
+        },
+        {
+          "id": "c",
+          "text": "A profit of $12"
+        }
+      ],
+      "answer": "a",
+      "explanation": "$12 is more than $10, so you made $2. That is a profit.",
+      "objective": "o-profit"
+    },
+    {
+      "id": "q-profit-2",
+      "type": "mc",
+      "prompt": "You buy at $10 and sell at $7. What do you have?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A loss of $3"
+        },
+        {
+          "id": "b",
+          "text": "A profit of $3"
+        },
+        {
+          "id": "c",
+          "text": "A profit of $7"
+        }
+      ],
+      "answer": "a",
+      "explanation": "$7 is less than $10, so you lost $3. That is a loss.",
+      "objective": "o-loss"
+    },
+    {
+      "id": "q-profit-3",
+      "type": "tf",
+      "prompt": "A trade is one buy or one sell.",
+      "answer": true,
+      "explanation": "Yes. One buy or one sell is one trade.",
+      "objective": "o-trade"
+    },
+    {
+      "id": "q-profit-4",
+      "type": "build",
+      "prompt": "Build the sum.",
+      "slots": [
+        {
+          "id": "s1",
+          "label": "Profit ="
+        },
+        {
+          "id": "s2",
+          "label": "minus"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "sell",
+          "text": "sell price"
+        },
+        {
+          "id": "buy",
+          "text": "buy price"
+        },
+        {
+          "id": "stock",
+          "text": "stock"
+        },
+        {
+          "id": "company",
+          "text": "company"
+        }
+      ],
+      "answer": {
+        "s1": "sell",
+        "s2": "buy"
+      },
+      "explanation": "Profit is the sell price minus the buy price.",
+      "objective": "o-profit"
+    },
+    {
+      "id": "q-profit-5",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        {
+          "id": "p-profit",
+          "term": "Profit",
+          "definition": "Money you make when you sell for more"
+        },
+        {
+          "id": "p-loss",
+          "term": "Loss",
+          "definition": "Money you lose when you sell for less"
+        },
+        {
+          "id": "p-trade",
+          "term": "Trade",
+          "definition": "One buy or one sell"
+        },
+        {
+          "id": "p-trader",
+          "term": "Trader",
+          "definition": "A person who buys and sells stocks"
+        }
+      ],
+      "explanation": "Profit is a gain. Loss is a drop. A trade is one buy or sell.",
+      "objective": "o-trade"
+    },
+    {
+      "id": "q-profit-6",
+      "type": "tf",
+      "prompt": "You always make a profit when you trade.",
+      "answer": false,
+      "explanation": "No. You can make a profit or a loss. Most day traders lose money.",
+      "objective": "o-loss"
+    }
+  ]
+}

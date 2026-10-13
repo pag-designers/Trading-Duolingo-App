@@ -1,0 +1,155 @@
+{
+  "id": "u1-stock",
+  "title": "What is a stock?",
+  "goal": "A stock is a small piece of a company that you can own.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-stock",
+      "text": "Say what a stock is."
+    },
+    {
+      "id": "o-share",
+      "text": "Say what a share is."
+    },
+    {
+      "id": "o-risk",
+      "text": "Know that a stock price can go up or down."
+    }
+  ],
+  "slides": [
+    {
+      "id": "pie",
+      "text": "Picture a big pie. Cut it into small slices. A company can be cut like that.",
+      "defines": [],
+      "title": "Think of a pie",
+      "art": "pie"
+    },
+    {
+      "id": "stock",
+      "text": "A stock is a small piece of a company that you can own. Each slice of the pie is a piece.",
+      "defines": [
+        "stock"
+      ],
+      "title": "Stocks",
+      "art": "pie"
+    },
+    {
+      "id": "share",
+      "text": "One unit of a stock is called a share. If you own 10 shares, you own 10 slices.",
+      "defines": [
+        "share"
+      ],
+      "title": "Shares",
+      "art": "pie"
+    },
+    {
+      "id": "owner-again",
+      "text": "When you own a stock, you are a part owner. The price of your slice can go up or down.",
+      "defines": [],
+      "title": "Part owner",
+      "art": "pie"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-stock-1",
+      "type": "mc",
+      "prompt": "What is a stock?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A small piece of a company"
+        },
+        {
+          "id": "b",
+          "text": "A kind of coin"
+        },
+        {
+          "id": "c",
+          "text": "A toy store"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A stock is a small piece of a company that you can own.",
+      "objective": "o-stock"
+    },
+    {
+      "id": "q-stock-2",
+      "type": "tf",
+      "prompt": "A share is one unit of a stock.",
+      "answer": true,
+      "explanation": "Yes. Own 10 shares and you own 10 small pieces.",
+      "objective": "o-share"
+    },
+    {
+      "id": "q-stock-3",
+      "type": "mc",
+      "prompt": "You own 3 shares. What do you own?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3 small pieces of a company"
+        },
+        {
+          "id": "b",
+          "text": "3 whole companies"
+        },
+        {
+          "id": "c",
+          "text": "3 shops"
+        }
+      ],
+      "answer": "a",
+      "explanation": "Each share is one small piece.",
+      "objective": "o-share"
+    },
+    {
+      "id": "q-stock-4",
+      "type": "tf",
+      "prompt": "A stock price can only go up.",
+      "answer": false,
+      "explanation": "No. A stock price can go up or down. That is why stocks have risk.",
+      "objective": "o-risk"
+    },
+    {
+      "id": "q-stock-5",
+      "type": "build",
+      "prompt": "Fill in the blanks.",
+      "slots": [
+        {
+          "id": "s1",
+          "label": "A stock is a small"
+        },
+        {
+          "id": "s2",
+          "label": "of a"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "piece",
+          "text": "piece"
+        },
+        {
+          "id": "company",
+          "text": "company"
+        },
+        {
+          "id": "shoe",
+          "text": "shoe"
+        },
+        {
+          "id": "song",
+          "text": "song"
+        }
+      ],
+      "answer": {
+        "s1": "piece",
+        "s2": "company"
+      },
+      "explanation": "A stock is a small piece of a company.",
+      "objective": "o-stock"
+    }
+  ]
+}

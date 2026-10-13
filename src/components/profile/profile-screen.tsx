@@ -4,6 +4,7 @@ import { Award, Download, Flame, Star, Zap } from "lucide-react";
 import Link from "next/link";
 import { Wick } from "@/components/mascot/wick";
 import { useStats } from "@/components/shell/stats";
+import { FreezeNote, LeagueCard, WeekCard } from "@/components/progress/week-and-league";
 import { Button } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
 import { downloadBackup } from "@/lib/backup";
@@ -55,6 +56,12 @@ export function ProfileScreen() {
         <Stat icon={Flame} label="Streak" value={streak} />
         <Stat icon={Star} label="Best streak" value={longestStreak(days)} />
         <Stat icon={Award} label="Steps done" value={done} />
+      </div>
+
+      <FreezeNote />
+      <div className="grid gap-4 md:grid-cols-2">
+        <WeekCard />
+        <LeagueCard />
       </div>
 
       <Card>

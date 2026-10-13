@@ -30,3 +30,24 @@ export function findCurrentNode(
   }
   return null;
 }
+
+/**
+ * Mark which steps can be opened. A step is ready when its lesson file exists; chests need no lesson
+ * and are always ready. (Readiness comes from the files, so it can never drift from the content.)
+ */
+export function withReadiness(outline: Outline, lessonIds: ReadonlySet<string>): Outline {
+  return {
+    ...outline,
+    units: outline.units.map((u) => ({
+      ...u,
+      nodes: u.nodes.map((n) => ({ ...n, ready: n.type === "chest" || lessonIds.has(n.id) })),
+    })),
+  };
+}
+
+/** The step after `nodeId` in course order, or null at the end. */
+export function nextNode(outline: Outline, nodeId: string): OutlineNode | null {
+  const all = outline.units.flatMap((u) => u.nodes);
+  const i = all.findIndex((n) => n.id === nodeId);
+  return i >= 0 ? (all[i + 1] ?? null) : null;
+}

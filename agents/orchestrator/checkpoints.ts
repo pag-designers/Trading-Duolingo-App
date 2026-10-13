@@ -1,55 +1,48 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { readJson, readText } from "../lib";
-import type { CheckpointProgress } from "../types";
+import type { AgentResult, CheckpointProgress } from "../types";
+import criteriaJson from "./criteria.json";
 
-interface E2eReport {
-  suites?: unknown[];
-  stats?: { unexpected?: number; expected?: number };
+/** One acceptance criterion and the evidence that proves it. */
+interface Criterion {
+  text: string;
+  /** An e2e test whose title contains this tag must have passed. */
+  e2e?: string;
+  /** This file must exist. */
+  file?: string;
+  /** This agent check must be green in the agent's latest report. */
+  agentCheck?: { agent: string; check: string };
+}
+const CRITERIA = criteriaJson as Record<string, { title: string; criteria: Criterion[] }>;
+
+interface E2eSpec {
+  title: string;
+  ok: boolean;
+}
+interface E2eSuite {
+  specs?: E2eSpec[];
+  suites?: E2eSuite[];
 }
 
-/** Collect every passing/failing e2e test title from a Playwright JSON report. */
-function e2eResults(root: string): Map<string, boolean> | null {
-  let report: E2eReport | undefined;
+/** Every test title in a Playwright JSON report, with whether it passed on all projects. */
+export function e2eResults(root: string): Map<string, boolean> | null {
+  let report: { suites?: E2eSuite[] } | undefined;
   try {
-    report = readJson(root, "reports/e2e/latest.json") as E2eReport | undefined;
+    report = readJson(root, "reports/e2e/latest.json") as typeof report;
   } catch {
     return null;
   }
   if (!report) return null;
   const out = new Map<string, boolean>();
-  const walk = (node: unknown) => {
-    const n = node as {
-      title?: string;
-      specs?: unknown[];
-      suites?: unknown[];
-      tests?: { results?: { status: string }[] }[];
-      ok?: boolean;
-    };
-    for (const spec of (n.specs ?? []) as { title: string; ok: boolean }[]) {
+  const walk = (suite: E2eSuite) => {
+    for (const spec of suite.specs ?? [])
       out.set(spec.title, (out.get(spec.title) ?? true) && spec.ok);
-    }
-    for (const s of n.suites ?? []) walk(s);
+    for (const child of suite.suites ?? []) walk(child);
   };
   for (const s of report.suites ?? []) walk(s);
   return out;
 }
-
-/**
- * Acceptance criteria per checkpoint (BRIEF §9). `tag` links a criterion to an e2e test whose title
- * contains that tag; `file` links it to a file that must exist.
- */
-const CP0 = {
-  id: "CP0",
-  title: "Foundation",
-  criteria: [
-    { text: "App runs", tag: "@cp0-app-runs" },
-    { text: "Onboarding works", tag: "@cp0-onboarding" },
-    { text: "The path map renders", tag: "@cp0-path-map" },
-    { text: "Dark mode works", tag: "@cp0-dark-mode" },
-    { text: "Agents run", file: "reports/data-integrity/latest.json" },
-  ],
-};
 
 /**
  * The current checkpoint is the first row of the PROGRESS.md table that is not fully done:
@@ -63,14 +56,24 @@ export function currentCheckpointNumber(progressMd: string): number | null {
   return null;
 }
 
+function agentCheckStatus(root: string, agent: string, check: string): string | null {
+  try {
+    const result = readJson(root, `reports/${agent}/latest.json`) as AgentResult | undefined;
+    return result?.checks.find((c) => c.id === check)?.status ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** Evaluate the current checkpoint's acceptance criteria against real evidence on disk. */
 export function checkpointProgress(root: string): CheckpointProgress | null {
-  // Only CP0 has acceptance criteria wired so far; later checkpoints add theirs.
-  const current = currentCheckpointNumber(readText(root, "PROGRESS.md") ?? "") === 0 ? CP0 : null;
-  if (!current) return null;
+  const n = currentCheckpointNumber(readText(root, "PROGRESS.md") ?? "");
+  const spec = n === null ? undefined : CRITERIA[String(n)];
+  if (n === null || !spec) return null;
 
   const e2e = e2eResults(root);
-  const criteria = current.criteria.map((c) => {
-    if ("file" in c && c.file) {
+  const criteria = spec.criteria.map((c) => {
+    if (c.file) {
       const met = existsSync(join(root, c.file));
       return {
         text: c.text,
@@ -78,9 +81,21 @@ export function checkpointProgress(root: string): CheckpointProgress | null {
         evidence: met ? `${c.file} exists` : `${c.file} not found — run pnpm agents:run`,
       };
     }
-    const tag = "tag" in c ? c.tag : "";
+    if (c.agentCheck) {
+      const { agent, check } = c.agentCheck;
+      const status = agentCheckStatus(root, agent, check);
+      return {
+        text: c.text,
+        met: status === "green",
+        evidence:
+          status === null
+            ? `no report for ${agent}/${check} — run pnpm agents:run`
+            : `${agent} → ${check} is ${status}`,
+      };
+    }
+    const tag = c.e2e ?? "";
     if (!e2e) return { text: c.text, met: false, evidence: "No e2e report yet — run pnpm e2e" };
-    const hits = [...e2e.entries()].filter(([title]) => title.includes(tag ?? ""));
+    const hits = [...e2e.entries()].filter(([title]) => title.includes(tag));
     if (hits.length === 0)
       return { text: c.text, met: false, evidence: `No e2e test tagged ${tag}` };
     const ok = hits.every(([, passed]) => passed);
@@ -90,5 +105,5 @@ export function checkpointProgress(root: string): CheckpointProgress | null {
       evidence: `${hits.length} e2e test(s) ${ok ? "passed" : "FAILED"}`,
     };
   });
-  return { id: current.id, title: current.title, criteria, met: criteria.every((c) => c.met) };
+  return { id: `CP${n}`, title: spec.title, criteria, met: criteria.every((c) => c.met) };
 }

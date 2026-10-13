@@ -16,6 +16,8 @@ export interface IntegrityProblem {
     | "xp_mismatch"
     | "not_a_number"
     | "negative"
+    | "frozen_with_xp"
+    | "freeze_overspent"
     | "done_without_date"
     | "bad_score"
     | "bad_status"
@@ -30,7 +32,6 @@ export function checkProgress(p: ProgressSnapshot): IntegrityProblem[] {
   const problems: IntegrityProblem[] = [];
   const numbers = [
     p.totalXp,
-    p.freezes,
     ...Object.values(p.days).flatMap((d) => [d.xp, d.lessonsDone]),
     ...Object.values(p.nodes).flatMap((n) => [n.bestScore, n.attempts]),
   ];
@@ -48,10 +49,24 @@ export function checkProgress(p: ProgressSnapshot): IntegrityProblem[] {
       message: `totalXp is ${p.totalXp} but daily XP adds up to ${daySum}`,
     });
   }
-  if (p.totalXp < 0 || p.freezes < 0) {
-    problems.push({ code: "negative", message: "totalXp or freezes is negative" });
+  if (p.totalXp < 0) {
+    problems.push({ code: "negative", message: "totalXp is negative" });
+  }
+  const earned = Object.values(p.days).filter((d) => d.freezeEarned).length;
+  const used = Object.values(p.days).filter((d) => d.frozen).length;
+  if (used > earned) {
+    problems.push({
+      code: "freeze_overspent",
+      message: `${used} frozen days but only ${earned} freezes earned`,
+    });
   }
   for (const [date, d] of Object.entries(p.days)) {
+    if (d.frozen && d.xp > 0) {
+      problems.push({
+        code: "frozen_with_xp",
+        message: `day ${date} is marked frozen but has ${d.xp} XP`,
+      });
+    }
     if (d.xp < 0 || d.lessonsDone < 0)
       problems.push({ code: "negative", message: `day ${date} has negative values` });
   }
@@ -95,5 +110,5 @@ export function repairProgress(p: ProgressSnapshot): ProgressSnapshot {
     };
   }
   const totalXp = Object.values(days).reduce((sum, d) => sum + d.xp, 0);
-  return { totalXp, days, nodes, freezes: Math.max(0, p.freezes) };
+  return { totalXp, days, nodes };
 }

@@ -1,0 +1,526 @@
+{
+  "version": 1,
+  "terms": [
+    {
+      "id": "money",
+      "term": "money",
+      "aliases": [],
+      "definition": "Money is what we use to buy things.",
+      "analogy": "Money is like a token you swap for things you want.",
+      "example": "You give $2 and get an apple.",
+      "taughtIn": "u1-money"
+    },
+    {
+      "id": "price",
+      "term": "price",
+      "aliases": [],
+      "definition": "A price is how much money a thing costs.",
+      "analogy": "A price is like a tag on a toy.",
+      "example": "The toy has a price of $5.",
+      "taughtIn": "u1-money"
+    },
+    {
+      "id": "company",
+      "term": "company",
+      "aliases": [
+        "companies"
+      ],
+      "definition": "A company is a group of people who make or sell things.",
+      "analogy": "A company is like a team. Each person has a job.",
+      "example": "A shop that bakes bread is a company.",
+      "taughtIn": "u1-company"
+    },
+    {
+      "id": "product",
+      "term": "product",
+      "aliases": [],
+      "definition": "A product is a thing that a company sells.",
+      "analogy": "A product is what sits on the shelf in a shop.",
+      "example": "A loaf of bread is a product.",
+      "taughtIn": "u1-company"
+    },
+    {
+      "id": "customer",
+      "term": "customer",
+      "aliases": [],
+      "definition": "A customer is a person who buys from a company.",
+      "analogy": "A customer is the one who walks into the shop.",
+      "example": "Mia is a customer. She buys a loaf of bread.",
+      "taughtIn": "u1-company"
+    },
+    {
+      "id": "owner",
+      "term": "owner",
+      "aliases": [],
+      "definition": "An owner is a person who owns a part of a company.",
+      "analogy": "You own your bike. An owner owns a part of a company.",
+      "example": "Sam owns half of the shop, so Sam is an owner.",
+      "taughtIn": "u1-company"
+    },
+    {
+      "id": "stock",
+      "term": "stock",
+      "aliases": [],
+      "definition": "A stock is a small piece of a company that you can own.",
+      "analogy": "A stock is like one slice of a big pie.",
+      "example": "You own a stock of a shop. You own a bit of the shop.",
+      "taughtIn": "u1-stock"
+    },
+    {
+      "id": "share",
+      "term": "share",
+      "aliases": [],
+      "definition": "A share is one unit of a stock.",
+      "analogy": "A share is like one slice of the pie.",
+      "example": "You buy 3 shares. Now you own 3 slices.",
+      "taughtIn": "u1-stock"
+    },
+    {
+      "id": "market",
+      "term": "market",
+      "aliases": [],
+      "definition": "A market is a place where people buy and sell.",
+      "analogy": "A market is like a fair with many stalls.",
+      "example": "A farm market sells fruit, eggs and bread.",
+      "taughtIn": "u1-market"
+    },
+    {
+      "id": "stock-market",
+      "term": "stock market",
+      "aliases": [],
+      "definition": "The stock market is a place where people buy and sell stocks.",
+      "analogy": "The stock market is like a big fair for pieces of companies.",
+      "example": "On the stock market, Mia buys 2 shares of a toy company.",
+      "taughtIn": "u1-market"
+    },
+    {
+      "id": "exchange",
+      "term": "exchange",
+      "aliases": [],
+      "definition": "An exchange is a business that runs a stock market.",
+      "analogy": "An exchange is like the mall that holds many shops.",
+      "example": "The NYSE and the Nasdaq are two big exchanges.",
+      "taughtIn": "u1-market"
+    },
+    {
+      "id": "nyse",
+      "term": "NYSE",
+      "aliases": [
+        "New York Stock Exchange"
+      ],
+      "definition": "The NYSE is the New York Stock Exchange, a big US exchange.",
+      "analogy": "The NYSE is like a big old mall.",
+      "example": "A famous shoe company can list its stock on the NYSE.",
+      "taughtIn": "u1-market"
+    },
+    {
+      "id": "nasdaq",
+      "term": "Nasdaq",
+      "aliases": [],
+      "definition": "The Nasdaq is a big US exchange. Many tech companies are there.",
+      "analogy": "The Nasdaq is like a mall full of tech shops.",
+      "example": "A phone company can list its stock on the Nasdaq.",
+      "taughtIn": "u1-market"
+    },
+    {
+      "id": "profit",
+      "term": "profit",
+      "aliases": [],
+      "definition": "Profit is the money you make when you sell for more than you paid.",
+      "analogy": "You buy a toy for $5 and sell it for $8. You keep $3.",
+      "example": "Buy at $10, sell at $12. Your profit is $2.",
+      "taughtIn": "u1-profit"
+    },
+    {
+      "id": "loss",
+      "term": "loss",
+      "aliases": [
+        "losses"
+      ],
+      "definition": "A loss is money you lose when you sell for less than you paid.",
+      "analogy": "You buy a toy for $5 and sell it for $3. You lose $2.",
+      "example": "Buy at $10, sell at $7. Your loss is $3.",
+      "taughtIn": "u1-profit"
+    },
+    {
+      "id": "trade",
+      "term": "trade",
+      "aliases": [
+        "trading",
+        "traded"
+      ],
+      "definition": "A trade is one buy or one sell of a stock.",
+      "analogy": "A trade is like a swap. Money for stock, or stock for money.",
+      "example": "Mia buys 2 shares today. That is one trade.",
+      "taughtIn": "u1-profit"
+    },
+    {
+      "id": "trader",
+      "term": "trader",
+      "aliases": [],
+      "definition": "A trader is a person who buys and sells stocks.",
+      "analogy": "A trader is like a shopper who buys and sells all day.",
+      "example": "Sam is a trader. He makes many trades.",
+      "taughtIn": "u1-profit"
+    },
+    {
+      "id": "ticker",
+      "term": "ticker",
+      "aliases": [
+        "ticker symbol",
+        "symbol"
+      ],
+      "definition": "A ticker is a short code for a stock, like AAPL.",
+      "analogy": "A ticker is like a nickname for a stock.",
+      "example": "AAPL is the ticker for Apple.",
+      "taughtIn": "u1-tickers"
+    },
+    {
+      "id": "etf",
+      "term": "ETF",
+      "aliases": [
+        "exchange-traded fund"
+      ],
+      "definition": "An ETF is a box that holds stocks.",
+      "analogy": "An ETF is like a bag of mixed fruit.",
+      "example": "SPY is an ETF. One share gives you a bit of 500 companies.",
+      "taughtIn": "u1-tickers"
+    },
+    {
+      "id": "adr",
+      "term": "ADR",
+      "aliases": [],
+      "definition": "An ADR lets you buy a foreign stock in the US.",
+      "analogy": "An ADR is a bridge that brings a foreign stock here.",
+      "example": "TSM is an ADR. It is a Taiwan company you can buy in the US.",
+      "taughtIn": "u1-tickers"
+    },
+    {
+      "id": "suffix",
+      "term": "suffix",
+      "aliases": [
+        "exchange suffix"
+      ],
+      "definition": "A suffix is the tag at the end of a ticker. It shows where a stock trades.",
+      "analogy": "A suffix is like a zip code on a letter.",
+      "example": "In AAPL.L, the .L says it trades in London.",
+      "taughtIn": "u1-tickers"
+    },
+    {
+      "id": "ipo",
+      "term": "IPO",
+      "aliases": [],
+      "definition": "An IPO is when a company first sells its stock to people.",
+      "analogy": "An IPO is like a big first day for a stock.",
+      "example": "The toy company had its IPO in May.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "ceo",
+      "term": "CEO",
+      "aliases": [],
+      "definition": "A CEO is the boss of a company.",
+      "analogy": "A CEO is like the captain of a ship.",
+      "example": "Mia is the CEO of a toy company.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "eps",
+      "term": "EPS",
+      "aliases": [
+        "earnings per share"
+      ],
+      "definition": "EPS is the profit a company made for each share.",
+      "analogy": "EPS is the slice of profit that each share gets.",
+      "example": "A company made $100 and has 50 shares. EPS is $2.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "pe",
+      "term": "P/E",
+      "aliases": [
+        "price-to-earnings"
+      ],
+      "definition": "P/E is the price you pay for $1 of profit.",
+      "analogy": "P/E is the price tag on each dollar of profit.",
+      "example": "A stock with a P/E of 10 costs $10 for each $1 of profit.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "gdp",
+      "term": "GDP",
+      "aliases": [],
+      "definition": "GDP shows how much a country makes in a year.",
+      "analogy": "GDP is the score for a whole country.",
+      "example": "When GDP goes up, a country grows.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "fed",
+      "term": "Fed",
+      "aliases": [
+        "Federal Reserve"
+      ],
+      "definition": "The Fed is the bank of the US. It helps set the cost of loans.",
+      "analogy": "The Fed is like a boss for money in the US.",
+      "example": "When the Fed acts, many stock prices can move.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "fomc",
+      "term": "FOMC",
+      "aliases": [],
+      "definition": "The FOMC is a team in the Fed that votes on loan costs.",
+      "analogy": "The FOMC is like a team that votes on a rule.",
+      "example": "The FOMC meets 8 times a year.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "cpi",
+      "term": "CPI",
+      "aliases": [],
+      "definition": "CPI shows how fast prices are rising.",
+      "analogy": "CPI is like a gauge for prices.",
+      "example": "If CPI is up, things cost more than last year.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "ath",
+      "term": "ATH",
+      "aliases": [
+        "all-time high"
+      ],
+      "definition": "ATH is the highest price a stock has hit.",
+      "analogy": "ATH is like a new world record.",
+      "example": "The stock hit an ATH of $50 today.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "atl",
+      "term": "ATL",
+      "aliases": [
+        "all-time low"
+      ],
+      "definition": "ATL is the lowest price a stock has hit.",
+      "analogy": "ATL is like the bottom of the stairs.",
+      "example": "The stock hit an ATL of $2 today.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "eod",
+      "term": "EOD",
+      "aliases": [
+        "end of day"
+      ],
+      "definition": "EOD means the end of the day.",
+      "analogy": "EOD is like the last bell at school.",
+      "example": "The EOD price is the last price of the day.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "after-hours",
+      "term": "after-hours",
+      "aliases": [
+        "AH",
+        "after hours"
+      ],
+      "definition": "After-hours is the time after the stock market closes for the day.",
+      "analogy": "After-hours is like a shop that stays open late.",
+      "example": "The news came out in AH, so the price moved.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "pre-market",
+      "term": "pre-market",
+      "aliases": [
+        "pre market",
+        "premarket"
+      ],
+      "definition": "Pre-market is the time before trading starts.",
+      "analogy": "Pre-market is like a warm-up before a game.",
+      "example": "At 8 AM, pre-market prices show the first moves.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "otc",
+      "term": "OTC",
+      "aliases": [
+        "over the counter"
+      ],
+      "definition": "OTC stocks trade away from the big exchanges.",
+      "analogy": "OTC is like a yard sale, not a big store.",
+      "example": "A tiny company may trade OTC, not on an exchange.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "dd",
+      "term": "DD",
+      "aliases": [
+        "due diligence"
+      ],
+      "definition": "DD means you read up on a stock first.",
+      "analogy": "DD is like trying a toy first.",
+      "example": "Before I buy, I do DD on the company.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "hodl",
+      "term": "HODL",
+      "aliases": [],
+      "definition": "HODL means you keep a stock and do not sell.",
+      "analogy": "HODL is like keeping a seed in the ground.",
+      "example": "She will HODL her shares for five years.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "fomo",
+      "term": "FOMO",
+      "aliases": [],
+      "definition": "FOMO is the fear of missing out.",
+      "analogy": "FOMO is when you see friends play and want in.",
+      "example": "The stock jumped, and FOMO made me want to buy.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "yolo",
+      "term": "YOLO",
+      "aliases": [
+        "YOLO trade"
+      ],
+      "definition": "YOLO is when you bet lots of money on one stock.",
+      "analogy": "YOLO is like a big bet on one game.",
+      "example": "A YOLO trade can win big, but it can lose big too.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "bid",
+      "term": "bid",
+      "aliases": [
+        "bid price"
+      ],
+      "definition": "The bid is the top price a buyer will pay right now.",
+      "analogy": "The bid is what a buyer will pay.",
+      "example": "The bid is $10. A buyer will pay $10.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "ask",
+      "term": "ask",
+      "aliases": [
+        "ask price"
+      ],
+      "definition": "The ask is the low price a seller wants right now.",
+      "analogy": "The ask is what a seller wants.",
+      "example": "The ask is $10.05. A seller wants $10.05.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "volume",
+      "term": "volume",
+      "aliases": [
+        "vol"
+      ],
+      "definition": "Volume is how many shares were bought and sold.",
+      "analogy": "Volume is like how busy a store is.",
+      "example": "A stock with high volume has many trades.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "market-cap",
+      "term": "market cap",
+      "aliases": [
+        "mcap",
+        "MCAP",
+        "market capitalization"
+      ],
+      "definition": "Market cap is the price of one share times all the shares.",
+      "analogy": "Market cap is like the price tag on a whole company.",
+      "example": "A stock costs $10 and has 1,000 shares. Its market cap is $10,000.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "rsi",
+      "term": "RSI",
+      "aliases": [],
+      "definition": "RSI is a number from 0 to 100. It shows how fast a price moved.",
+      "analogy": "RSI is like a speed gauge for a price.",
+      "example": "A high RSI means a price rose fast.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "macd",
+      "term": "MACD",
+      "aliases": [],
+      "definition": "MACD shows if a price move is gaining speed.",
+      "analogy": "MACD is like a gas pedal in a car.",
+      "example": "The MACD can show a price is losing speed.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "vwap",
+      "term": "VWAP",
+      "aliases": [],
+      "definition": "VWAP is the middle price of the day. Busy times count more.",
+      "analogy": "VWAP is like a line that hugs the crowd.",
+      "example": "Price over VWAP is high for the day.",
+      "taughtIn": "u1-shorttalk"
+    },
+    {
+      "id": "bull",
+      "term": "bull",
+      "aliases": [
+        "bullish",
+        "bull market"
+      ],
+      "definition": "A bull is a person who thinks prices will rise.",
+      "analogy": "A bull swings its horns up.",
+      "example": "In a bull market, prices rise for a long time.",
+      "taughtIn": "u1-bullbear"
+    },
+    {
+      "id": "bear",
+      "term": "bear",
+      "aliases": [
+        "bearish",
+        "bear market"
+      ],
+      "definition": "A bear is a person who thinks prices will fall.",
+      "analogy": "A bear swipes its paw down.",
+      "example": "In a bear market, prices fall for a long time.",
+      "taughtIn": "u1-bullbear"
+    },
+    {
+      "id": "index",
+      "term": "index",
+      "aliases": [
+        "indices"
+      ],
+      "definition": "An index is a list of stocks that shows how a group is doing.",
+      "analogy": "An index is like a class score made from many kids.",
+      "example": "An index of 500 big companies shows how they all do.",
+      "taughtIn": "u1-bullbear"
+    },
+    {
+      "id": "sp500",
+      "term": "S&P 500",
+      "aliases": [
+        "S&P"
+      ],
+      "definition": "The S&P 500 is an index of 500 big US companies.",
+      "analogy": "The S&P 500 is like a team photo of big US companies.",
+      "example": "If the S&P 500 is up, many big stocks rose that day.",
+      "taughtIn": "u1-bullbear"
+    },
+    {
+      "id": "dow",
+      "term": "Dow",
+      "aliases": [
+        "Dow Jones"
+      ],
+      "definition": "The Dow is an index of 30 big US companies.",
+      "analogy": "The Dow is like a small team photo of 30 big companies.",
+      "example": "The Dow went up when many of its 30 companies rose.",
+      "taughtIn": "u1-bullbear"
+    }
+  ]
+}

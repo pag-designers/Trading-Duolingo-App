@@ -1,0 +1,310 @@
+{
+  "id": "u1-shorttalk",
+  "title": "Trader short-talk",
+  "goal": "Decode short words like IPO, EPS, ATH and FOMO.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-company-words",
+      "text": "Decode IPO, CEO, EPS and P/E."
+    },
+    {
+      "id": "o-news-words",
+      "text": "Decode GDP, CPI, Fed and FOMC."
+    },
+    {
+      "id": "o-price-words",
+      "text": "Decode ATH, ATL, EOD, bid, ask, volume and market cap."
+    },
+    {
+      "id": "o-slang",
+      "text": "Decode DD, HODL, FOMO and YOLO."
+    }
+  ],
+  "slides": [
+    {
+      "id": "intro",
+      "text": "Traders use short words to save time. You will see them on charts and in the news.",
+      "defines": [],
+      "title": "Short words",
+      "art": "speech"
+    },
+    {
+      "id": "company-words",
+      "text": "An IPO is when a company first sells its stock to people. The CEO is the boss of a company.",
+      "defines": [
+        "ipo",
+        "ceo"
+      ],
+      "title": "Company words",
+      "art": "building"
+    },
+    {
+      "id": "profit-words",
+      "text": "EPS is the profit a company made for each share. P/E is the price you pay for $1 of profit.",
+      "defines": [
+        "eps",
+        "pe"
+      ],
+      "title": "Profit words",
+      "art": "profit"
+    },
+    {
+      "id": "economy-1",
+      "text": "GDP shows how much a country makes in a year. CPI shows how fast prices are rising.",
+      "defines": [
+        "gdp",
+        "cpi"
+      ],
+      "title": "Country words",
+      "art": "index"
+    },
+    {
+      "id": "economy-2",
+      "text": "The Fed is the bank of the US. It helps set the cost of loans. The FOMC is a team in the Fed that votes on loan costs.",
+      "defines": [
+        "fed",
+        "fomc"
+      ],
+      "title": "The Fed",
+      "art": "building"
+    },
+    {
+      "id": "price-words",
+      "text": "ATH is the highest price a stock has hit. ATL is the lowest price a stock has hit. EOD means the end of the day.",
+      "defines": [
+        "ath",
+        "atl",
+        "eod"
+      ],
+      "title": "Price words",
+      "art": "candles"
+    },
+    {
+      "id": "bid-ask",
+      "text": "The bid is the top price a buyer will pay. The ask is the low price a seller wants.",
+      "defines": [
+        "bid",
+        "ask"
+      ],
+      "title": "Bid and ask",
+      "art": "tag"
+    },
+    {
+      "id": "size-words",
+      "text": "Volume, or vol, is how many shares were bought and sold. Market cap, or mcap, is the price of one share times all the shares.",
+      "defines": [
+        "volume",
+        "market-cap"
+      ],
+      "title": "Size words",
+      "art": "index"
+    },
+    {
+      "id": "time-words",
+      "text": "After-hours, or AH, is the time after the stock market closes. Pre-market is the time before trading starts. OTC stocks trade away from the big exchanges.",
+      "defines": [
+        "after-hours",
+        "pre-market",
+        "otc"
+      ],
+      "title": "Time and place words",
+      "art": "market"
+    },
+    {
+      "id": "slang-1",
+      "text": "DD means you read up on a stock first. HODL means you keep a stock and do not sell.",
+      "defines": [
+        "dd",
+        "hodl"
+      ],
+      "title": "Slang",
+      "art": "speech"
+    },
+    {
+      "id": "slang-2",
+      "text": "FOMO is the fear of missing out. YOLO is when you bet lots of money on one stock. Both can make people lose money.",
+      "defines": [
+        "fomo",
+        "yolo"
+      ],
+      "title": "More slang",
+      "art": "speech"
+    },
+    {
+      "id": "chart-words",
+      "text": "RSI, MACD and VWAP are chart tools. You will learn each one in Unit 2.",
+      "defines": [
+        "rsi",
+        "macd",
+        "vwap"
+      ],
+      "title": "Chart words",
+      "art": "candles"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-short-1",
+      "type": "match",
+      "prompt": "Match each short word to its meaning.",
+      "pairs": [
+        {
+          "id": "p-ipo",
+          "term": "IPO",
+          "definition": "A company first sells its stock"
+        },
+        {
+          "id": "p-ceo",
+          "term": "CEO",
+          "definition": "The boss of a company"
+        },
+        {
+          "id": "p-eps",
+          "term": "EPS",
+          "definition": "Profit for each share"
+        },
+        {
+          "id": "p-gdp",
+          "term": "GDP",
+          "definition": "How much a country makes"
+        }
+      ],
+      "explanation": "IPO, CEO, EPS and GDP are short words you will see a lot.",
+      "objective": "o-company-words"
+    },
+    {
+      "id": "q-short-2",
+      "type": "match",
+      "prompt": "Match each short word to its meaning.",
+      "pairs": [
+        {
+          "id": "p-ath",
+          "term": "ATH",
+          "definition": "The highest price a stock has hit"
+        },
+        {
+          "id": "p-atl",
+          "term": "ATL",
+          "definition": "The lowest price a stock has hit"
+        },
+        {
+          "id": "p-eod",
+          "term": "EOD",
+          "definition": "The end of the day"
+        },
+        {
+          "id": "p-ah",
+          "term": "AH",
+          "definition": "The time after the market closes"
+        }
+      ],
+      "explanation": "ATH is the top. ATL is the bottom. EOD is the end of the day. AH is after closing.",
+      "objective": "o-price-words"
+    },
+    {
+      "id": "q-short-3",
+      "type": "mc",
+      "prompt": "What does FOMO mean?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fear of missing out"
+        },
+        {
+          "id": "b",
+          "text": "Full of money only"
+        },
+        {
+          "id": "c",
+          "text": "First order, market open"
+        }
+      ],
+      "answer": "a",
+      "explanation": "FOMO is the fear of missing out. It can push people to buy at a bad time.",
+      "objective": "o-slang"
+    },
+    {
+      "id": "q-short-4",
+      "type": "mc",
+      "prompt": "Which word means you keep a stock and do not sell?",
+      "options": [
+        {
+          "id": "a",
+          "text": "HODL"
+        },
+        {
+          "id": "b",
+          "text": "YOLO"
+        },
+        {
+          "id": "c",
+          "text": "EOD"
+        }
+      ],
+      "answer": "a",
+      "explanation": "HODL means you keep a stock and do not sell.",
+      "objective": "o-slang"
+    },
+    {
+      "id": "q-short-5",
+      "type": "tf",
+      "prompt": "The bid is the price a seller wants.",
+      "answer": false,
+      "explanation": "No. The bid is what a buyer will pay. The ask is what a seller wants.",
+      "objective": "o-price-words"
+    },
+    {
+      "id": "q-short-6",
+      "type": "mc",
+      "prompt": "A stock costs $10 and has 1,000 shares. What is its market cap?",
+      "options": [
+        {
+          "id": "a",
+          "text": "$10,000"
+        },
+        {
+          "id": "b",
+          "text": "$1,000"
+        },
+        {
+          "id": "c",
+          "text": "$10"
+        }
+      ],
+      "answer": "a",
+      "explanation": "$10 times 1,000 shares is $10,000.",
+      "objective": "o-price-words"
+    },
+    {
+      "id": "q-short-7",
+      "type": "tf",
+      "prompt": "A YOLO trade is a safe way to make money.",
+      "answer": false,
+      "explanation": "No. A YOLO trade is a big risky bet. It can lose a lot.",
+      "objective": "o-slang"
+    },
+    {
+      "id": "q-short-8",
+      "type": "mc",
+      "prompt": "Where do OTC stocks trade?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Away from the big exchanges"
+        },
+        {
+          "id": "b",
+          "text": "Only on the Nasdaq"
+        },
+        {
+          "id": "c",
+          "text": "Only at night"
+        }
+      ],
+      "answer": "a",
+      "explanation": "OTC stocks trade away from the big exchanges.",
+      "objective": "o-news-words"
+    }
+  ]
+}

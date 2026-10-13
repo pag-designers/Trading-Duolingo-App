@@ -1,12 +1,15 @@
 "use client";
 
 import { Flame, Zap } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { Wick } from "@/components/mascot/wick";
 import { NodeSheet, SkillMap } from "@/components/path/skill-map";
 import { useStats } from "@/components/shell/stats";
+import { RiskReminder } from "@/components/risk-reminder";
 import { Button } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
+import { FreezeNote, LeagueCard, WeekCard } from "@/components/progress/week-and-league";
 import { Ring } from "@/components/ui/ring";
 import { findCurrentNode } from "@/lib/content/outline";
 import type { Outline, OutlineNode, OutlineUnit } from "@/lib/content/schema";
@@ -38,6 +41,7 @@ function GoalCard() {
           {streak === 0 ? "Start a streak today!" : `${streak}-day streak`}
         </p>
       </div>
+      <FreezeNote />
       <div>
         <div className="mb-1 flex justify-between text-sm font-bold text-muted">
           <span>Level {level}</span>
@@ -101,14 +105,24 @@ export function LearnScreen({ outline }: { outline: Outline }) {
           {current ? (
             <>
               <p className="text-lg text-muted">Next: {current.node.title}</p>
-              <Button
-                size="lg"
-                className="mt-3"
-                data-testid="continue"
-                onClick={() => currentUnit && setTarget({ node: current.node, unit: currentUnit })}
-              >
-                Continue
-              </Button>
+              {current.node.ready ? (
+                <Button size="lg" className="mt-3" asChild>
+                  <Link href={`/lesson/${current.node.id}`} data-testid="continue">
+                    Continue
+                  </Link>
+                </Button>
+              ) : (
+                <Button
+                  size="lg"
+                  className="mt-3"
+                  data-testid="continue"
+                  onClick={() =>
+                    currentUnit && setTarget({ node: current.node, unit: currentUnit })
+                  }
+                >
+                  Continue
+                </Button>
+              )}
             </>
           ) : (
             <p className="text-lg text-muted">You finished every step. Amazing!</p>
@@ -120,13 +134,14 @@ export function LearnScreen({ outline }: { outline: Outline }) {
       <div className="grid gap-8 lg:grid-cols-[1fr_20rem]">
         <div className="order-2 lg:order-1">
           <SkillMap outline={outline} />
-          <p className="mx-auto mb-6 max-w-md rounded-2xl bg-surface-2 p-4 text-center text-sm text-muted">
-            Candlo uses pretend money and practice data. It is not financial advice. Most day
-            traders lose money.
-          </p>
+          <RiskReminder className="mx-auto mb-6 max-w-md" />
         </div>
         <aside className="hidden lg:sticky lg:top-6 lg:order-2 lg:block lg:self-start">
-          <GoalCard />
+          <div className="space-y-4">
+            <GoalCard />
+            <WeekCard />
+            <LeagueCard />
+          </div>
         </aside>
       </div>
 

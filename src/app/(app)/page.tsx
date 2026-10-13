@@ -1,6 +1,6 @@
 import { LearnScreen } from "@/components/path/learn-screen";
-import { getOutline } from "@/lib/content/outline";
+import { getOutlineWithReadiness } from "@/server/content";
 
 export default function LearnPage() {
-  return <LearnScreen outline={getOutline()} />;
+  return <LearnScreen outline={getOutlineWithReadiness()} />;
 }

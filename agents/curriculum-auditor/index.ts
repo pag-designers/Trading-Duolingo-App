@@ -1,54 +1,49 @@
-import { outlineSchema, validateOutline } from "../../src/lib/content/schema";
-import { fail, pass, readJson, stub, warn } from "../lib";
+import { auditContent, type AuditCheck, type Finding } from "../../src/lib/content/audit";
+import { loadContent } from "../../src/lib/content/load";
+import { validateOutline } from "../../src/lib/content/schema";
+import { fail, pass, warn } from "../lib";
 import type { Agent, Check } from "../types";
+
+const TITLES: Record<AuditCheck, string> = {
+  "reading-level": "Reading level is grade 2 or below (defined terms exempt)",
+  "glossary-defined-first": "Every term is defined before its first use",
+  "question-ids-answers": "No duplicate ids; every answer key is valid",
+  "risk-disclaimer": "Trading lessons carry the risk reminder",
+  links: "Glossary, lesson and pool links all resolve",
+};
+
+const summarize = (findings: Finding[]): string =>
+  `${findings.length} problem${findings.length === 1 ? "" : "s"}. ` +
+  findings
+    .slice(0, 3)
+    .map((f) => `${f.where}: ${f.message}`)
+    .join(" | ");
 
 export const curriculumAuditor: Agent = {
   id: "curriculum-auditor",
   name: "Curriculum Auditor",
-  job: "Checks lesson content: required fields, structure, glossary, reading level, disclaimers.",
+  job: "Checks lesson content: structure, reading level, glossary, answer keys, disclaimers, links.",
   async run({ root }) {
-    const checks: Check[] = [];
+    const c = loadContent(root);
 
-    let raw: unknown;
-    try {
-      raw = readJson(root, "content/outline.json");
-    } catch (e) {
+    // Files that are missing, unreadable or do not match their schema stop the audit: nothing else can be trusted.
+    if (c.loadProblems.length > 0 || !c.outline || !c.glossary || !c.abbreviations) {
+      const shape = c.loadProblems.map((p) => `${p.file}: ${p.message}`).join(" | ");
       return [
-        fail(
-          "outline-parse",
-          "Outline is valid JSON",
-          `content/outline.json could not be parsed: ${(e as Error).message}`,
-        ),
+        fail("content-files", "Content files are valid", shape || "content could not be loaded"),
       ];
     }
-    if (raw === undefined)
-      return [fail("outline-exists", "Outline exists", "content/outline.json is missing.")];
-
-    const parsed = outlineSchema.safeParse(raw);
-    if (!parsed.success) {
-      checks.push(
-        fail(
-          "outline-shape",
-          "Outline has all required fields",
-          parsed.error.issues
-            .slice(0, 3)
-            .map((i) => `${i.path.join(".")}: ${i.message}`)
-            .join("; "),
-        ),
-      );
-      return checks;
-    }
-    checks.push(
+    const checks: Check[] = [
       pass(
-        "outline-shape",
-        "Outline has all required fields",
-        `${parsed.data.units.length} units, ${parsed.data.units.reduce((n, u) => n + u.nodes.length, 0)} nodes.`,
+        "content-files",
+        "Content files are valid",
+        `${c.lessons.length} lessons, ${c.glossary.terms.length} glossary terms, ${c.abbreviations.items.length} abbreviations.`,
       ),
-    );
+    ];
 
-    const problems = validateOutline(parsed.data);
+    const structure = validateOutline(c.outline);
     checks.push(
-      problems.length === 0
+      structure.length === 0
         ? pass(
             "outline-structure",
             "Unique ids, each unit ends with one boss",
@@ -57,45 +52,42 @@ export const curriculumAuditor: Agent = {
         : fail(
             "outline-structure",
             "Unique ids, each unit ends with one boss",
-            problems.slice(0, 4).join("; "),
+            structure.slice(0, 4).join("; "),
           ),
     );
 
-    const nodes = parsed.data.units.flatMap((u) => u.nodes);
-    const ready = nodes.filter((n) => n.ready).length;
+    const nodes = c.outline.units.flatMap((u) => u.nodes);
+    const written = nodes.filter(
+      (n) => n.type === "chest" || c.lessons.some((l) => l.id === n.id),
+    ).length;
     checks.push(
-      ready === 0
-        ? warn(
+      written === nodes.length
+        ? pass(
             "lessons-written",
-            "Lesson bodies written",
-            `0 of ${nodes.length} steps have full content yet (Unit 1 arrives in CP1).`,
+            "Every step has its content",
+            `All ${nodes.length} steps are written.`,
           )
-        : pass(
+        : warn(
             "lessons-written",
-            "Lesson bodies written",
-            `${ready} of ${nodes.length} steps have content.`,
+            "Every step has its content",
+            `${written} of ${nodes.length} steps are written. The rest arrive in later checkpoints.`,
           ),
     );
 
-    checks.push(
-      stub(
-        "reading-level",
-        "Reading level ≤ grade 2 (defined terms exempt)",
-        "CP1, with the first lesson text",
-      ),
-    );
-    checks.push(stub("glossary-defined-first", "Every term defined before first use", "CP1"));
-    checks.push(
-      stub("question-ids-answers", "No duplicate question ids; answer keys correct", "CP1"),
-    );
-    checks.push(
-      stub(
-        "risk-disclaimer",
-        "Risk reminder on every trading lesson",
-        "CP1 (lesson text) and CP4 (Trade Lab)",
-      ),
-    );
-    checks.push(stub("links", "No broken glossary or lesson links", "CP1"));
+    const { findings } = auditContent({
+      outline: c.outline,
+      glossary: c.glossary,
+      abbreviations: c.abbreviations,
+      lessons: c.lessons,
+    });
+    for (const id of Object.keys(TITLES) as AuditCheck[]) {
+      const mine = findings.filter((f) => f.check === id);
+      checks.push(
+        mine.length === 0
+          ? pass(id, TITLES[id], `Checked ${c.lessons.length} lessons.`)
+          : fail(id, TITLES[id], summarize(mine)),
+      );
+    }
     return checks;
   },
 };

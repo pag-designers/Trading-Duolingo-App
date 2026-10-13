@@ -1,0 +1,158 @@
+{
+  "id": "u1-company",
+  "title": "What is a company?",
+  "goal": "See how a company makes things and sells them to people.",
+  "touchesTrading": false,
+  "objectives": [
+    {
+      "id": "o-company",
+      "text": "Say what a company is."
+    },
+    {
+      "id": "o-words",
+      "text": "Say what a product, customer and owner are."
+    }
+  ],
+  "slides": [
+    {
+      "id": "company",
+      "text": "A company is a group of people who make or sell things. A shop that bakes bread is a company.",
+      "defines": [
+        "company"
+      ],
+      "title": "Companies",
+      "art": "building"
+    },
+    {
+      "id": "product-customer",
+      "text": "The things a company sells are its products. The people who buy them are customers.",
+      "defines": [
+        "product",
+        "customer"
+      ],
+      "title": "Products and customers",
+      "art": "shop"
+    },
+    {
+      "id": "earn",
+      "text": "A company earns money from its customers. It uses some of that money to pay its workers.",
+      "defines": [],
+      "title": "Companies earn money",
+      "art": "coins"
+    },
+    {
+      "id": "owner",
+      "text": "Every company has owners. An owner owns a part of the company.",
+      "defines": [
+        "owner"
+      ],
+      "title": "Owners",
+      "art": "building"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-company-1",
+      "type": "mc",
+      "prompt": "What does a company do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Makes or sells things"
+        },
+        {
+          "id": "b",
+          "text": "Only keeps money"
+        },
+        {
+          "id": "c",
+          "text": "Only plays games"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A company is a group of people who make or sell things.",
+      "objective": "o-company"
+    },
+    {
+      "id": "q-company-2",
+      "type": "match",
+      "prompt": "Match each word to its meaning.",
+      "pairs": [
+        {
+          "id": "p-company",
+          "term": "Company",
+          "definition": "A group that makes or sells things"
+        },
+        {
+          "id": "p-product",
+          "term": "Product",
+          "definition": "A thing a company sells"
+        },
+        {
+          "id": "p-customer",
+          "term": "Customer",
+          "definition": "A person who buys from a company"
+        },
+        {
+          "id": "p-owner",
+          "term": "Owner",
+          "definition": "A person who owns part of a company"
+        }
+      ],
+      "explanation": "A company sells products to customers. Owners own parts of the company.",
+      "objective": "o-words"
+    },
+    {
+      "id": "q-company-3",
+      "type": "tf",
+      "prompt": "A customer is someone who buys from a company.",
+      "answer": true,
+      "explanation": "Yes. Customers buy the products a company sells.",
+      "objective": "o-words"
+    },
+    {
+      "id": "q-company-4",
+      "type": "mc",
+      "prompt": "A loaf of bread at a shop is a...",
+      "options": [
+        {
+          "id": "a",
+          "text": "Product"
+        },
+        {
+          "id": "b",
+          "text": "Customer"
+        },
+        {
+          "id": "c",
+          "text": "Owner"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A company sells it, so it is a product.",
+      "objective": "o-words"
+    },
+    {
+      "id": "q-company-5",
+      "type": "mc",
+      "prompt": "Sam owns half of a shop. What is Sam?",
+      "options": [
+        {
+          "id": "a",
+          "text": "An owner"
+        },
+        {
+          "id": "b",
+          "text": "A customer"
+        },
+        {
+          "id": "c",
+          "text": "A product"
+        }
+      ],
+      "answer": "a",
+      "explanation": "An owner owns a part of a company.",
+      "objective": "o-words"
+    }
+  ]
+}

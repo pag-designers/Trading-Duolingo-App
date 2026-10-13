@@ -12,7 +12,6 @@ const good = (): ProgressSnapshot => ({
       completedAt: "2026-03-09T10:00:00.000Z",
     },
   },
-  freezes: 0,
 });
 
 describe("checkProgress", () => {
@@ -43,7 +42,6 @@ describe("repairProgress", () => {
       totalXp: 999,
       days: { "2026-03-09": { xp: 10, lessonsDone: 1 } },
       nodes: { a: { status: "done", bestScore: 150, attempts: 0, completedAt: null } },
-      freezes: -2,
     };
     expect(checkProgress(broken).length).toBeGreaterThan(0);
     const fixed = repairProgress(broken);
@@ -59,5 +57,31 @@ describe("checkProgress with non-finite numbers", () => {
     const q = good();
     q.nodes["u1-money"]!.bestScore = Number.NaN;
     expect(checkProgress(q).map((x) => x.code)).toContain("not_a_number");
+  });
+});
+
+describe("checkProgress: streak freezes", () => {
+  const withDays = (days: ProgressSnapshot["days"]): ProgressSnapshot => ({
+    totalXp: Object.values(days).reduce((n, d) => n + d.xp, 0),
+    days,
+    nodes: {},
+  });
+  it("accepts an earned freeze that was used on a missed day", () => {
+    const p = withDays({
+      "2026-03-07": { xp: 10, lessonsDone: 1, freezeEarned: true },
+      "2026-03-08": { xp: 0, lessonsDone: 0, frozen: true },
+    });
+    expect(checkProgress(p)).toEqual([]);
+  });
+  it("catches a freeze that was used but never earned", () => {
+    const p = withDays({ "2026-03-08": { xp: 0, lessonsDone: 0, frozen: true } });
+    expect(checkProgress(p).map((x) => x.code)).toContain("freeze_overspent");
+  });
+  it("catches a frozen day that has XP", () => {
+    const p = withDays({
+      "2026-03-07": { xp: 10, lessonsDone: 1, freezeEarned: true },
+      "2026-03-08": { xp: 5, lessonsDone: 1, frozen: true },
+    });
+    expect(checkProgress(p).map((x) => x.code)).toContain("frozen_with_xp");
   });
 });

@@ -1,0 +1,46 @@
+{
+  "id": "u1-practice-1",
+  "title": "Warm-up round",
+  "goal": "Play a quick round about money, companies and stocks.",
+  "touchesTrading": true,
+  "objectives": [],
+  "slides": [],
+  "questions": [
+    {
+      "id": "q-p1-1",
+      "type": "mc",
+      "prompt": "Which one is a company?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A shop that bakes bread"
+        },
+        {
+          "id": "b",
+          "text": "A loaf of bread"
+        },
+        {
+          "id": "c",
+          "text": "A coin"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A company is a group of people who make or sell things."
+    },
+    {
+      "id": "q-p1-2",
+      "type": "tf",
+      "prompt": "A share is bigger than a whole company.",
+      "answer": false,
+      "explanation": "No. A share is a small piece of a company."
+    }
+  ],
+  "pool": {
+    "from": [
+      "u1-money",
+      "u1-company",
+      "u1-stock"
+    ],
+    "perLesson": 2
+  }
+}

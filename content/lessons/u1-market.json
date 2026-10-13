@@ -1,0 +1,180 @@
+{
+  "id": "u1-market",
+  "title": "What is a market?",
+  "goal": "A market is a place where buyers and sellers meet.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-market",
+      "text": "Say what a market is."
+    },
+    {
+      "id": "o-stock-market",
+      "text": "Say what the stock market is."
+    },
+    {
+      "id": "o-price-moves",
+      "text": "Say what can move a price."
+    }
+  ],
+  "slides": [
+    {
+      "id": "market",
+      "text": "A market is a place where people buy and sell. A farm market sells fruit, eggs and bread.",
+      "defines": [
+        "market"
+      ],
+      "title": "Markets",
+      "art": "market"
+    },
+    {
+      "id": "buyers-sellers",
+      "text": "At a market, buyers want to pay less. Sellers want to get more.",
+      "defines": [],
+      "title": "Buyers and sellers",
+      "art": "market"
+    },
+    {
+      "id": "stock-market",
+      "text": "The stock market is a place where people buy and sell stocks. It is a big fair for pieces of companies.",
+      "defines": [
+        "stock-market"
+      ],
+      "title": "The stock market",
+      "art": "market"
+    },
+    {
+      "id": "exchange",
+      "text": "An exchange is a business that runs a stock market. The NYSE and the Nasdaq are two big ones.",
+      "defines": [
+        "exchange",
+        "nyse",
+        "nasdaq"
+      ],
+      "title": "Exchanges",
+      "art": "building"
+    },
+    {
+      "id": "price-moves",
+      "text": "Prices move all day. More buyers push a price up. More sellers push it down.",
+      "defines": [],
+      "title": "Prices move",
+      "art": "market"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-market-1",
+      "type": "mc",
+      "prompt": "What is a market?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A place where people buy and sell"
+        },
+        {
+          "id": "b",
+          "text": "A kind of fruit"
+        },
+        {
+          "id": "c",
+          "text": "A type of bank"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A market is a place where people buy and sell.",
+      "objective": "o-market"
+    },
+    {
+      "id": "q-market-2",
+      "type": "mc",
+      "prompt": "Where do people buy and sell stocks?",
+      "options": [
+        {
+          "id": "a",
+          "text": "On the stock market"
+        },
+        {
+          "id": "b",
+          "text": "In a toy box"
+        },
+        {
+          "id": "c",
+          "text": "At a bus stop"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The stock market is where people buy and sell stocks.",
+      "objective": "o-stock-market"
+    },
+    {
+      "id": "q-market-3",
+      "type": "tf",
+      "prompt": "The NYSE and the Nasdaq are exchanges.",
+      "answer": true,
+      "explanation": "Yes. They are two big US exchanges.",
+      "objective": "o-stock-market"
+    },
+    {
+      "id": "q-market-4",
+      "type": "mc",
+      "prompt": "Many buyers want a stock. What can happen to its price?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It can go up"
+        },
+        {
+          "id": "b",
+          "text": "It must go down"
+        },
+        {
+          "id": "c",
+          "text": "It turns into a toy"
+        }
+      ],
+      "answer": "a",
+      "explanation": "More buyers push a price up.",
+      "objective": "o-price-moves"
+    },
+    {
+      "id": "q-market-5",
+      "type": "build",
+      "prompt": "Fill in the blanks.",
+      "slots": [
+        {
+          "id": "s1",
+          "label": "People buy and"
+        },
+        {
+          "id": "s2",
+          "label": "at a"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "sell",
+          "text": "sell"
+        },
+        {
+          "id": "market",
+          "text": "market"
+        },
+        {
+          "id": "sleep",
+          "text": "sleep"
+        },
+        {
+          "id": "car",
+          "text": "car"
+        }
+      ],
+      "answer": {
+        "s1": "sell",
+        "s2": "market"
+      },
+      "explanation": "People buy and sell at a market.",
+      "objective": "o-market"
+    }
+  ]
+}

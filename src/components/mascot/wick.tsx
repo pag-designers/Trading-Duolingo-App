@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useMotionReduced } from "@/lib/use-motion";
 import { cn } from "@/lib/utils";
 import type { Accessory } from "@/store/profile";
 
@@ -37,7 +38,7 @@ export function Wick({
   decorative = false,
   className,
 }: WickProps) {
-  const reduce = useReducedMotion();
+  const reduce = useMotionReduced();
   const live = animate && !reduce;
   const down = mood === "oops";
   const body = down ? "var(--loss)" : "var(--gain)";
@@ -189,8 +190,8 @@ export function Wick({
         {/* Brows */}
         {down && (
           <g stroke="#1f1b3a" strokeWidth="4.5" strokeLinecap="round" fill="none">
-            <path d="M68 80 L90 86" />
-            <path d="M132 80 L110 86" />
+            <path d="M68 88 L90 80" />
+            <path d="M132 88 L110 80" />
           </g>
         )}
         {mood === "think" && (

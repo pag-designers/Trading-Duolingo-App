@@ -103,3 +103,30 @@ Append-only log of decisions that shape the project. Newest at the bottom of eac
 - **Token-based a11y checks (CP8):** define colors as TypeScript tokens and compute contrast from them, plus the axe + bounding-box checks from Playwright, so the Accessibility agent stops parsing CSS with regexes.
 - **Checkpoint criteria as data (CP1):** move acceptance criteria out of `agents/orchestrator/checkpoints.ts` into a data file with a `current` pointer.
 - **Whole-store selectors** on Settings/Profile/Onboarding screens: select only used fields when these screens grow.
+
+## D-016 — CP1 scope: what "all question types except Trade Lab and Boss" means
+
+- Built in CP1: **Teach, Match, Multiple choice, True/False, Chart spot, Build.**
+- **Ask the Coach** (free chat) and the AI **"Why?"** explanation need the Claude API, so they arrive in **CP6**. Until then every question carries an authored explanation, and "Why?" shows that explanation. No dead Coach button is shown in lessons.
+- **Chart spot** in CP1 uses a small SVG candle renderer (`src/components/lesson/candle-chart.tsx`) on synthetic candles, so Unit 1 can ask "is this market going up or down?". CP2 brings Lightweight Charts for Chart School and the simulator; the SVG renderer stays for small, non-interactive lesson pictures.
+- **Match** supports tap-to-pair (always available, keyboard and screen-reader friendly) and drag-and-drop on top of it.
+- **Build** assembles a statement from blocks into slots. In Unit 1 it builds sentences and the profit sum; trading-rule blocks ("Enter when…") arrive with Units 5–6.
+- Bosses in Units 1–4 are challenge bosses (D-010). Chest nodes are always open and award XP once.
+
+## D-017 — Game rules (XP, Focus, streaks)
+
+- **XP:** lesson 10 base + 2 per first-try answer + 5 perfect bonus; practice 8 base + 1 per first-try answer; boss 20 base + 3 per first-try answer; chest 15 once. **Repeats give 5 XP** (reviewing keeps a streak alive). Daily goal default 30 XP.
+- **Focus meter** (replaces hearts): fills +1 per correct answer, **never drops on a mistake**; when full it pops confetti and gives +3 XP, then resets. It is cosmetic and never gates anything.
+- A wrong answer shows the correct answer plus the explanation, then the question comes back **once** at the end for a second try. After that we move on. Score (0–100) = share of questions right on the first try; it is informational only.
+- **Streak** = consecutive days with XP > 0 (derived from daily activity, never a free counter). A **streak freeze** is earned on every 7th streak day (hold at most 2) and is spent automatically on a missed day.
+- **Weekly "against yourself":** XP in the last 7 days vs the 7 days before. **Trader Ranks** (Bronze → Diamond) come from level; the league board shows clearly labelled **practice rivals** with generated names (not real people), as the brief asks.
+
+## D-018 — Progress sync: monotonic merge instead of timestamps
+
+- Progress only ever grows (steps get done, XP and attempts go up), so the browser and SQLite merge with a pure function (`mergeProgress`): done beats not-done, scores/attempts/XP take the max, earliest completion date wins, flags are OR-ed, and total XP is **recomputed from the daily record**. Both sides converge without clocks or conflicts. This replaces the per-section timestamp scheme for progress only; profile/settings keep last-write-wins (D-013).
+- `freezes` is no longer stored: it is derived from days (earned − used), so it can't drift.
+
+## D-019 — Reading-level rule as implemented
+
+- Every sentence of lesson copy (slides, questions, explanations, glossary text) is scored with the Flesch-Kincaid grade formula per sentence. **Glossary terms and their aliases count as one-syllable words** (they are "defined terms"), and must be defined before first use. Limit: **grade ≤ 2.0**; the Curriculum Auditor turns anything higher red.
+- Slides: one idea, **at most 3 sentences**. Lessons that touch trading carry the risk reminder (rendered by one shared `<RiskReminder />`).

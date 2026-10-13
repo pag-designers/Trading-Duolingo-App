@@ -7,8 +7,12 @@ export const REQUIRED_DISCLAIMERS: { file: string; why: string }[] = [
   { file: "src/components/path/skill-map.tsx", why: "chart, trade and boss steps" },
   { file: "src/components/path/learn-screen.tsx", why: "Learn page" },
   { file: "src/components/onboarding/onboarding-flow.tsx", why: "onboarding" },
+  { file: "src/components/lesson/lesson-player.tsx", why: "lessons" },
+  { file: "src/components/lesson/complete-screen.tsx", why: "lesson results" },
 ];
 const DISCLAIMER = /most\s+(real\s+)?day\s+traders\s+lose\s+money/i;
+/** A screen satisfies the rule by showing the shared component (which reads src/lib/copy.ts) or the sentence itself. */
+const hasReminder = (source: string) => DISCLAIMER.test(source) || /<RiskReminder\b/.test(source);
 
 /** Wording that would break the "unlimited hearts" rule (BRIEF §3). */
 const HEARTS_LOCKOUT = /out of hearts|no hearts left|lose a heart|hearts? remaining|0 hearts/i;
@@ -23,8 +27,12 @@ export const safetyGuardrails: Agent = {
     const checks: Check[] = [];
 
     const missing = REQUIRED_DISCLAIMERS.filter(
-      ({ file }) => !DISCLAIMER.test(readText(root, file) ?? ""),
+      ({ file }) => !hasReminder(readText(root, file) ?? ""),
     );
+    // The shared component only helps if the sentence it shows is the real one.
+    if (!DISCLAIMER.test(readText(root, "src/lib/copy.ts") ?? "")) {
+      missing.push({ file: "src/lib/copy.ts", why: "the shared risk reminder text" });
+    }
     checks.push(
       missing.length === 0
         ? pass(

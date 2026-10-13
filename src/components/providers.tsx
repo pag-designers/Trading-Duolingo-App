@@ -3,14 +3,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MotionConfig } from "framer-motion";
 import { ThemeProvider, useTheme } from "next-themes";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { reconcile, fetchMe, putMe } from "@/lib/sync";
-import { PROFILE_KEYS, SETTINGS_KEYS, type Me } from "@/lib/me-schema";
-import { pickKeys } from "@/lib/utils";
-import { hydrateStores, useHydrated } from "@/store/hydration";
-import { useProfile } from "@/store/profile";
+import { useEffect, useState, type ReactNode } from "react";
+import { useHydrated } from "@/store/hydration";
 import { useSettings } from "@/store/settings";
-import { useSyncStatus } from "@/store/sync-status";
+import { SyncBridge } from "./sync-bridge";
 
 /** Keeps <html> attributes and next-themes in step with the settings store. */
 function SettingsEffects() {
@@ -35,87 +31,10 @@ function SettingsEffects() {
   return null;
 }
 
-function snapshot(): Me {
-  return {
-    profile: pickKeys(useProfile.getState(), PROFILE_KEYS),
-    settings: pickKeys(useSettings.getState(), SETTINGS_KEYS),
-  };
-}
-
-/** Replace each local section whose server copy is newer. */
-function applyServer(server: Me, local: Me): void {
-  if (reconcile(local.profile.updatedAt, server.profile.updatedAt) === "pull") {
-    useProfile.getState().replaceFromServer(server.profile);
-  }
-  if (reconcile(local.settings.updatedAt, server.settings.updatedAt) === "pull") {
-    useSettings.getState().replaceFromServer(server.settings);
-  }
-}
-
-/**
- * Syncs profile + settings between the browser stores and SQLite (via /api/me).
- * The app works fully offline: if the server is unreachable we just keep the local copy and retry
- * on the next change. See DECISIONS D-005.
- */
-function SyncBridge() {
-  const synced = useRef({ profile: "", settings: "" });
-  const ready = useRef(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-
-    const push = async () => {
-      const local = snapshot();
-      if (
-        local.profile.updatedAt === synced.current.profile &&
-        local.settings.updatedAt === synced.current.settings
-      ) {
-        return;
-      }
-      try {
-        const stored = await putMe(local);
-        // The server keeps whichever copy is newer, so pull back anything it kept.
-        applyServer(stored, snapshot());
-        synced.current = { profile: stored.profile.updatedAt, settings: stored.settings.updatedAt };
-      } catch {
-        /* offline or server down — retry on the next change */
-      }
-    };
-
-    const schedulePush = () => {
-      if (!ready.current) return;
-      clearTimeout(timer);
-      timer = setTimeout(push, 400);
-    };
-
-    const unsubProfile = useProfile.subscribe(schedulePush);
-    const unsubSettings = useSettings.subscribe(schedulePush);
-
-    (async () => {
-      await hydrateStores();
-      try {
-        const server = await fetchMe();
-        if (cancelled) return;
-        applyServer(server, snapshot());
-        synced.current = { profile: server.profile.updatedAt, settings: server.settings.updatedAt };
-      } catch {
-        /* offline — carry on with local state */
-      }
-      ready.current = true;
-      useSyncStatus.getState().markReady();
-      void push();
-    })();
-
-    return () => {
-      cancelled = true;
-      clearTimeout(timer);
-      unsubProfile();
-      unsubSettings();
-    };
-  }, []);
-
-  return null;
+/** framer-motion skips transform animations for reduced motion: "always" when the learner asked, else follow the device. */
+function MotionConfigBridge({ children }: { children: ReactNode }) {
+  const reduced = useSettings((s) => s.reducedMotion);
+  return <MotionConfig reducedMotion={reduced ? "always" : "user"}>{children}</MotionConfig>;
 }
 
 export function Providers({ children }: { children: ReactNode }) {
@@ -131,11 +50,11 @@ export function Providers({ children }: { children: ReactNode }) {
       disableTransitionOnChange
     >
       <QueryClientProvider client={client}>
-        <MotionConfig reducedMotion="user">
+        <MotionConfigBridge>
           <SettingsEffects />
           <SyncBridge />
           {children}
-        </MotionConfig>
+        </MotionConfigBridge>
       </QueryClientProvider>
     </ThemeProvider>
   );

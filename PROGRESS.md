@@ -4,8 +4,8 @@ Legend: ⬜ not started · 🟡 in progress · ✅ done · ⚠️ partial
 
 | CP  | Scope                                    | Status             |
 | --- | ---------------------------------------- | ------------------ |
-| 0   | Foundation                               | ✅ (awaiting “go”) |
-| 1   | Unit 1 + lesson engine                   | ⬜                 |
+| 0   | Foundation                               | ✅                 |
+| 1   | Unit 1 + lesson engine                   | 🟡                 |
 | 2   | Chart School (Unit 2)                    | ⬜                 |
 | 3   | Candlesticks + patterns (Units 3–4)      | ⬜                 |
 | 4   | Trade Lab core                           | ⬜                 |

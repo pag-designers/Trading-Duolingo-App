@@ -1,0 +1,209 @@
+{
+  "id": "u1-tickers",
+  "title": "Ticker symbols",
+  "goal": "Read short stock names like AAPL, TSLA and SPY.",
+  "touchesTrading": true,
+  "objectives": [
+    {
+      "id": "o-ticker",
+      "text": "Say what a ticker is."
+    },
+    {
+      "id": "o-etf",
+      "text": "Say what an ETF is."
+    },
+    {
+      "id": "o-adr",
+      "text": "Say what an ADR and a suffix are."
+    }
+  ],
+  "slides": [
+    {
+      "id": "ticker",
+      "text": "A ticker is a short code for a stock. AAPL is the ticker for Apple.",
+      "defines": [
+        "ticker"
+      ],
+      "title": "Tickers",
+      "art": "ticker"
+    },
+    {
+      "id": "read",
+      "text": "Most tickers have 1 to 5 letters. TSLA is Tesla. NVDA is Nvidia.",
+      "defines": [],
+      "title": "Read a ticker",
+      "art": "ticker"
+    },
+    {
+      "id": "etf",
+      "text": "An ETF is a box that holds stocks. SPY holds 500 big companies. QQQ holds 100 tech companies.",
+      "defines": [
+        "etf"
+      ],
+      "title": "ETFs",
+      "art": "index"
+    },
+    {
+      "id": "adr",
+      "text": "An ADR lets you buy a foreign stock in the US. TSM is an ADR for a Taiwan company.",
+      "defines": [
+        "adr"
+      ],
+      "title": "ADRs",
+      "art": "ticker"
+    },
+    {
+      "id": "suffix",
+      "text": "Some tickers end with a suffix. The suffix tells where a stock trades. AAPL.L trades in London.",
+      "defines": [
+        "suffix"
+      ],
+      "title": "Suffixes",
+      "art": "ticker"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-ticker-1",
+      "type": "mc",
+      "prompt": "What is a ticker?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A short code for a stock"
+        },
+        {
+          "id": "b",
+          "text": "A kind of clock"
+        },
+        {
+          "id": "c",
+          "text": "A price tag"
+        }
+      ],
+      "answer": "a",
+      "explanation": "A ticker is a short code for a stock, like AAPL.",
+      "objective": "o-ticker"
+    },
+    {
+      "id": "q-ticker-2",
+      "type": "match",
+      "prompt": "Match each ticker to its name.",
+      "pairs": [
+        {
+          "id": "p-aapl",
+          "term": "AAPL",
+          "definition": "Apple"
+        },
+        {
+          "id": "p-tsla",
+          "term": "TSLA",
+          "definition": "Tesla"
+        },
+        {
+          "id": "p-nvda",
+          "term": "NVDA",
+          "definition": "Nvidia"
+        },
+        {
+          "id": "p-spy",
+          "term": "SPY",
+          "definition": "An ETF of 500 big companies"
+        }
+      ],
+      "explanation": "AAPL is Apple. TSLA is Tesla. NVDA is Nvidia. SPY is an ETF.",
+      "objective": "o-ticker"
+    },
+    {
+      "id": "q-ticker-3",
+      "type": "mc",
+      "prompt": "SPY is an ETF. What does an ETF hold?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Many stocks in one box"
+        },
+        {
+          "id": "b",
+          "text": "One toy"
+        },
+        {
+          "id": "c",
+          "text": "Only cash"
+        }
+      ],
+      "answer": "a",
+      "explanation": "An ETF is a box that holds many stocks.",
+      "objective": "o-etf"
+    },
+    {
+      "id": "q-ticker-4",
+      "type": "tf",
+      "prompt": "An ADR lets you buy a foreign stock in the US.",
+      "answer": true,
+      "explanation": "Yes. An ADR is a bridge for a foreign stock.",
+      "objective": "o-adr"
+    },
+    {
+      "id": "q-ticker-5",
+      "type": "mc",
+      "prompt": "In AAPL.L, what does the .L tell you?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The stock trades in London"
+        },
+        {
+          "id": "b",
+          "text": "The stock is free"
+        },
+        {
+          "id": "c",
+          "text": "The price is low"
+        }
+      ],
+      "answer": "a",
+      "explanation": "The suffix tells where the stock trades.",
+      "objective": "o-adr"
+    },
+    {
+      "id": "q-ticker-6",
+      "type": "build",
+      "prompt": "Fill in the blanks.",
+      "slots": [
+        {
+          "id": "s1",
+          "label": "A ticker is a short"
+        },
+        {
+          "id": "s2",
+          "label": "for a"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "code",
+          "text": "code"
+        },
+        {
+          "id": "stock",
+          "text": "stock"
+        },
+        {
+          "id": "shoe",
+          "text": "shoe"
+        },
+        {
+          "id": "song",
+          "text": "song"
+        }
+      ],
+      "answer": {
+        "s1": "code",
+        "s2": "stock"
+      },
+      "explanation": "A ticker is a short code for a stock.",
+      "objective": "o-ticker"
+    }
+  ]
+}

@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { EmptyState } from "@/components/ui/empty-state";
+import { GlossaryScreen } from "@/components/glossary/glossary-screen";
+import { getGlossaryData } from "@/server/content";
 
 export const metadata: Metadata = { title: "Glossary" };
 
-export default function GlossaryPage() {
+export default async function GlossaryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tab?: string }>;
+}) {
+  const { tab } = await searchParams;
+  const data = getGlossaryData();
   return (
-    <EmptyState mood="think" title="Your glossary starts empty">
-      <p>
-        Every new word gets a plain meaning, a picture in your head, and an example. They collect
-        here as you learn, and you can search them.
-      </p>
-      <p className="text-base">The first words arrive with Unit 1.</p>
-    </EmptyState>
+    <GlossaryScreen
+      terms={data.terms}
+      abbreviations={data.abbreviations}
+      lessonRefs={data.lessonRefs}
+      initialTab={tab === "short" ? "short" : "words"}
+    />
   );
 }

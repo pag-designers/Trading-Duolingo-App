@@ -75,7 +75,7 @@ test("@cp0-onboarding a returning learner on a fresh browser skips onboarding (s
   await fresh.close();
 });
 
-test("@cp0-path-map renders all 8 units with a current step and honest not-ready sheets", async ({
+test("@cp0-path-map renders all 8 units with a current step; open steps start, unwritten steps are honest", async ({
   page,
 }) => {
   await onboard(page);
@@ -83,22 +83,25 @@ test("@cp0-path-map renders all 8 units with a current step and honest not-ready
   await expect(page.getByTestId("node-u1-money")).toHaveAttribute("data-state", "current");
   await expect(page.getByTestId("node-u1-company")).toHaveAttribute("data-state", "upcoming");
 
-  // Tapping a step opens a sheet with its real goal and an honest "not ready" message.
+  // A written step opens a sheet with its real goal and a Start link.
   await page.getByTestId("node-u1-stock").click();
   const dialog = page.getByRole("dialog");
   await expect(
-    dialog.getByText("A stock is a tiny piece of a company that you can own."),
+    dialog.getByText("A stock is a small piece of a company that you can own."),
   ).toBeVisible();
-  await expect(dialog.getByTestId("coming-soon")).toBeVisible();
+  await expect(dialog.getByTestId("start-lesson")).toHaveAttribute("href", "/lesson/u1-stock");
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
 
-  // Continue opens the current step.
-  await page.getByTestId("continue").click();
-  await expect(
-    page.getByRole("dialog").getByRole("heading", { name: "What is money?" }),
-  ).toBeVisible();
+  // A step that is not written yet says so, and offers no dead button.
+  await page.getByTestId("node-u2-account").scrollIntoViewIfNeeded();
+  await page.getByTestId("node-u2-account").click();
+  await expect(dialog.getByTestId("coming-soon")).toBeVisible();
+  await expect(dialog.getByTestId("start-lesson")).toHaveCount(0);
   await page.keyboard.press("Escape");
+
+  // Continue goes straight to the current step.
+  await expect(page.getByTestId("continue")).toHaveAttribute("href", "/lesson/u1-money");
 
   // A boss step carries the risk reminder.
   await page.getByTestId("node-u1-boss").scrollIntoViewIfNeeded();
@@ -175,7 +178,7 @@ test("every in-app route renders (no placeholders, no crashes)", async ({ page }
   for (const [path, heading] of [
     ["/trade-lab", /Trade Lab is warming up/],
     ["/chart-school", /Chart School opens with Unit 2/],
-    ["/glossary", /Your glossary starts empty/],
+    ["/glossary", /Glossary/],
     ["/journal", /No trades yet/],
     ["/profile", /Ada/],
     ["/settings", /Settings/],
@@ -184,15 +187,16 @@ test("every in-app route renders (no placeholders, no crashes)", async ({ page }
     await expect(page.getByRole("heading", { level: 1 })).toContainText(heading);
   }
   await page.goto("/trade-lab");
-  await expect(page.getByText(/Most real day traders lose money/)).toBeVisible();
+  await expect(page.getByText(/Most day traders lose money/)).toBeVisible();
 });
 
 test("a11y smoke: no serious axe violations on key screens in light and dark", async ({ page }) => {
+  test.setTimeout(120_000);
   await onboard(page);
   for (const theme of ["Light", "Dark"]) {
     await page.goto("/settings");
     await page.getByRole("radio", { name: new RegExp(theme) }).click();
-    for (const path of ["/", "/settings", "/profile", "/admin/health", "/trade-lab"]) {
+    for (const path of ["/", "/settings", "/profile", "/admin/health", "/trade-lab", "/glossary"]) {
       await page.goto(path);
       await page.waitForLoadState("networkidle");
       const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();

@@ -1,0 +1,148 @@
+{
+  "id": "u1-boss",
+  "title": "Unit 1 boss",
+  "goal": "Show what you know about money, stocks and markets.",
+  "touchesTrading": true,
+  "objectives": [],
+  "slides": [],
+  "questions": [
+    {
+      "id": "q-boss-1",
+      "type": "chart",
+      "ask": "choice",
+      "prompt": "Look at the chart. Is the price going up or down?",
+      "candles": [
+        {
+          "o": 13,
+          "h": 13.4,
+          "l": 12.0,
+          "c": 12.4
+        },
+        {
+          "o": 12.4,
+          "h": 13.1,
+          "l": 12.0,
+          "c": 12.7
+        },
+        {
+          "o": 12.7,
+          "h": 13.1,
+          "l": 11.4,
+          "c": 11.8
+        },
+        {
+          "o": 11.8,
+          "h": 12.2,
+          "l": 10.8,
+          "c": 11.2
+        },
+        {
+          "o": 11.2,
+          "h": 11.9,
+          "l": 10.8,
+          "c": 11.5
+        },
+        {
+          "o": 11.5,
+          "h": 11.9,
+          "l": 10.0,
+          "c": 10.4
+        },
+        {
+          "o": 10.4,
+          "h": 10.8,
+          "l": 9.4,
+          "c": 9.8
+        },
+        {
+          "o": 9.8,
+          "h": 10.2,
+          "l": 8.9,
+          "c": 9.3
+        }
+      ],
+      "options": [
+        {
+          "id": "up",
+          "text": "Up"
+        },
+        {
+          "id": "down",
+          "text": "Down"
+        }
+      ],
+      "answer": "down",
+      "explanation": "The candles go down. So the price is going down."
+    },
+    {
+      "id": "q-boss-2",
+      "type": "mc",
+      "prompt": "You buy a share at $20 and sell it at $25. What do you have?",
+      "options": [
+        {
+          "id": "a",
+          "text": "A profit of $5"
+        },
+        {
+          "id": "b",
+          "text": "A loss of $5"
+        },
+        {
+          "id": "c",
+          "text": "A profit of $25"
+        }
+      ],
+      "answer": "a",
+      "explanation": "$25 is more than $20, so you made $5."
+    },
+    {
+      "id": "q-boss-3",
+      "type": "tf",
+      "prompt": "A stock price can go up or down.",
+      "answer": true,
+      "explanation": "Yes. That is why trading has risk. Most day traders lose money."
+    },
+    {
+      "id": "q-boss-4",
+      "type": "build",
+      "prompt": "Build the sentence.",
+      "slots": [
+        {
+          "id": "s1",
+          "label": "A stock is a small piece of a"
+        }
+      ],
+      "blocks": [
+        {
+          "id": "company",
+          "text": "company"
+        },
+        {
+          "id": "coin",
+          "text": "coin"
+        },
+        {
+          "id": "toy",
+          "text": "toy"
+        }
+      ],
+      "answer": {
+        "s1": "company"
+      },
+      "explanation": "A stock is a small piece of a company."
+    }
+  ],
+  "pool": {
+    "from": [
+      "u1-money",
+      "u1-company",
+      "u1-stock",
+      "u1-market",
+      "u1-profit",
+      "u1-tickers",
+      "u1-shorttalk",
+      "u1-bullbear"
+    ],
+    "perLesson": 1
+  }
+}

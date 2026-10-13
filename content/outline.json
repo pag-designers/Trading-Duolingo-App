@@ -5,7 +5,7 @@
       "id": "u1",
       "number": 1,
       "title": "Money and markets",
-      "tagline": "Start here. Learn what stocks are and how people talk about them.",
+      "tagline": "Start here. Learn what stocks are and how people talk.",
       "nodes": [
         {
           "id": "u1-money",
@@ -23,7 +23,7 @@
           "id": "u1-stock",
           "type": "lesson",
           "title": "What is a stock?",
-          "goal": "A stock is a tiny piece of a company that you can own."
+          "goal": "A stock is a small piece of a company that you can own."
         },
         {
           "id": "u1-practice-1",
@@ -41,13 +41,13 @@
           "id": "u1-profit",
           "type": "lesson",
           "title": "Buy low, sell high",
-          "goal": "Learn what profit and loss mean with a simple story."
+          "goal": "Learn what profit and loss mean."
         },
         {
           "id": "u1-chest-1",
           "type": "chest",
           "title": "Treasure chest",
-          "goal": "Open a bonus chest of XP for your hard work."
+          "goal": "Open a chest to get XP."
         },
         {
           "id": "u1-tickers",
@@ -65,7 +65,7 @@
           "id": "u1-bullbear",
           "type": "lesson",
           "title": "Bulls, bears and indexes",
-          "goal": "Learn what it means when people say the market is up or down."
+          "goal": "Learn what it means when the market is up or down."
         },
         {
           "id": "u1-practice-2",
@@ -267,7 +267,7 @@
           "id": "u3-chest",
           "type": "chest",
           "title": "Treasure chest",
-          "goal": "Open a bonus chest of XP."
+          "goal": "Open a chest to get XP."
         },
         {
           "id": "u3-boss",
@@ -649,7 +649,7 @@
           "id": "u8-chest",
           "type": "chest",
           "title": "Treasure chest",
-          "goal": "Open a bonus chest before the big test."
+          "goal": "Open a chest. Then the big test."
         },
         {
           "id": "u8-boss",

@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { Wick } from "@/components/mascot/wick";
+import { RiskReminder } from "@/components/risk-reminder";
 import { Button } from "@/components/ui/button";
 import { Sheet } from "@/components/ui/sheet";
 import { findCurrentNode } from "@/lib/content/outline";
@@ -38,7 +40,7 @@ function PathNode({
   const size = big ? "size-24" : "size-[4.5rem]";
   return (
     <div
-      className="relative flex flex-col items-center py-2.5"
+      className={cn("relative flex flex-col items-center py-2.5", state === "current" && "pt-9")}
       style={{ transform: `translateX(${WIGGLE[index % WIGGLE.length]}rem)` }}
     >
       {state === "current" && (
@@ -151,8 +153,14 @@ export function NodeSheet({
         <div className="space-y-5">
           <p className="text-lg">{node.goal}</p>
           {node.ready ? (
-            <Button size="lg" block>
-              {state === "done" ? "Practice again" : "Start"}
+            <Button size="lg" block asChild>
+              <Link href={`/lesson/${node.id}`} data-testid="start-lesson">
+                {state === "done"
+                  ? "Practice again (+5 XP)"
+                  : node.type === "chest"
+                    ? "Open"
+                    : "Start"}
+              </Link>
             </Button>
           ) : (
             <div
@@ -165,11 +173,7 @@ export function NodeSheet({
               </p>
             </div>
           )}
-          {["trade", "boss", "chart"].includes(node.type) && (
-            <p className="text-sm text-muted">
-              Pretend money only. Most day traders lose money in real life.
-            </p>
-          )}
+          {["trade", "boss", "chart"].includes(node.type) && <RiskReminder />}
         </div>
       )}
     </Sheet>

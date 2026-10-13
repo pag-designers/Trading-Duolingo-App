@@ -1,39 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
 import { Wick } from "@/components/mascot/wick";
 import { cn } from "@/lib/utils";
-import { useHydrated } from "@/store/hydration";
-import { useProfile } from "@/store/profile";
-import { useSyncStatus } from "@/store/sync-status";
 import { isActive, NAV } from "./nav";
+import { Splash } from "./splash";
+import { useAppReady } from "./use-app-ready";
 import { StreakChip, XpChip } from "./stats";
-
-function Splash() {
-  return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-3" role="status">
-      <Wick mood="sleepy" size={120} decorative />
-      <p className="skeleton text-lg font-bold text-muted">Waking up Wick…</p>
-    </div>
-  );
-}
 
 /** Wraps every in-app page: nav, stats, and the first-run redirect to onboarding. */
 export function AppShell({ children }: { children: ReactNode }) {
-  const hydrated = useHydrated();
-  const syncReady = useSyncStatus((s) => s.ready);
-  const onboardedAt = useProfile((s) => s.onboardedAt);
-  const router = useRouter();
+  const ready = useAppReady();
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Wait for the first server sync: a learner who cleared their browser may already be onboarded.
-    if (hydrated && syncReady && !onboardedAt) router.replace("/onboarding");
-  }, [hydrated, syncReady, onboardedAt, router]);
-
-  if (!hydrated || !syncReady || !onboardedAt) return <Splash />;
+  if (!ready) return <Splash />;
 
   return (
     <div className="min-h-dvh md:grid md:grid-cols-[17rem_1fr]">

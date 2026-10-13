@@ -25,7 +25,8 @@
     "sounds:generate": "tsx scripts/generate-sounds.ts",
     "agents:run": "tsx agents/run.ts",
     "prepare": "husky || true",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "content:check": "tsx scripts/content-check.ts"
   },
   "dependencies": {
     "@fontsource-variable/jetbrains-mono": "^5.3.0",

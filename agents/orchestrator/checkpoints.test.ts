@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { currentCheckpointNumber } from "./checkpoints";
+import criteria from "./criteria.json";
 
 const table = (rows: string[]) =>
   ["| CP  | Scope | Status |", "| --- | --- | --- |", ...rows].join("\n");
@@ -24,8 +25,10 @@ describe("currentCheckpointNumber", () => {
       currentCheckpointNumber(table(["| 0   | Foundation | ✅ |", "| 1   | Unit 1 | ✅ |"])),
     ).toBeNull();
   });
-  it("reads the real PROGRESS.md", async () => {
+  it("reads the real PROGRESS.md and finds a checkpoint that has acceptance criteria", async () => {
     const { readFileSync } = await import("node:fs");
-    expect(currentCheckpointNumber(readFileSync("PROGRESS.md", "utf8"))).toBe(0);
+    const n = currentCheckpointNumber(readFileSync("PROGRESS.md", "utf8"));
+    expect(n).not.toBeNull();
+    expect(Object.keys(criteria)).toContain(String(n));
   });
 });

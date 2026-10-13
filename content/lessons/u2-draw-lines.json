@@ -29,9 +29,7 @@
     {
       "id": "trend",
       "text": "A trendline is a line through the lows or the highs of a chart. It shows which way the price leans.",
-      "defines": [
-        "trendline"
-      ],
+      "defines": ["trendline"],
       "title": "The trendline",
       "demo": {
         "window": {
@@ -54,18 +52,14 @@
     {
       "id": "flat",
       "text": "A horizontal line is a flat line at one price. Use it to mark a price.",
-      "defines": [
-        "horizontal-line"
-      ],
+      "defines": ["horizontal-line"],
       "title": "The flat line",
       "art": "ticker"
     },
     {
       "id": "magnet",
       "text": "Magnet mode snaps clicks to a candle price. It keeps your lines neat.",
-      "defines": [
-        "magnet-mode"
-      ],
+      "defines": ["magnet-mode"],
       "title": "Magnet mode",
       "art": "chest"
     },
@@ -209,10 +203,7 @@
       "task": {
         "kind": "trendline",
         "touch": "lows",
-        "bars": [
-          4,
-          28
-        ]
+        "bars": [4, 28]
       }
     },
     {
@@ -230,10 +221,7 @@
       "task": {
         "kind": "trendline",
         "touch": "highs",
-        "bars": [
-          0,
-          29
-        ]
+        "bars": [0, 29]
       }
     }
   ]

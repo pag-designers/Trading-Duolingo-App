@@ -29,9 +29,7 @@
     {
       "id": "rect",
       "text": "A rectangle is a box you draw on the chart. It marks a zone of time and price. A flat run of candles fits in a box.",
-      "defines": [
-        "rectangle"
-      ],
+      "defines": ["rectangle"],
       "title": "The rectangle",
       "demo": {
         "window": {
@@ -47,9 +45,7 @@
     {
       "id": "fib",
       "text": "Fibonacci levels are lines between a low and a high. They mark set shares of the move, like 38%, 50% and 62%.",
-      "defines": [
-        "fibonacci"
-      ],
+      "defines": ["fibonacci"],
       "title": "Fibonacci levels",
       "art": "candles"
     },
@@ -86,9 +82,7 @@
     {
       "id": "measure",
       "text": "The measure tool shows how far the price moved between two points. It shows dollars. It shows percent too.",
-      "defines": [
-        "measure-tool"
-      ],
+      "defines": ["measure-tool"],
       "title": "The measure tool",
       "art": "profit"
     }
@@ -190,10 +184,7 @@
       },
       "task": {
         "kind": "box",
-        "bars": [
-          7,
-          14
-        ]
+        "bars": [7, 14]
       }
     },
     {

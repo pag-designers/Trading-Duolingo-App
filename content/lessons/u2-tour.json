@@ -39,9 +39,7 @@
     {
       "id": "toolbar",
       "text": "The toolbar is a strip of icons on the left. It holds the drawing tools. You will use them soon.",
-      "defines": [
-        "toolbar"
-      ],
+      "defines": ["toolbar"],
       "title": "The toolbar",
       "art": "chest"
     },
@@ -55,9 +53,7 @@
     {
       "id": "watchlist",
       "text": "A watchlist is a list of tickers to watch. It sits on the right. Tap a ticker to open its chart.",
-      "defines": [
-        "watchlist"
-      ],
+      "defines": ["watchlist"],
       "title": "The watchlist",
       "art": "index"
     },

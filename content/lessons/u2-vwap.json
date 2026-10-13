@@ -29,9 +29,7 @@
     {
       "id": "vwap",
       "text": "VWAP is the average price of the day. Prices with more volume count more.",
-      "defines": [
-        "vwap"
-      ],
+      "defines": ["vwap"],
       "title": "The day's average",
       "art": "tag"
     },
@@ -47,9 +45,7 @@
           "start": 0,
           "count": 52
         },
-        "indicators": [
-          "vwap"
-        ],
+        "indicators": ["vwap"],
         "caption": "Made-up practice prices. VWAP starts over on day two."
       }
     },
@@ -72,9 +68,7 @@
           "start": 0,
           "count": 78
         },
-        "indicators": [
-          "vwap"
-        ],
+        "indicators": ["vwap"],
         "caption": "Made-up practice prices. Watch price cross the VWAP line."
       }
     },
@@ -189,16 +183,10 @@
         "start": 0,
         "count": 52
       },
-      "offer": [
-        "vwap",
-        "sma",
-        "volume"
-      ],
+      "offer": ["vwap", "sma", "volume"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "vwap"
-        ]
+        "want": ["vwap"]
       }
     }
   ]

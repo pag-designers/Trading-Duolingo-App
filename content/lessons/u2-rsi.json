@@ -25,27 +25,21 @@
     {
       "id": "momentum",
       "text": "Momentum is how fast and how hard a price is moving. A quick climb with big candles has strong momentum.",
-      "defines": [
-        "momentum"
-      ],
+      "defines": ["momentum"],
       "title": "Momentum",
       "art": "bull"
     },
     {
       "id": "rsi",
       "text": "RSI is a gauge from 0 to 100. It reads the last 14 candles to size up momentum. It sits in a strip under the chart.",
-      "defines": [
-        "rsi"
-      ],
+      "defines": ["rsi"],
       "title": "The RSI gauge",
       "art": "ticker"
     },
     {
       "id": "high",
       "text": "Overbought means the RSI is over 70. The price rose fast. A dotted line at 70 marks it.",
-      "defines": [
-        "overbought"
-      ],
+      "defines": ["overbought"],
       "title": "Overbought",
       "demo": {
         "window": {
@@ -54,18 +48,14 @@
           "start": 225,
           "count": 60
         },
-        "indicators": [
-          "rsi"
-        ],
+        "indicators": ["rsi"],
         "caption": "Real Apple prices. The RSI went over 70."
       }
     },
     {
       "id": "low",
       "text": "Oversold means the RSI is under 30. The price fell fast. A dotted line at 30 marks it.",
-      "defines": [
-        "oversold"
-      ],
+      "defines": ["oversold"],
       "title": "Oversold",
       "demo": {
         "window": {
@@ -74,9 +64,7 @@
           "start": 205,
           "count": 60
         },
-        "indicators": [
-          "rsi"
-        ],
+        "indicators": ["rsi"],
         "caption": "Real Apple prices. The RSI went under 30."
       }
     },
@@ -92,9 +80,7 @@
           "start": 440,
           "count": 60
         },
-        "indicators": [
-          "rsi"
-        ],
+        "indicators": ["rsi"],
         "caption": "Real Apple prices. RSI stayed over 70 as price rose."
       }
     }
@@ -245,16 +231,10 @@
         "start": 225,
         "count": 60
       },
-      "offer": [
-        "rsi",
-        "sma",
-        "volume"
-      ],
+      "offer": ["rsi", "sma", "volume"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "rsi"
-        ]
+        "want": ["rsi"]
       }
     }
   ]

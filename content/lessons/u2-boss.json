@@ -49,11 +49,7 @@
         "start": 0,
         "count": 28
       },
-      "timeframes": [
-        "15m",
-        "1h",
-        "D"
-      ],
+      "timeframes": ["15m", "1h", "D"],
       "task": {
         "kind": "timeframe",
         "tf": "D"
@@ -70,24 +66,11 @@
         "start": 60,
         "count": 60
       },
-      "start": [
-        "rsi",
-        "volume"
-      ],
-      "offer": [
-        "sma",
-        "ema",
-        "rsi",
-        "macd",
-        "bands",
-        "volume"
-      ],
+      "start": ["rsi", "volume"],
+      "offer": ["sma", "ema", "rsi", "macd", "bands", "volume"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "ema",
-          "bands"
-        ]
+        "want": ["ema", "bands"]
       }
     },
     {

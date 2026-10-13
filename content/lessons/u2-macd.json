@@ -25,9 +25,7 @@
     {
       "id": "macd",
       "text": "MACD compares a fast EMA with a slow EMA. It shows if momentum grows or shrinks.",
-      "defines": [
-        "macd"
-      ],
+      "defines": ["macd"],
       "title": "Two averages",
       "art": "ticker"
     },
@@ -41,10 +39,7 @@
     {
       "id": "signal",
       "text": "The signal line is a 9 candle average of the MACD line. The histogram is the bars. Each bar is the MACD line minus the signal line.",
-      "defines": [
-        "signal-line",
-        "histogram"
-      ],
+      "defines": ["signal-line", "histogram"],
       "title": "Signal line and bars",
       "demo": {
         "window": {
@@ -53,9 +48,7 @@
           "start": 430,
           "count": 60
         },
-        "indicators": [
-          "macd"
-        ],
+        "indicators": ["macd"],
         "caption": "Real Apple prices. See both lines and the bars."
       }
     },
@@ -201,16 +194,10 @@
         "start": 430,
         "count": 60
       },
-      "offer": [
-        "macd",
-        "ema",
-        "volume"
-      ],
+      "offer": ["macd", "ema", "volume"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "macd"
-        ]
+        "want": ["macd"]
       }
     }
   ]

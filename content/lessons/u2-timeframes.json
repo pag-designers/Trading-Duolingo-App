@@ -25,9 +25,7 @@
     {
       "id": "tf",
       "text": "A timeframe is how long one candle lasts. On a 5m chart, a candle lasts 5 min.",
-      "defines": [
-        "timeframe"
-      ],
+      "defines": ["timeframe"],
       "title": "What is a timeframe?",
       "art": "candles"
     },
@@ -41,9 +39,7 @@
     {
       "id": "intraday",
       "text": "Minute and hour charts are intraday charts. Intraday means inside one day.",
-      "defines": [
-        "intraday"
-      ],
+      "defines": ["intraday"],
       "title": "Inside one day",
       "art": "market"
     },
@@ -82,9 +78,7 @@
     {
       "id": "types",
       "text": "A candle chart shows four prices for each time. A line chart joins only the close prices. Bar and area charts are more looks.",
-      "defines": [
-        "line-chart"
-      ],
+      "defines": ["line-chart"],
       "title": "Chart types",
       "art": "candles"
     }
@@ -213,11 +207,7 @@
         "start": 0,
         "count": 52
       },
-      "timeframes": [
-        "5m",
-        "15m",
-        "1h"
-      ],
+      "timeframes": ["5m", "15m", "1h"],
       "task": {
         "kind": "timeframe",
         "tf": "1h"
@@ -235,11 +225,7 @@
         "start": 0,
         "count": 21
       },
-      "timeframes": [
-        "5m",
-        "15m",
-        "1h"
-      ],
+      "timeframes": ["5m", "15m", "1h"],
       "task": {
         "kind": "timeframe",
         "tf": "5m"

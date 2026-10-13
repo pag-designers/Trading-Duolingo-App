@@ -45,11 +45,7 @@
         "start": 0,
         "count": 21
       },
-      "timeframes": [
-        "5m",
-        "15m",
-        "1h"
-      ],
+      "timeframes": ["5m", "15m", "1h"],
       "task": {
         "kind": "timeframe",
         "tf": "15m"
@@ -57,13 +53,7 @@
     }
   ],
   "pool": {
-    "from": [
-      "u2-account",
-      "u2-tour",
-      "u2-timeframes",
-      "u2-axes",
-      "u2-crosshair"
-    ],
+    "from": ["u2-account", "u2-tour", "u2-timeframes", "u2-axes", "u2-crosshair"],
     "perLesson": 2
   }
 }

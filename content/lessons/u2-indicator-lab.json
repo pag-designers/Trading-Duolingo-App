@@ -25,9 +25,7 @@
     {
       "id": "overlay",
       "text": "An overlay is an indicator drawn on top of the candles. The SMA, EMA, VWAP and Bollinger Bands are overlays.",
-      "defines": [
-        "overlay"
-      ],
+      "defines": ["overlay"],
       "title": "Overlays",
       "art": "candles"
     },
@@ -66,20 +64,10 @@
         "start": 120,
         "count": 60
       },
-      "offer": [
-        "sma",
-        "ema",
-        "rsi",
-        "macd",
-        "bands",
-        "volume"
-      ],
+      "offer": ["sma", "ema", "rsi", "macd", "bands", "volume"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "sma",
-          "volume"
-        ]
+        "want": ["sma", "volume"]
       }
     },
     {
@@ -94,23 +82,11 @@
         "start": 0,
         "count": 52
       },
-      "start": [
-        "sma"
-      ],
-      "offer": [
-        "sma",
-        "ema",
-        "vwap",
-        "rsi",
-        "bands",
-        "volume"
-      ],
+      "start": ["sma"],
+      "offer": ["sma", "ema", "vwap", "rsi", "bands", "volume"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "vwap",
-          "volume"
-        ]
+        "want": ["vwap", "volume"]
       }
     },
     {
@@ -125,20 +101,11 @@
         "start": 430,
         "count": 60
       },
-      "start": [
-        "rsi"
-      ],
-      "offer": [
-        "sma",
-        "rsi",
-        "macd",
-        "volume"
-      ],
+      "start": ["rsi"],
+      "offer": ["sma", "rsi", "macd", "volume"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "macd"
-        ]
+        "want": ["macd"]
       }
     },
     {
@@ -153,23 +120,11 @@
         "start": 225,
         "count": 60
       },
-      "start": [
-        "bands",
-        "ema"
-      ],
-      "offer": [
-        "ema",
-        "bands",
-        "rsi",
-        "macd",
-        "volume"
-      ],
+      "start": ["bands", "ema"],
+      "offer": ["ema", "bands", "rsi", "macd", "volume"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "rsi",
-          "volume"
-        ]
+        "want": ["rsi", "volume"]
       }
     },
     {
@@ -184,18 +139,8 @@
         "start": 120,
         "count": 60
       },
-      "start": [
-        "sma",
-        "rsi"
-      ],
-      "offer": [
-        "sma",
-        "ema",
-        "rsi",
-        "macd",
-        "bands",
-        "volume"
-      ],
+      "start": ["sma", "rsi"],
+      "offer": ["sma", "ema", "rsi", "macd", "bands", "volume"],
       "task": {
         "kind": "indicators",
         "want": []

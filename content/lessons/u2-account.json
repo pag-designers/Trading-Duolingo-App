@@ -25,9 +25,7 @@
     {
       "id": "tv",
       "text": "TradingView is a website with charts. It has a phone app too. Traders all over the world use it.",
-      "defines": [
-        "tradingview"
-      ],
+      "defines": ["tradingview"],
       "title": "A chart website",
       "art": "candles"
     },

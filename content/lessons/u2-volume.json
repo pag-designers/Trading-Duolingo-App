@@ -34,9 +34,7 @@
           "start": 250,
           "count": 40
         },
-        "indicators": [
-          "volume"
-        ],
+        "indicators": ["volume"],
         "caption": "Real Apple history. The bars below show volume."
       }
     },
@@ -127,12 +125,8 @@
         "start": 316,
         "count": 30
       },
-      "start": [
-        "volume"
-      ],
-      "offer": [
-        "volume"
-      ],
+      "start": ["volume"],
+      "offer": ["volume"],
       "task": {
         "kind": "find-bar",
         "rule": "highest-volume"
@@ -180,16 +174,10 @@
         "start": 250,
         "count": 40
       },
-      "offer": [
-        "volume",
-        "sma",
-        "rsi"
-      ],
+      "offer": ["volume", "sma", "rsi"],
       "task": {
         "kind": "indicators",
-        "want": [
-          "volume"
-        ]
+        "want": ["volume"]
       }
     }
   ]

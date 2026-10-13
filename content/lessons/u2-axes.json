@@ -25,18 +25,14 @@
     {
       "id": "ohlc",
       "text": "OHLC means open, high, low and close. These are the four prices of one candle.",
-      "defines": [
-        "ohlc"
-      ],
+      "defines": ["ohlc"],
       "title": "Four prices",
       "art": "candles"
     },
     {
       "id": "price-scale",
       "text": "The price scale runs up the right side. A high spot on the chart is a high price.",
-      "defines": [
-        "price-scale"
-      ],
+      "defines": ["price-scale"],
       "title": "The price scale",
       "demo": {
         "window": {
@@ -52,18 +48,14 @@
     {
       "id": "time-axis",
       "text": "The time axis is at the bottom. Old days sit on the left. New candles sit on the right.",
-      "defines": [
-        "time-axis"
-      ],
+      "defines": ["time-axis"],
       "title": "The time axis",
       "art": "ticker"
     },
     {
       "id": "legend",
       "text": "The legend sits at the top left. It shows the OHLC of one candle. Point at a candle and it changes.",
-      "defines": [
-        "legend"
-      ],
+      "defines": ["legend"],
       "title": "The legend",
       "art": "speech"
     },

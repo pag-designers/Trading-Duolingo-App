@@ -22,9 +22,7 @@
     {
       "id": "company",
       "term": "company",
-      "aliases": [
-        "companies"
-      ],
+      "aliases": ["companies"],
       "definition": "A company is a group of people who make or sell things.",
       "analogy": "A company is like a team. Each person has a job.",
       "example": "A shop that bakes bread is a company.",
@@ -105,9 +103,7 @@
     {
       "id": "nyse",
       "term": "NYSE",
-      "aliases": [
-        "New York Stock Exchange"
-      ],
+      "aliases": ["New York Stock Exchange"],
       "definition": "The NYSE is the New York Stock Exchange, a big US exchange.",
       "analogy": "The NYSE is like a big old mall.",
       "example": "A famous shoe company can list its stock on the NYSE.",
@@ -134,9 +130,7 @@
     {
       "id": "loss",
       "term": "loss",
-      "aliases": [
-        "losses"
-      ],
+      "aliases": ["losses"],
       "definition": "A loss is money you lose when you sell for less than you paid.",
       "analogy": "You buy a toy for $5 and sell it for $3. You lose $2.",
       "example": "Buy at $10, sell at $7. Your loss is $3.",
@@ -145,10 +139,7 @@
     {
       "id": "trade",
       "term": "trade",
-      "aliases": [
-        "trading",
-        "traded"
-      ],
+      "aliases": ["trading", "traded"],
       "definition": "A trade is one buy or one sell of a stock.",
       "analogy": "A trade is like a swap. Money for stock, or stock for money.",
       "example": "Mia buys 2 shares today. That is one trade.",
@@ -166,10 +157,7 @@
     {
       "id": "ticker",
       "term": "ticker",
-      "aliases": [
-        "ticker symbol",
-        "symbol"
-      ],
+      "aliases": ["ticker symbol", "symbol"],
       "definition": "A ticker is a short code for a stock, like AAPL.",
       "analogy": "A ticker is like a nickname for a stock.",
       "example": "AAPL is the ticker for Apple.",
@@ -178,9 +166,7 @@
     {
       "id": "etf",
       "term": "ETF",
-      "aliases": [
-        "exchange-traded fund"
-      ],
+      "aliases": ["exchange-traded fund"],
       "definition": "An ETF is a box that holds stocks.",
       "analogy": "An ETF is like a bag of mixed fruit.",
       "example": "SPY is an ETF. One share gives you a bit of 500 companies.",
@@ -198,9 +184,7 @@
     {
       "id": "suffix",
       "term": "suffix",
-      "aliases": [
-        "exchange suffix"
-      ],
+      "aliases": ["exchange suffix"],
       "definition": "A suffix is the tag at the end of a ticker. It shows where a stock trades.",
       "analogy": "A suffix is like a zip code on a letter.",
       "example": "In AAPL.L, the .L says it trades in London.",
@@ -227,9 +211,7 @@
     {
       "id": "eps",
       "term": "EPS",
-      "aliases": [
-        "earnings per share"
-      ],
+      "aliases": ["earnings per share"],
       "definition": "EPS is the profit a company made for each share.",
       "analogy": "EPS is the slice of profit that each share gets.",
       "example": "A company made $100 and has 50 shares. EPS is $2.",
@@ -238,9 +220,7 @@
     {
       "id": "pe",
       "term": "P/E",
-      "aliases": [
-        "price-to-earnings"
-      ],
+      "aliases": ["price-to-earnings"],
       "definition": "P/E is the price you pay for $1 of profit.",
       "analogy": "P/E is the price tag on each dollar of profit.",
       "example": "A stock with a P/E of 10 costs $10 for each $1 of profit.",
@@ -258,9 +238,7 @@
     {
       "id": "fed",
       "term": "Fed",
-      "aliases": [
-        "Federal Reserve"
-      ],
+      "aliases": ["Federal Reserve"],
       "definition": "The Fed is the bank of the US. It helps set the cost of loans.",
       "analogy": "The Fed is like a boss for money in the US.",
       "example": "When the Fed acts, many stock prices can move.",
@@ -287,9 +265,7 @@
     {
       "id": "ath",
       "term": "ATH",
-      "aliases": [
-        "all-time high"
-      ],
+      "aliases": ["all-time high"],
       "definition": "ATH is the highest price a stock has hit.",
       "analogy": "ATH is like a new world record.",
       "example": "The stock hit an ATH of $50 today.",
@@ -298,9 +274,7 @@
     {
       "id": "atl",
       "term": "ATL",
-      "aliases": [
-        "all-time low"
-      ],
+      "aliases": ["all-time low"],
       "definition": "ATL is the lowest price a stock has hit.",
       "analogy": "ATL is like the bottom of the stairs.",
       "example": "The stock hit an ATL of $2 today.",
@@ -309,9 +283,7 @@
     {
       "id": "eod",
       "term": "EOD",
-      "aliases": [
-        "end of day"
-      ],
+      "aliases": ["end of day"],
       "definition": "EOD means the end of the day.",
       "analogy": "EOD is like the last bell at school.",
       "example": "The EOD price is the last price of the day.",
@@ -320,10 +292,7 @@
     {
       "id": "after-hours",
       "term": "after-hours",
-      "aliases": [
-        "AH",
-        "after hours"
-      ],
+      "aliases": ["AH", "after hours"],
       "definition": "After-hours is the time after the stock market closes for the day.",
       "analogy": "After-hours is like a shop that stays open late.",
       "example": "The news came out in AH, so the price moved.",
@@ -332,10 +301,7 @@
     {
       "id": "pre-market",
       "term": "pre-market",
-      "aliases": [
-        "pre market",
-        "premarket"
-      ],
+      "aliases": ["pre market", "premarket"],
       "definition": "Pre-market is the time before trading starts.",
       "analogy": "Pre-market is like a warm-up before a game.",
       "example": "At 8 AM, pre-market prices show the first moves.",
@@ -344,9 +310,7 @@
     {
       "id": "otc",
       "term": "OTC",
-      "aliases": [
-        "over the counter"
-      ],
+      "aliases": ["over the counter"],
       "definition": "OTC stocks trade away from the big exchanges.",
       "analogy": "OTC is like a yard sale, not a big store.",
       "example": "A tiny company may trade OTC, not on an exchange.",
@@ -355,9 +319,7 @@
     {
       "id": "dd",
       "term": "DD",
-      "aliases": [
-        "due diligence"
-      ],
+      "aliases": ["due diligence"],
       "definition": "DD means you read up on a stock first.",
       "analogy": "DD is like trying a toy first.",
       "example": "Before I buy, I do DD on the company.",
@@ -384,9 +346,7 @@
     {
       "id": "yolo",
       "term": "YOLO",
-      "aliases": [
-        "YOLO trade"
-      ],
+      "aliases": ["YOLO trade"],
       "definition": "YOLO is when you bet lots of money on one stock.",
       "analogy": "YOLO is like a big bet on one game.",
       "example": "A YOLO trade can win big, but it can lose big too.",
@@ -395,9 +355,7 @@
     {
       "id": "bid",
       "term": "bid",
-      "aliases": [
-        "bid price"
-      ],
+      "aliases": ["bid price"],
       "definition": "The bid is the top price a buyer will pay right now.",
       "analogy": "The bid is what a buyer will pay.",
       "example": "The bid is $10. A buyer will pay $10.",
@@ -406,9 +364,7 @@
     {
       "id": "ask",
       "term": "ask",
-      "aliases": [
-        "ask price"
-      ],
+      "aliases": ["ask price"],
       "definition": "The ask is the low price a seller wants right now.",
       "analogy": "The ask is what a seller wants.",
       "example": "The ask is $10.05. A seller wants $10.05.",
@@ -417,9 +373,7 @@
     {
       "id": "volume",
       "term": "volume",
-      "aliases": [
-        "vol"
-      ],
+      "aliases": ["vol"],
       "definition": "Volume is how many shares were bought and sold.",
       "analogy": "Volume is like how busy a store is.",
       "example": "A stock with high volume has many trades.",
@@ -428,11 +382,7 @@
     {
       "id": "market-cap",
       "term": "market cap",
-      "aliases": [
-        "mcap",
-        "MCAP",
-        "market capitalization"
-      ],
+      "aliases": ["mcap", "MCAP", "market capitalization"],
       "definition": "Market cap is the price of one share times all the shares.",
       "analogy": "Market cap is like the price tag on a whole company.",
       "example": "A stock costs $10 and has 1,000 shares. Its market cap is $10,000.",
@@ -441,9 +391,7 @@
     {
       "id": "rsi",
       "term": "RSI",
-      "aliases": [
-        "relative strength index"
-      ],
+      "aliases": ["relative strength index"],
       "definition": "RSI is a gauge from 0 to 100. It reads momentum from the last 14 candles.",
       "analogy": "RSI is like a speed dial for a price.",
       "example": "An RSI of 80 means the price rose fast.",
@@ -461,9 +409,7 @@
     {
       "id": "vwap",
       "term": "VWAP",
-      "aliases": [
-        "volume-weighted average price"
-      ],
+      "aliases": ["volume-weighted average price"],
       "definition": "VWAP is the average price of the day. Prices with more volume count more.",
       "analogy": "VWAP is like the middle of where the crowd shopped.",
       "example": "Price over VWAP is high for the day.",
@@ -472,10 +418,7 @@
     {
       "id": "bull",
       "term": "bull",
-      "aliases": [
-        "bullish",
-        "bull market"
-      ],
+      "aliases": ["bullish", "bull market"],
       "definition": "A bull is a person who thinks prices will rise.",
       "analogy": "A bull swings its horns up.",
       "example": "In a bull market, prices rise for a long time.",
@@ -484,10 +427,7 @@
     {
       "id": "bear",
       "term": "bear",
-      "aliases": [
-        "bearish",
-        "bear market"
-      ],
+      "aliases": ["bearish", "bear market"],
       "definition": "A bear is a person who thinks prices will fall.",
       "analogy": "A bear swipes its paw down.",
       "example": "In a bear market, prices fall for a long time.",
@@ -496,9 +436,7 @@
     {
       "id": "index",
       "term": "index",
-      "aliases": [
-        "indices"
-      ],
+      "aliases": ["indices"],
       "definition": "An index is a list of stocks that shows how a group is doing.",
       "analogy": "An index is like a class score made from many kids.",
       "example": "An index of 500 big companies shows how they all do.",
@@ -507,9 +445,7 @@
     {
       "id": "sp500",
       "term": "S&P 500",
-      "aliases": [
-        "S&P"
-      ],
+      "aliases": ["S&P"],
       "definition": "The S&P 500 is an index of 500 big US companies.",
       "analogy": "The S&P 500 is like a team photo of big US companies.",
       "example": "If the S&P 500 is up, many big stocks rose that day.",
@@ -518,9 +454,7 @@
     {
       "id": "dow",
       "term": "Dow",
-      "aliases": [
-        "Dow Jones"
-      ],
+      "aliases": ["Dow Jones"],
       "definition": "The Dow is an index of 30 big US companies.",
       "analogy": "The Dow is like a small team photo of 30 big companies.",
       "example": "The Dow went up when many of its 30 companies rose.",
@@ -547,9 +481,7 @@
     {
       "id": "watchlist",
       "term": "watchlist",
-      "aliases": [
-        "watch list"
-      ],
+      "aliases": ["watch list"],
       "definition": "A watchlist is a list of tickers you keep an eye on.",
       "analogy": "A watchlist is like a list of players you want to follow.",
       "example": "Your watchlist has AAPL, TSLA and NVDA.",
@@ -558,9 +490,7 @@
     {
       "id": "timeframe",
       "term": "timeframe",
-      "aliases": [
-        "time frame"
-      ],
+      "aliases": ["time frame"],
       "definition": "A timeframe is how long one candle lasts.",
       "analogy": "A timeframe is like how far you zoom.",
       "example": "On a 5m timeframe, a candle lasts 5 min.",
@@ -596,9 +526,7 @@
     {
       "id": "price-scale",
       "term": "price scale",
-      "aliases": [
-        "price axis"
-      ],
+      "aliases": ["price axis"],
       "definition": "The price scale lists prices up the right side.",
       "analogy": "The price scale is like a ruler.",
       "example": "At the 150 mark, the price is $150.",
@@ -607,9 +535,7 @@
     {
       "id": "time-axis",
       "term": "time axis",
-      "aliases": [
-        "time scale"
-      ],
+      "aliases": ["time scale"],
       "definition": "The time axis lists days at the bottom.",
       "analogy": "The time axis is like a row of dates.",
       "example": "New candles sit at the right end.",
@@ -636,9 +562,7 @@
     {
       "id": "trendline",
       "term": "trendline",
-      "aliases": [
-        "trend line"
-      ],
+      "aliases": ["trend line"],
       "definition": "A trendline is a line through the lows or highs.",
       "analogy": "A trendline is like a ruler on a hill.",
       "example": "A line on rising lows is a trendline.",
@@ -647,9 +571,7 @@
     {
       "id": "horizontal-line",
       "term": "horizontal line",
-      "aliases": [
-        "flat line"
-      ],
+      "aliases": ["flat line"],
       "definition": "A horizontal line is a flat line at one price.",
       "analogy": "A horizontal line is like a mark on the wall for your height.",
       "example": "Draw a horizontal line at $100 to mark that price.",
@@ -676,11 +598,7 @@
     {
       "id": "fibonacci",
       "term": "Fibonacci",
-      "aliases": [
-        "Fib",
-        "Fibonacci levels",
-        "Fibonacci retracement"
-      ],
+      "aliases": ["Fib", "Fibonacci levels", "Fibonacci retracement"],
       "definition": "Fibonacci levels are lines between a low and a high. They mark set shares of the move, like 50%.",
       "analogy": "Fibonacci levels are like marks on a stair that show half way up.",
       "example": "After a $10 climb, the 50% line is $5 down.",
@@ -716,9 +634,7 @@
     {
       "id": "sma",
       "term": "SMA",
-      "aliases": [
-        "simple moving average"
-      ],
+      "aliases": ["simple moving average"],
       "definition": "SMA is a moving average where all count the same.",
       "analogy": "SMA is like a vote where all count.",
       "example": "A 20 SMA adds 20 closes and divides by 20.",
@@ -727,9 +643,7 @@
     {
       "id": "ema",
       "term": "EMA",
-      "aliases": [
-        "exponential moving average"
-      ],
+      "aliases": ["exponential moving average"],
       "definition": "EMA is a moving average that counts new candles more.",
       "analogy": "EMA is like a vote where new ones shout.",
       "example": "The EMA turns sooner than the SMA.",
@@ -783,10 +697,7 @@
     {
       "id": "bollinger-bands",
       "term": "Bollinger Bands",
-      "aliases": [
-        "Bollinger Band",
-        "bands"
-      ],
+      "aliases": ["Bollinger Band", "bands"],
       "definition": "Bollinger Bands are three lines around the price. The mid line is a 20 candle average.",
       "analogy": "Bollinger Bands are like a stretchy fence. It opens wide when prices swing.",
       "example": "Tight bands mean calm prices. Wide bands mean big swings.",

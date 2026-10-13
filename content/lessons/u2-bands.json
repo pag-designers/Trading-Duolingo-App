@@ -24,7 +24,7 @@
   "slides": [
     {
       "id": "bands",
-      "text": "Bollinger Bands are three lines around the price. The mid line is a 20 candle average. One line sits up high and one sits down low.",
+      "text": "Bollinger Bands are three lines around the price. The mid line is a 20 candle average. One line is up high and one is down low.",
       "defines": ["bollinger-bands"],
       "title": "Three lines",
       "art": "candles"

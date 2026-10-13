@@ -29,27 +29,21 @@
     {
       "id": "indicator",
       "text": "An indicator is a line or bars added to a chart. It is made from the price numbers. It cannot see what is next.",
-      "defines": [
-        "indicator"
-      ],
+      "defines": ["indicator"],
       "title": "What is an indicator?",
       "art": "candles"
     },
     {
       "id": "average",
       "text": "An average is one fair number for a group. Add the group up. Then divide by the count.",
-      "defines": [
-        "average"
-      ],
+      "defines": ["average"],
       "title": "What is an average?",
       "art": "tag"
     },
     {
       "id": "ma",
       "text": "A moving average is the average price of the last few candles. It slides on as new candles come. It smooths out the wiggles.",
-      "defines": [
-        "moving-average"
-      ],
+      "defines": ["moving-average"],
       "title": "The moving average",
       "demo": {
         "window": {
@@ -58,28 +52,15 @@
           "start": 120,
           "count": 60
         },
-        "indicators": [
-          "sma"
-        ],
+        "indicators": ["sma"],
         "caption": "Real Apple prices. The line is the 20 day average."
       }
     },
     {
-      "id": "sma",
-      "text": "The SMA adds up the last 20 closes and divides by 20. Each candle counts the same.",
-      "defines": [
-        "sma"
-      ],
-      "title": "The SMA",
-      "art": "tag"
-    },
-    {
-      "id": "ema",
-      "text": "The EMA counts new candles more than old ones. So it turns sooner than the SMA. It uses 20 candles too.",
-      "defines": [
-        "ema"
-      ],
-      "title": "The EMA",
+      "id": "sma-ema",
+      "text": "The SMA adds up the last 20 closes and divides by 20. The EMA counts new candles more. So it turns sooner than the SMA.",
+      "defines": ["sma", "ema"],
+      "title": "The SMA and the EMA",
       "demo": {
         "window": {
           "dataset": "aapl-daily",
@@ -87,10 +68,7 @@
           "start": 120,
           "count": 60
         },
-        "indicators": [
-          "sma",
-          "ema"
-        ],
+        "indicators": ["sma", "ema"],
         "caption": "Real Apple prices. Solid is the SMA. Dashed is the EMA."
       }
     },

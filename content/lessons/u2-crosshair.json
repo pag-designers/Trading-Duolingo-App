@@ -39,9 +39,7 @@
     {
       "id": "crosshair",
       "text": "The crosshair is two lines that trail your mouse. It shows the price and time under it. The legend shows that candle.",
-      "defines": [
-        "crosshair"
-      ],
+      "defines": ["crosshair"],
       "title": "The crosshair",
       "art": "speech"
     },
